@@ -1,0 +1,632 @@
+paper,page,line_idx,text,label,confidence
+paper1,1,2,Web Automation Programs,KEEP,medium
+paper1,1,4,jpu@dgp.toronto.edu rainey.fu@mail.utoronto.ca ruidong@umich.edu,SKIP,high
+paper1,1,7,xwangasd@umich.edu yanchen@dgp.toronto.edu tovi@dgp.toronto.edu,SKIP,high
+paper1,1,10,Conditions,SKIP,medium
+paper1,1,11,a f,SKIP,medium
+paper1,1,12,b,SKIP,medium
+paper1,1,13,e,SKIP,medium
+paper1,1,14,Output data,SKIP,medium
+paper1,1,15,d,SKIP,medium
+paper1,1,16,g,SKIP,medium
+paper1,1,17,c h,SKIP,medium
+paper1,1,18,prompt ???,SKIP,medium
+paper1,1,19,56%,SKIP,medium
+paper1,1,21,Figure1:TheworkflowofSemanticOn.Therearethreestepstocreatingawebautomationprogramwithsemanticconditionsusing,SKIP,high
+paper1,1,32,KEYWORDS,SKIP,medium
+paper1,1,36,"onentityrelationships).WeintroduceSemanticOn,asystemthat ACMReferenceFormat:",SKIP,medium
+paper1,1,41,AutomationPrograms.InThe35thAnnualACMSymposiumonUserInterface,SKIP,medium
+paper1,1,45,"USA.ACM,NewYork,NY,USA,16pages.https://doi.org/10.1145/3526113.",SKIP,high
+paper1,1,51,onthefirstpage.CopyrightsforcomponentsofthisworkownedbyothersthanACM plications to manage their businesses and services. Other than,SKIP,high
+paper1,1,55,fee.Requestpermissionsfrompermissions@acm.org. researchersoftenemploythesewebplatformstoconducttasksthat,SKIP,high
+paper1,1,57,©2022AssociationforComputingMachinery.,SKIP,high
+paper1,1,59,ACMISBN978-1-4503-9320-1/22/10...$15.00,SKIP,medium
+paper1,1,60,"https://doi.org/10.1145/3526113.3545691 (e.g.,dataduplicates,missedentries),whichcancauseinefficiencies.",SKIP,high
+paper1,2,54,2 RELATEDWORK,SKIP,medium
+paper1,3,2,"2.1 WebAutomation domain,mostnotablyCoScripter[42],Vegemite[48],Rousillon[15],",SKIP,high
+paper1,3,3,Web automation is a software technique that leverages bots to andiMacros[2].,KEEP,low
+paper1,3,6,"UI testers, and clerks all use web automation to help complete and-replayfunctionality;usersrecordthemselvesinteractingwith",KEEP,low
+paper1,3,7,"their domain-specific tasks [40, 43, 49, 69]. Social scientists, for thebrowser—clicking,enteringtext,andnavigatingbetweenpages—",SKIP,medium
+paper1,3,18,"Puppeteer [4], Selenium [6], Scrapy [5], and Beautiful Soup [1] editingconstraintsatanytimeduringprogramexecution.",SKIP,high
+paper1,3,29,"addition,theprogrammightnotgeneralizetocross-webpagese- forsystemstocomprehend.Manysystemshaveproposedbridg-",SKIP,medium
+paper1,3,59,"browserinternalsormanuallyreverse-engineertargetpages.The (augmentedexamples)todisambiguateuserintent[66,78].Orthey",SKIP,medium
+paper1,4,24,1:,SKIP,medium
+paper1,4,25,P0:=a1;··;am;,SKIP,medium
+paper1,4,32,6:,SKIP,medium
+paper1,4,33,W′:=Rewrite(P);,SKIP,medium
+paper1,4,54,d,SKIP,medium
+paper1,4,59,Figure2:AscreenshotoftheWebRobotsystemUI.,SKIP,high
+paper1,5,29,semanticconditions.,SKIP,medium
+paper1,5,53,"1. Specify conditions 2. Demonstrate to the relevant content in this article. After clicking “Add”, the",KEEP,medium
+paper1,5,65,program,SKIP,medium
+paper1,5,68,Figure3:SemanticOn’ssystemarchitecture.,SKIP,high
+paper1,5,71,4 SEMANTICON,SKIP,medium
+paper1,6,2,a i,SKIP,medium
+paper1,6,3,b,SKIP,medium
+paper1,6,4,j,SKIP,medium
+paper1,6,5,c,SKIP,medium
+paper1,6,6,d k,SKIP,medium
+paper1,6,7,e,SKIP,medium
+paper1,6,8,f,SKIP,medium
+paper1,6,9,l,SKIP,medium
+paper1,6,10,g,SKIP,medium
+paper1,6,11,m,SKIP,medium
+paper1,6,12,h,SKIP,medium
+paper1,6,13,Figure4:OverviewofSemanticOn’suserinterface.TheuserbeginsprogramsynthesisbyclickingStartRecording○a.Theusercan,SKIP,high
+paper1,6,34,consideredaccepted.,SKIP,medium
+paper1,6,39,Figure5:Exampleofsystempromptwhennewcontentdoes icallypredictandfiltertherestofthewebpagecontentwithout,SKIP,high
+paper1,7,5,system results,SKIP,medium
+paper1,7,6,System Suggests,SKIP,medium
+paper1,7,7,a,SKIP,medium
+paper1,7,8,for image,SKIP,medium
+paper1,7,11,c,SKIP,medium
+paper1,7,13,for text,SKIP,medium
+paper1,7,14,"Figure6:TwoconditionspecificationmethodsinSemanticOn.Afterenteringthesystemsuggestsmode,theusermaydrawonimages.",SKIP,high
+paper1,8,3,C,SKIP,medium
+paper1,8,4,d e,SKIP,medium
+paper1,8,6,g,SKIP,medium
+paper1,8,7,a,SKIP,medium
+paper1,8,8,Wrong image,SKIP,medium
+paper1,8,9,downloaded,SKIP,medium
+paper1,8,13,d,SKIP,medium
+paper1,8,15,c,SKIP,medium
+paper1,8,19,automation,SKIP,medium
+paper1,8,20,"Figure7:SemanticOnErrorRepairWorkflow.Auserwantstodownloadcutepicturesofacatandadogcuddling,buttheynoticea",SKIP,high
+paper1,9,7,5 SYSTEMEVALUATION,SKIP,medium
+paper1,9,15,5.1 Participants,SKIP,medium
+paper1,9,27,5.2 StudyDesign,SKIP,medium
+paper1,9,59,5.3 Tasks,SKIP,medium
+paper1,10,3,Taskindex Accuracy,SKIP,medium
+paper1,10,6,1 05:06(01:43) 85.3%,SKIP,medium
+paper1,10,8,2 06:58(02:28) 68.9%,SKIP,medium
+paper1,10,10,3 06:44(01:50) 81.3%,SKIP,medium
+paper1,10,12,4 05:56(01:50) 86.0%,SKIP,medium
+paper1,12,13,6.3.1 Perceivedeffortbasedoncontenttypes. Perceivedeffortplays,KEEP,medium
+paper1,13,38,"cessed:April,2022.",SKIP,medium
+paper1,13,42,6.6 FutureWork,SKIP,medium
+paper1,13,51,"ofinformation[53].But,thisfindingissignificantinfullautoma- agent.InAAAI,Vol.7.1514–1519.",SKIP,medium
+paper1,13,59,providemoreindicatorsforuserstoquicklyrecognizetheinforma- arXiv:2108.07732(2021).,SKIP,medium
+paper1,13,63,"M.Kaufmann(2000),245–270.",SKIP,medium
+paper1,13,73,whereuserscouldbenefitfromtheinstantandcomprehensivere- ingDistributedHierarchicalWebData.InProceedingsofthe31stAnnualACM,SKIP,medium
+paper1,14,2,synthesis.InProceedingsofthe42ndACMSIGPLANInternationalConferenceon [40] VuLeandSumitGulwani.2014.Flashextract:Aframeworkfordataextractionby,SKIP,medium
+paper1,14,3,ProgrammingLanguageDesignandImplementation.328–343. examples.InProceedingsofthe35thACMSIGPLANConferenceonProgramming,SKIP,medium
+paper1,14,5,"forWebsiteDesign.InThe34thAnnualACMSymposiumonUserInterfaceSoftware [41] DavidLedo,StevenHouben,JoVermeulen,NicolaiMarquardt,LoraOehlberg,",SKIP,medium
+paper1,14,8,HybridCrowd-MachineWorkflowforShellCommandSynthesis.In2020IEEE 1–17.,SKIP,medium
+paper1,14,9,"SymposiumonVisualLanguagesandHuman-CentricComputing(VL/HCC).IEEE, [42] GillyLeshed,EbenMHaber,TaraMatthews,andTessaLau.2008.CoScripter:",SKIP,medium
+paper1,14,21,"SandeepSoni,JaimeTeevan,andAndrésMonroy-Hernández.2017.Calendar.help. Demonstration Using Natural Language Instructions. In 2018 IEEE Sympo-",SKIP,medium
+paper1,14,23,ACM. https://doi.org/10.1145/3025453.3025780 https://doi.org/10.1109/VLHCC.2018.8506506,SKIP,high
+paper1,14,26,InProceedingsofthe30thAnnualACMSymposiumonUserInterfaceSoftwareand conditionalsfromnaturallanguageanddemonstrations.InProceedingsofthe,SKIP,medium
+paper1,14,27,Technology.727–736. 32ndannualACMsymposiumonuserinterfacesoftwareandtechnology.577–589.,SKIP,medium
+paper1,14,30,"Demonstration.arXivpreprintarXiv:2203.09993(2022). [48] JamesLin,JeffreyWong,JeffreyNichols,AllenCypher,andTessaALau.2009.",SKIP,medium
+paper1,14,37,33rdAnnualACMSymposiumonUserInterfaceSoftwareandTechnology.614–626. [50] VivianLiuandLydiaChilton.2022.DesignGuidelinesforPromptEngineering,SKIP,medium
+paper1,14,40,"ceedingsofthe42ndACMSIGPLANInternationalConferenceonProgramming [51] DavidLMaulsby,IanHWitten,andKennethAKittlitz.1989. Metamouse:",SKIP,medium
+paper1,14,41,LanguageDesignandImplementation.312–327. Specifyinggraphicalproceduresbyexample.ACMSIGGRAPHComputerGraphics,SKIP,medium
+paper1,14,46,wrangling:Mixed-initiativeend-userprogrammingofdatatransformationscripts. 28thAnnualACMSymposiumonUserInterfaceSoftware&Technology.291–301.,SKIP,medium
+paper1,14,47,InProceedingsofthe24thannualACMsymposiumonUserinterfacesoftwareand [53] RichardMayerandJoanGallini.1990. WhenIsanIllustrationWorthTen,SKIP,medium
+paper1,14,49,[30] WilliamRHarrisandSumitGulwani.2011.Spreadsheettabletransformations https://doi.org/10.1037/0022-0663.82.4.715,SKIP,high
+paper1,14,50,"fromexamples.ACMSIGPLANNotices46,6(2011),317–328. [54] DanHMoandIanHWitten.1992.Learningtexteditingtasksfromexamples:a",SKIP,medium
+paper1,14,53,ofthe20thannualACMsymposiumonUserinterfacesoftwareandtechnology. avisualdomain.TechnicalReport.CARNEGIE-MELLONUNIVPITTSBURGH,SKIP,medium
+paper1,14,57,Captioning.arXivpreprintarXiv:2009.13682(2020). ComputerVisioncapabilities. https://github.com/OlafenwaMoses/ImageAI,SKIP,medium
+paper1,14,61,"AnnualACMSymposiumonUserInterfaceSoftwareandTechnology.145–147. ReadingsinHuman–ComputerInteraction.Elsevier,357–371.",SKIP,medium
+paper1,14,64,ofthesigchiconferenceonhumanfactorsincomputingsystems.3363–3372. ExploringCodeusingQuery-by-Example.InThe34thAnnualACMSymposium,SKIP,medium
+paper1,14,66,ofProgrammersWritingWebAutomationScripts.In2021IEEESymposiumon [59] JulieLNewcombandRastislavBodik.2019.Usinghuman-in-the-loopsynthesis,SKIP,medium
+paper1,14,67,"VisualLanguagesandHuman-CentricComputing(VL/HCC).IEEE,1–9. toauthorfunctionalreactiveprograms.arXivpreprintarXiv:1909.11206(2019).",SKIP,medium
+paper1,14,70,[37] DavidKurlanderandStevenFeiner.1992. Ahistory-basedmacrobyexample byExample.InThe34thAnnualACMSymposiumonUserInterfaceSoftwareand,SKIP,medium
+paper1,14,71,system.InProceedingsofthe5thannualACMsymposiumonUserinterfacesoftware Technology.258–269.,SKIP,medium
+paper1,15,4,"ACMconferenceonhumanfactorsincomputingsystems.1221–1224. ChangZhou,JingrenZhou,andHongxiaYang.2022. UnifyingArchitectures,",SKIP,medium
+paper1,15,6,"Zhou,andPushmeetKohli.2016. Neuro-symbolicprogramsynthesis. arXiv work.CoRRabs/2202.03052(2022).arXiv:2202.03052 https://arxiv.org/abs/2202.",SKIP,high
+paper1,15,7,preprintarXiv:1611.01855(2016). 03052,SKIP,medium
+paper1,15,11,"usingsiamesebert-networks.arXivpreprintarXiv:1908.10084(2019). [76] TomYeh,Tsung-HsiangChang,andRobertCMiller.2009. Sikuli:usingGUI",SKIP,medium
+paper1,15,12,"[68] AlborzRezazadehSereshkeh,GaryLeung,KrishPerumal,CalebPhillips,Min- screenshotsforsearchandautomation.InProceedingsofthe22ndannualACM",SKIP,medium
+paper1,15,17,"webbrowsingtasksbydemonstration.InProceedingsofthe11thannualACM (CHI’21).AssociationforComputingMachinery,NewYork,NY,USA,Article",SKIP,medium
+paper1,15,18,"symposiumonUserinterfacesoftwareandtechnology.9–18. 105,16pages. https://doi.org/10.1145/3411764.3445646",SKIP,high
+paper1,15,21,throughHigh-LevelDesignConstraints.InProceedingsofthe2020CHIConference 33rdAnnualACMSymposiumonUserInterfaceSoftwareandTechnology.627–648.,SKIP,medium
+paper1,15,25,ofthe32ndannualACMsymposiumonuserinterfacesoftwareandtechnology. FlexibleParentInvolvement.InProceedingsofthe2022CHIConferenceonHuman,SKIP,medium
+paper1,15,28,"thesisfrominput-outputexamples.InProceedingsofthe2017ACMInternational sonWHLau,JoseEchevarria,andZoyaBylinskii.2020. Iconate:Automatic",SKIP,medium
+paper1,16,2,A APPENDIX,SKIP,medium
+paper1,16,3,# Task Description Condition Inclusion Example Exclusion Example,KEEP,medium
+paper1,16,4,Type,SKIP,medium
+paper1,16,10,tagonist’sstory,SKIP,medium
+paper1,16,14,acting,SKIP,medium
+paper1,16,18,theiracting,SKIP,medium
+paper1,16,29,Figure8:Taskdescriptionswithinclusionandexclusionexamples,SKIP,high
+paper2,1,2,Stimulation,SKIP,medium
+paper2,1,3,Yudai Tanaka Jacob Serfaty Pedro Lopes,KEEP,medium
+paper2,1,4,"University of Chicago, United States University of Chicago, United States University of Chicago, United States",SKIP,high
+paper2,1,5,yudaitanaka@uchicago.edu jserfaty@uchicago.edu pedrolopes@uchicago.edu,SKIP,high
+paper2,1,6,Figure 1: We propose & explore a novel concept in which a single on-body actuator renders haptics to multiple body parts—even,SKIP,high
+paper2,1,7,as distant as one’s foot or one’s hand—by stimulating the user’s brain (a). We implemented this by mechanically moving a coil,KEEP,medium
+paper2,1,8,across the user’s scalp. As the coil sits on specific regions of the user’s sensorimotor cortex it uses electromagnetic pulses to,KEEP,medium
+paper2,1,9,"non-invasively & safely create haptic sensations, e.g., touch and/or forces. For instance, (b) recoil of throwing a projectile, (c)",KEEP,medium
+paper2,1,10,"impact on the leg, (d) force of stomping on a box, (e), impact of a projectile on one’s hand, or (f) an explosion close to the jaw.",KEEP,medium
+paper2,1,12,"We propose a novel concept for haptics in which one centralized brain stimulation, we discuss the roadmap to extend its interactive",KEEP,low
+paper2,1,15,CCS CONCEPTS,SKIP,medium
+paper2,1,17,approach of attaching one actuator per body part (end-effectors). • Human-centered computing → Haptic devices; • Hardware,KEEP,medium
+paper2,1,24,ACM Reference Format:,SKIP,medium
+paper2,1,28,Full-body Haptics via Non-invasive Brain Stimulation. In Proceedings of,SKIP,medium
+paper2,1,30,"the CHI Conference on Human Factors in Computing Systems (CHI ’24), May",SKIP,medium
+paper2,1,31,"11–16, 2024, Honolulu, HI, USA. ACM, New York, NY, USA, 15 pages. https:",SKIP,high
+paper2,1,32,//doi.org/10.1145/3613904.3642483,SKIP,high
+paper2,1,33,This work is licensed under a Creative Commons Attribution International 4.0 License. 1 INTRODUCTION,SKIP,high
+paper2,1,34,"CHI ’24, May 11–16, 2024, Honolulu, HI, USA Enabling users to leverage all their senses while immersed in inter-",SKIP,high
+paper2,1,35,© 2024 Copyright held by the owner/author(s).,SKIP,high
+paper2,1,37,ACM ISBN 979-8-4007-0330-0/24/05,SKIP,medium
+paper2,1,38,https://doi.org/10.1145/3613904.3642483 Computer Interaction—as Sutherland put it “[the interface] should,SKIP,high
+paper2,2,1,"CHI ’24, May 11–16, 2024, Honolulu, HI, USA Yudai Tanaka et al.",SKIP,high
+paper2,2,2,"serve as many senses as possible” [80]. To this date, an immense detail later as we believe they are crucial for identifying the next",KEEP,medium
+paper2,2,3,"body of work in haptics has engineered specialized actuators to research challenges to be tackled. However, we believe that our",KEEP,medium
+paper2,2,4,"deliver skin sensations to the user’s body (e.g., contact [75], texture work provides technical insights that will inspire researchers to",KEEP,medium
+paper2,2,32,the Endpoint,SKIP,medium
+paper2,2,36,"flow (i.e., the brain, in particular, the somatosensory cortex). cation where a sensation should be felt—hence N:N haptics. Some",KEEP,medium
+paper2,2,37,"This end-effector approach has been successful in that devices of the first explorations of this approach date back to the 1990s,",KEEP,low
+paper2,2,38,"can deliver precise temporal and spatial cues. However, few ex- when researchers used 10 vibrotactile actuators placed at the hands,",KEEP,medium
+paper2,2,40,"experiences, which reveals a research question to which our field with 16 vibrators, even including solenoids and fans [47]. Because",KEEP,medium
+paper2,2,43,"sensations on many locations of the user’s body? fixation points that encumber the user (e.g., straps), researchers",KEEP,medium
+paper2,2,44,"Thus, to propose a new approach, we take the inverse conceptual opt to integrate these vibrotactile actuators in haptic suits—both",KEEP,low
+paper2,2,45,"turn. Instead of placing haptic end-effectors on the endpoints of the [97] and [47] are canonical examples of haptic suits, while many",KEEP,medium
+paper2,2,46,"user’s nervous system, we propose delivering full-body haptics via more exist in research [19, 40] and even in industry (e.g., bHaptics",KEEP,medium
+paper2,2,47,a single haptic device that directly stimulates the user’s brain areas [60]). This haptic-suit approach improves wearability & comfort,KEEP,medium
+paper2,2,48,"responsible for creating haptic sensations—we call this a source- by trading it off with design flexibility (e.g., it is harder to reconfig-",KEEP,medium
+paper2,2,50,"To create the first instantiation of this concept, we turned to tran- preferences, goals of the application, and so forth).",KEEP,medium
+paper2,2,52,"that allows for safe & non-invasive brain stimulation. To trans- ous approach, an emergent and more experimental way to deliver",KEEP,medium
+paper2,2,53,"late the TMS technique into readily usable knowledge for human- haptics to the endpoint, is to use a single actuator. In these sys-",KEEP,medium
+paper2,2,55,"which areas of the body TMS can elicit haptic sensations; then, (2) multiple locations—hence 1:N haptics. One way to enable this is",KEEP,medium
+paper2,2,57,to position the TMS coil at strategic locations to generate haptic air vortex that stimulates the skin up to 1 m away [77]. This ap-,KEEP,medium
+paper2,2,58,"sensations (i.e., either touch or touch & force) in nine locations of proach has been then extended to present tactile sensations at the",KEEP,medium
+paper2,2,61,"magnetic-coil moved mechanically across the scalp; furthermore, ically to reach different limbs. For instance, Calico is an on-cloth",KEEP,medium
+paper2,2,63,"experience created by our device in a virtual reality application; clothes, providing vibrations from arms to legs [73]. As emergent",KEEP,medium
+paper2,2,64,"finally, (4) we mapped out the possible evolution of this concept, techniques, these are not without limitations. In the case of air",KEEP,medium
+paper2,2,66,"Finally, we see this approach as the first step towards explor- and have a limited interactive volume, etc. Conversely, moving",SKIP,medium
+paper2,2,68,"without encumbering users’ bodies. Naturally, as a first step in this to one’s clothing, etc. Most importantly, all of these techniques",KEEP,medium
+paper2,2,69,"direction, our current implementation using transcranial magnetic cannot deliver force feedback—these provide only tactile cues (e.g.,",KEEP,medium
+paper2,2,70,"stimulation is not without shortcomings. We will discuss these in soft puffs of air or vibrations). That said, these devices conceptually",KEEP,medium
+paper2,3,1,"Haptic Source-effector: Full-body Haptics via Non-invasive Brain Stimulation CHI ’24, May 11–16, 2024, Honolulu, HI, USA",SKIP,high
+paper2,3,2,"align with our goal, i.e., building a centralized haptic device capable which trade off accuracy for safety and wide applicability. One",KEEP,medium
+paper2,3,3,"of delivering haptics to multiple locations. In addition, these are such non-invasive technique that has been extensively explored for",KEEP,medium
+paper2,3,4,"flexible in adding new points of sensation easily (i.e., pointing the the last decades is transcranial magnetic stimulation (TMS) [30].",KEEP,medium
+paper2,3,5,"air cannon or moving the on-body robot). Thus, we are inspired by Before we turn into the details of this technique, we note that TMS",KEEP,medium
+paper2,3,12,Midpoint (Peripheral Nerves),KEEP,medium
+paper2,3,14,"An approach, which we draw inspiration from, is to create sensa- sensations and is used for neuropsychiatric conditions [61]. On",KEEP,medium
+paper2,3,16,"of skin that communicate via peripheral nerves. These techniques focused ultrasound, delivered by a transducer placed atop the scalp",KEEP,medium
+paper2,3,17,typically work by electrically stimulating nerves to induce sensa- [12]. While tFUS might eventually resolve some limitations of TMS,KEEP,medium
+paper2,3,18,"tions ”remotely” at the endpoint of this nerve. This can take the (which we will discuss later in detail, e.g., device weight), its safety",KEEP,medium
+paper2,3,21,Tactile sensations from the midpoint. One way to create we decided to implement our concept using TMS.,KEEP,medium
+paper2,3,24,2.3 Transcranial Magnetic Stimulation,KEEP,medium
+paper2,3,26,"are perceived to emanate from a body part other than, but in as- Transcranial Magnetic Stimulation (TMS). TMS is a technique",KEEP,medium
+paper2,3,27,"sociation with, the body part being stimulated” [53]. While this that originated in medicine/neuroscience [27], in which a magnetic",KEEP,medium
+paper2,3,29,"back to the prosthetic hands or feet of amputees [14, 48, 64], it cillates rapidly. This, in turn, creates electrical currents, known",KEEP,medium
+paper2,3,33,"sensations in the hand [63, 66], or other strategic locations more TMS in neuroscience as a tool to understand brain function.",KEEP,medium
+paper2,3,35,"[86], palm, [1] or base of the fingers [99, 100] to induce sensations demonstrated by Barker et al. in 1985 [5]. It is frequently used",SKIP,high
+paper2,3,37,"Force feedback from the midpoint. Similar to this, with vision [9], language processing [23], working memory [57], and",SKIP,high
+paper2,3,39,"feedback without requiring mechanical actuators (e.g., motors or TMS as a medical intervention/treatment. TMS has also",KEEP,medium
+paper2,3,40,exoskeletons). Electrical impulses are sent to electrodes placed atop been extensively used as therapy for improving motor function in,KEEP,medium
+paper2,3,43,"fingers [83, 84] or the wrist to move [36, 49]. Similarly, stimulating Peripheral magnetic stimulation (e.g., muscles or touch).",KEEP,medium
+paper2,3,45,"or thigh [68] can move the foot. brain, it can also be used for peripheral nerves, placing its coil atop",KEEP,medium
+paper2,3,46,Pushing past the midpoint. While we take inspiration from muscles (similar to EMS) or skin (similar to electro-tactile). While,KEEP,medium
+paper2,3,48,"active system look like if we moved past the midpoint? The logical sensations in mid-air without the need for direct contact [38, 39].",KEEP,medium
+paper2,3,50,"i.e., the user’s brain, to generate sensations even at larger distances rehabilitation [8], gaiting [82], and even swallowing [56]. Moreover,",SKIP,high
+paper2,3,51,"and from a centralized haptic device. To find a suitable method to recently, it has also been used for interactive force-feedback [87].",KEEP,medium
+paper2,3,55,"however, they range in their applicability outside of the medical TMS in interactive systems. Although it is known that TMS",KEEP,medium
+paper2,3,56,"domain. First, invasive techniques involve implanting electrodes in applied to the motor cortex induces limb movement [95] and/or",KEEP,medium
+paper2,3,57,"the brain, via a surgical procedure. Given this stringent requirement touch sensations in the hand [25], its presence in human-computer",KEEP,medium
+paper2,3,60,researching prosthetics with tactile feedback for amputees [24]. in a VR rubber hand illusion [6]. While this implies the utility of,KEEP,medium
+paper2,3,61,"On the other side of the spectrum stand non-invasive techniques, haptic feedback via TMS, to our knowledge, there have been no",KEEP,low
+paper2,4,1,"CHI ’24, May 11–16, 2024, Honolulu, HI, USA Yudai Tanaka et al.",SKIP,high
+paper2,4,2,Figure 2: Overview of our mechanical actuator to interactively displace the TMS coil over key areas of the user’s brain.,SKIP,high
+paper2,4,3,interactive devices that leverage TMS to extend haptics to the user’s Robotic platform. The key component in our hardware imple-,KEEP,medium
+paper2,4,7,"TMS chines [51], but with key modifications that allow it to: (1) most",KEEP,low
+paper2,4,9,"To help readers replicate our design, we now provide the necessary",KEEP,low
+paper2,4,19,Design rationale. As the first instantiation of the concept of a,KEEP,low
+paper2,4,24,"VR headset or suspended from the ceiling (as in [52, 78]). To satisfy",KEEP,low
+paper2,4,28,Figure 2.,SKIP,high
+paper2,4,37,Now that we know the range of haptics that can be generated via,KEEP,low
+paper2,4,48,3.1 Hardware Implementation,KEEP,medium
+paper2,4,51,"moving a TMS coil (Magstim D702 butterfly coil) around the user’s the aforementioned servo. Finally, for the Y-axis (as the coil moves",KEEP,medium
+paper2,4,54,"Y-axis is mounted to the endpoint of the Z-axis actuator and, ulti-",KEEP,low
+paper2,5,1,"Haptic Source-effector: Full-body Haptics via Non-invasive Brain Stimulation CHI ’24, May 11–16, 2024, Honolulu, HI, USA",SKIP,high
+paper2,5,2,"in our technical evaluation, we can move the Y-and Z-actuators serial command using MagPy. As a result, the stimulator charges its",KEEP,medium
+paper2,5,3,"reliably & repeatably at 1.9 mm and 2.6 mm steps respectively. So capacitor arrays at the requested intensity. In parallel, the Unity3D",KEEP,medium
+paper2,5,5,"actuators that are strong enough to move the TMS coil), however, move the coil to a target area. Once the coil has reached the position",KEEP,medium
+paper2,5,7,"not be able to account for the head’s curvature. This would require 3.3 Safety), the Unity3D application sends another OSC command",KEEP,medium
+paper2,5,8,"at least adding more actuators to tilt the coil. Instead, to avoid more to our middleware to trigger the TMS stimulation using three con-",KEEP,medium
+paper2,5,9,"actuators, we opted to build a structure with passive mechanisms. secutive 300-`s biphasic cosine cycle pulses [50], each separated",KEEP,medium
+paper2,5,10,"In the following, we describe the structural elements that make this by a 50-millisecond interval. Finally, the resulting current flow",KEEP,medium
+paper2,5,12,"Structural elements. To account for curvature, the Z-axis the stimulation to the target brain region.",KEEP,low
+paper2,5,15,3.3 Safety,SKIP,medium
+paper2,5,17,to support it. This is similar to some CNC machines that optimize Risks of TMS. Like any other electrical or brain stimulation tech-,KEEP,medium
+paper2,5,18,"for space and do not feature two rails per degree of freedom (e.g., nique, TMS is not without its associated risks. These are primarily",KEEP,medium
+paper2,5,19,"EasyThreed X1). However, we noted this increased the slack and local skin-tingling at the scalp or magnetic interference with im-",KEEP,medium
+paper2,5,20,"backlash due to the coil’s weight. As such, we added a mount on planted devices, which can be avoided through user screening and",KEEP,medium
+paper2,5,21,"the faceplate of the VR headset (Meta Quest 2), which is depicted the proper selection of stimulation parameters [71]. Moreover, ac-",KEEP,medium
+paper2,5,23,"mount using M4 screws and a ball bearing. To enable movement 2021 [70], as long as TMS is applied to subjects without epilepsy,",KEEP,medium
+paper2,5,24,"with the new mount point, we incorporated a passive mechanism no lasting adverse events (e.g., seizures) have been reported. This",KEEP,medium
+paper2,5,26,"the Z-axis linear actuation to tilt the coil around the pitch axis, cluding long-term use of up to 26 months [22]. TMS is also an",KEEP,medium
+paper2,5,27,"adapting to the nose-to-back curvature of the scalp. Lastly, the FDA (Food and Drug Administration) approved technique for ther-",KEEP,medium
+paper2,5,28,secondary mount attaches to the back of the VR headset’s strap apeutic purposes [18]. The minimal risk of TMS is ensured by,KEEP,medium
+paper2,5,30,Alternative designs. Many other designs are certainly possible the known safety range.,KEEP,low
+paper2,5,31,"and ours depicts one possibility. For instance, one could add a User screening. In adherence to the safety guidelines [70, 71],",KEEP,medium
+paper2,5,32,"hemispheric rail connecting the sides of the VR headset’s strap to a we strictly applied the following user eligibility criteria. First, we",KEEP,medium
+paper2,5,33,"passive rail, thus guiding the coil with greater precision. However, did not recruit participants with medical conditions that could in-",KEEP,medium
+paper2,5,34,"after experimenting with this, we noted that this also has drawbacks: crease the risks associated with TMS (i.e., epilepsy, or history of",KEEP,medium
+paper2,5,35,"(1) it prevents the headset’s strap-size adjustment from working, seizures). Second, in line with the safety guidelines for fMRI [20],",KEEP,medium
+paper2,5,36,"rendering our system fixed in size unlike our current design (i.e., the we did not recruit participants with implanted devices (e.g., pace-",KEEP,medium
+paper2,5,38,"(2) It restricts the coil’s movement to a single line over the cortex, the electromagnetic field generated by the coil. We also ensured",KEEP,medium
+paper2,5,39,"eliminating the possibility of diagonal movement. Additionally, it ethical compliance by obtaining informed consent from partici-",KEEP,medium
+paper2,5,41,already achieved sufficient accuracy to stimulate the sensations are mostly analogous to those for EMS [41].,KEEP,medium
+paper2,5,45,3.2 Software Implementation,KEEP,medium
+paper2,5,47,"To control our medical-grade TMS stimulator, we implemented a the stimulation frequency. For instance, for a 20 Hz stimulation,",KEEP,medium
+paper2,5,49,"serial communication to the stimulator and received Open Sound ms (i.e., 8 consecutive pulses). Following this guideline, we use",KEEP,medium
+paper2,5,50,Control (OSC) commands. Our main applications for both studies the stimulation parameter of three consecutive pulses with 50 ms,KEEP,medium
+paper2,5,52,"middleware for TMS, and serial commands to a SAMD21-XIAO the maximum pulse count that is deemed safe. Moreover, for these",KEEP,medium
+paper2,5,54,"the hands and feet, we used HTC VIVE 3.0 Trackers attached to the five-second break between stimulation sequences. As such, our",KEEP,medium
+paper2,5,56,Quest 2’s headset tracking using Open VR Space Calibrator [45]. activated unless five seconds have elapsed prior to the preceding,KEEP,medium
+paper2,5,57,"Stimulation flow. When a VR experience requests feedback, stimulation. This additional safety was also incorporated into our",KEEP,medium
+paper2,6,1,"CHI ’24, May 11–16, 2024, Honolulu, HI, USA Yudai Tanaka et al.",SKIP,high
+paper2,6,2,Figure 3: (a) Measurement setup for the actuation characterization. (b) Mean errors and standard deviations (SD) for all targets.,SKIP,high
+paper2,6,3,"Runtime safety. For runtime safety, we implemented an emer- Range of motion. We characterized the range of motion for",KEEP,medium
+paper2,6,4,"gency stop function in our Unity application, which immediately each motor axis. We found that the rotation of the servo motor",KEEP,medium
+paper2,6,5,shuts off both the TMS stimulation (hardware switch) and motor (X-axis) spans 24 cm across the head. The actuation range of the,KEEP,medium
+paper2,6,7,Z-axis linear actuator’s range corresponds to a 24-degree tilt of the,KEEP,low
+paper2,6,16,user’s scalp).,SKIP,medium
+paper2,6,19,4.1 Device Characterization,KEEP,medium
+paper2,6,21,End-to-end latency. We measured an end-to-end latency of 16 ms structed the system to actuate to eight known targets in the four,KEEP,medium
+paper2,6,22,using a 240fps camera that also recorded sound—this is a complete cardinal directions at two distances that were pre-defined. In these,KEEP,medium
+paper2,6,24,"pulse. For simplification, the coil was already at the target, we will center of the coil coincided with the center of the mannequin’s scalp.",KEEP,medium
+paper2,6,25,"later characterize the actuation speed delay while moving the coil. Then, the coil was actuated at the speed employed in our Study#2",KEEP,medium
+paper2,6,26,"Operating noise. We measured the sound generated by our (50mm/s on X-axis, 8mm/s on Y-axis, and 18mm/s on Z-axis), After",KEEP,medium
+paper2,6,27,"TMS using a decibel meter (AS824) placed at the height of a user’s stopping, we calculated the error. We repeated this 10 times for",KEEP,medium
+paper2,6,29,"average TMS intensity used in Study#2 (actuating the leg, which 3 (b) shows our results. We found that the average error across the",KEEP,medium
+paper2,6,30,"requires the most amplitude). In comparison, haptic devices such as targets was 1.4 mm (SD=0.7) on the X-axis (left/right) and 1.5 mm",KEEP,medium
+paper2,6,31,"propeller-based tend to be louder (e.g., [72] produces up to 95.3dB). (SD=0.4) on the Y-axis (front/back). Consequently, this actuation",KEEP,medium
+paper2,6,32,"Also, propeller-based devices actuate for several seconds or even consistency, along with the minimum step sizes, confirmed that",KEEP,low
+paper2,6,33,"stay on for minutes, instead, our TMS produces sounds for only our system surpasses the required precision of 8.5 mm.",KEEP,medium
+paper2,6,35,"Device weight. The total weight of the device is 3.1 kg (mea- system would require in a worst-case scenario, where the coil needs",KEEP,medium
+paper2,6,37,of 1.1 kg from the effective weight of the TMS coil when worn the right. Drawing from the average unit distance between different,KEEP,medium
+paper2,6,38,"and connected to the stimulator and 2.0 kg from our mechanical stimulation targets on the scalp as determined in our Study#1, we",KEEP,medium
+paper2,6,39,"actuators, rails, and attachments. set the distance for this case to be 13.6 cm. We found it takes 3.2",KEEP,medium
+paper2,6,41,4.2 Coil Actuation Characterization,KEEP,medium
+paper2,6,42,"5 CONTRIBUTION, BENEFITS & LIMITATIONS",KEEP,medium
+paper2,6,43,"As we will see in our Study#1, we observed that the shortest distance",KEEP,low
+paper2,6,45,"to haptics on different limbs, was approximately 17 mm. Conse- effector, which we explore as an alternative direction to scaling",KEEP,medium
+paper2,6,47,"ideally with a resolution of at least half that distance, i.e., 8.5 mm. centralized on-body device.",KEEP,medium
+paper2,6,48,Measurement setup. All the evaluation in this section was Our approach has four key benefits: (1) One actuator for full-,KEEP,medium
+paper2,6,49,conducted with a HTC VIVE 3.0 tracker (with a tracking accuracy body haptics: unlike haptic systems created by a constellation of,KEEP,medium
+paper2,6,50,"of 0.3 mm [7]) attached to the coil of our complete system worn by many devices, our implementation has only one centralized point",KEEP,medium
+paper2,6,52,to control the motors while recording the tracker’s position. Note strates a path forward to scaling haptics without the complexities,KEEP,medium
+paper2,6,53,that the positional difference between the tracker and the center associated with wearing many actuators. (2) Easily reconfig-,KEEP,medium
+paper2,7,1,"Haptic Source-effector: Full-body Haptics via Non-invasive Brain Stimulation CHI ’24, May 11–16, 2024, Honolulu, HI, USA",SKIP,high
+paper2,7,5,"(source-effector’s movement on the scalp is 50-times smaller than locations [74, 94] or qualities [2, 76] of electro-tactile stimulation.",KEEP,medium
+paper2,7,6,that). (3) Freeing up the body: because source-effector only sits The study was approved by our Institutional Review Board (IRB21-,KEEP,medium
+paper2,7,10,6.1 Study Design,KEEP,medium
+paper2,7,12,"passing through neurons in the brain, our approach renders both Participants. We recruited 12 participants from our institution",KEEP,medium
+paper2,7,13,"touch & forces—two different modalities that conventionally re- (7 identified as male, 5 as female, average age = 23.2 years, SD =",KEEP,medium
+paper2,7,14,"quire two different types of actuators (e.g., vibrotactile motors and 2.2). All participants were right-handed. The participants were",KEEP,medium
+paper2,7,16,Limitations. We acknowledge that our current implementation Apparatus. We used a medically compliant magnetic stimulator,KEEP,low
+paper2,7,17,of source-effector based on TMS has its limitations and every bene- (Magstim Super Rapid2) with a butterfly coil (Magstim D702). The,KEEP,medium
+paper2,7,18,"fit has associated caveats. First, while our concept is novel in that a participant sat in a reclined chair, wearing earplugs and a white",KEEP,medium
+paper2,7,20,"locations, this instrumentation is currently heavy. Second, this the stimulation locations prior to actual trials. For reporting elicited",KEEP,medium
+paper2,7,22,of comfort (not only total weight but distribution of weight too). pencil running our GUI application. This enabled them to draw the,KEEP,medium
+paper2,7,23,"Third, while this haptic actuator is unique in its ability to reconfig- perceived sensation area on front/back views of a human model.",KEEP,medium
+paper2,7,26,"based on stimulating neurons, TMS is also non-selective, i.e., elec- ing”, “skin-stretching”, and “thermal”. For evaluating force feedback",KEEP,medium
+paper2,7,28,"limits induced sensations (i.e., touch & forces, but not thermal), and post-annotated any involuntary joint movements via TMS that",KEEP,medium
+paper2,7,30,"and those corresponding to high thresholds such as the torso), and Stimulation. We stimulated the right hemisphere of the senso-",KEEP,medium
+paper2,7,31,"modality isolation (e.g., force-feedback occurs with touch). More- rimotor cortex (corresponding to the left side of the body [35]) with",KEEP,medium
+paper2,7,33,believe that these point to a set of challenges worth pursuing to in a stimulation of ∼150 ms. While we opted to only stimulate the,KEEP,medium
+paper2,7,34,"further unlock TMS’ interactive potential. right side of the brain to avoid fatigue, the results will be gener-",KEEP,medium
+paper2,7,35,"Finally, we reflect on the nature of our proposal: the TMS tech- alizable to the left side. In fact, we purposefully picked this side",KEEP,medium
+paper2,7,37,"medicine as a method to understand our brain function. However, other side (dominant side) of the brain is known more sensitive to",KEEP,medium
+paper2,7,39,"tool as a new way for full-body haptics. In fact, similar translational Defining the stimulation locations. We identified two loca-",KEEP,medium
+paper2,7,40,"efforts have previously advanced our field, e.g., the PossessedHand tions on the participant’s scalp that yielded minimum stimulation",KEEP,medium
+paper2,7,41,"[69] translated a 50-year-old medical tool (i.e., EMS) into our field, intensities to elicit observable limb movement (i.e., motor threshold)",KEEP,medium
+paper2,7,42,"leading to a growth in force-feedback research. Likewise, our effort for the hand and foot. For this, the experimenter moved the coil",KEEP,medium
+paper2,7,44,realm of neuroscience into new knowledge for designing brain- adjusting the intensity based on Awiszus’ method [3]. After setting,KEEP,medium
+paper2,7,48,Procedure. We started trials at the foot location. For each loca-,KEEP,low
+paper2,7,49,SENSATIONS ACROSS THE BODY WITH,KEEP,medium
+paper2,7,51,BRAIN STIMULATION,SKIP,medium
+paper2,7,53,"In our first study, we focused on characterizing the range of our is the stimulator’s maximum). During a trial, the experimenter stim-",KEEP,medium
+paper2,7,54,"source-effector concept when implemented by means of medical- ulated the target location. Afterward, the participant reported the",KEEP,medium
+paper2,7,56,"in what locations can haptic sensations be created using TMS? and, (or if nothing was felt). Then, the experimenter increased the inten-",KEEP,medium
+paper2,7,58,"As such, a TMS-trained experimenter stimulated the nine pre- moved to the next trial. This process continued until the participant",KEEP,medium
+paper2,7,60,"motor cortex using TMS, while participants reported where they consecutive trials, or the intensity reached the maximum (i.e., 100%).",KEEP,medium
+paper2,7,61,"felt sensations and the strongest point of tactile sensation, as well At that point, the procedure advanced to the next location.",KEEP,medium
+paper2,8,1,"CHI ’24, May 11–16, 2024, Honolulu, HI, USA Yudai Tanaka et al.",SKIP,high
+paper2,8,2,Figure 4: Overview of results depicting the locations where we were able to induce touch and/or movement in participants.,SKIP,high
+paper2,8,3,"Analysis. After each study session, we organized the partici- this note, neuroscience research suggests that it is more challeng-",KEEP,medium
+paper2,8,5,"strongest point of the sensation was. We also annotated each trial (non-dominant) via TMS [92]—thus, these results are expected to",KEEP,medium
+paper2,8,6,"to indicate which of the following body parts moved: “none”, “jaw”, generalize even better to the other side. When accounting for both",KEEP,medium
+paper2,8,7,"“upper arm”, “forearm”, “hand” (i.e., the palm), “fingers”, “upper sides of the user’s body, this brings the haptic sensations that can be",KEEP,medium
+paper2,8,8,"leg” (i.e., the thigh), “lower leg”, and “foot”. To focus exclusively on induced by TMS to a total of 15 sensations with a single actuator:",KEEP,medium
+paper2,8,9,"clear and meaningful force feedback situations, we adhered strictly four touch sensations and eleven force-feedback sensations. Note",KEEP,medium
+paper2,8,10,"to the following two rather conservative criteria: (1) when multiple that we regarded jaw movement as one sensation. In the following,",KEEP,medium
+paper2,8,11,"parts of the same limb moved, it was counted as the movement we analyze each modality (i.e., touch / force-feedback) in more",KEEP,medium
+paper2,8,13,"est (e.g., if both forearm and fingers moved, it was annotated as Touch. Results suggest that we were able to induce, by means of",KEEP,medium
+paper2,8,14,"forearm)—thus, in our analysis, ”foot movement” means only the TMS, touch sensations (i.e., only tactile in isolation of any noticeable",KEEP,medium
+paper2,8,16,"strongest touch sensations were felt outside the relevant body part both experienced by 75% of the participants (i.e., nine participants).",KEEP,medium
+paper2,8,17,"(e.g., a trial with hand movement, but strongest sensation in the The next most promising area was found to be touch on any of the",KEEP,medium
+paper2,8,18,"forearm) were counted as “none”. four fingers, experienced by 67% of participants, which we did not",KEEP,medium
+paper2,8,60,"Figure 5: (a, b) Extracted raw data of where the participants haptic sensations. Figure 6 depicts the brain region that we targeted,",SKIP,high
+paper2,8,61,felt touch sensations in the hand and foot. (c) Quality of the with a line emphasizing the principal axis of the sensorimotor,KEEP,medium
+paper2,9,1,"Haptic Source-effector: Full-body Haptics via Non-invasive Brain Stimulation CHI ’24, May 11–16, 2024, Honolulu, HI, USA",SKIP,high
+paper2,9,2,Figure 6: A heatmap of stimulation locations of the sensorimotor cortex corresponding to evoked touch sensations & movements.,SKIP,high
+paper2,9,26,"at which touch sensations and/or movement were first observed set (Meta Quest 2), as described in Implementation. Their hands and",KEEP,medium
+paper2,9,27,"on average. Overall, haptic effects occurred within the range of feet were tracked via four HTC VIVE 3.0 Trackers attached with",KEEP,medium
+paper2,9,28,60∼85%. Results also suggest that body parts closer to the torso con- Velcro-straps. Participants wore headphones (Apple Airpods Pro),KEEP,medium
+paper2,9,30,"required more than the hand), indicating that the extremities are VR experience. Participants embodied the avatar of a cyborg",KEEP,medium
+paper2,9,31,"easier to stimulate. Additionally, touch sensations always occurred trying to escape a robotics factory that has malfunctioned, as de-",KEEP,medium
+paper2,9,33,"al’s findings on TMS studies of the hand [25]. blocked by malfunctioning robots that fire at them, —as depicted",KEEP,medium
+paper2,9,40,Figure 7: A summary of the minimum stimulation intensities VR experience detects this gesture and prompts our haptic device,SKIP,high
+paper2,9,41,observed to induce touch sensations & movements. to render force-feedback and tactile sensations on the firing hand,KEEP,medium
+paper2,9,44,"Study conclusions. Overall, our results imply that, when con- appear, which can fire shots against any of the user’s VR limbs (i.e.,",KEEP,medium
+paper2,9,47,"each of the four extremities and force feedback at eleven locations device to render tactile sensation on the right foot. After a while,",KEEP,medium
+paper2,9,48,"spanning across the jaw and the four limbs. Finally, building on the user’s plasma-hand stops working, and they need to recharge",KEEP,medium
+paper2,9,49,"our findings, we designed an interactive experience that can render the energy. They locate a crate on the floor and stomp it with their",KEEP,medium
+paper2,10,1,"CHI ’24, May 11–16, 2024, Honolulu, HI, USA Yudai Tanaka et al.",SKIP,high
+paper2,10,2,"Figure 8: Full-body interactions in our Study#2, including: force-feedback and tactile sensations on both hands and both feet.",SKIP,high
+paper2,10,3,"left leg. The user keeps fighting until they eventually find a button comprised eight questions. Finally, interviews were recorded in",KEEP,medium
+paper2,10,7,7.3 Results,SKIP,medium
+paper2,10,9,"latency and added safety pauses (see 3.3 Safety), we tailored our We analyzed video-recordings from the VR experiences, depicted in",KEEP,medium
+paper2,10,11,"arrive at the hand (∼3.2 seconds if coming from the furthest away), unique topics: (1) surprise, (2) coil, (3) ergonomics, (4) full-body",KEEP,medium
+paper2,10,13,"before the plasma shot is fired. This is an example of how haptic sensations, and (8) future form-factors & applications.",KEEP,medium
+paper2,10,14,designers create VR situations to set up the user’s mental model Surprise. Six participants (out of eight) expressed surprise:,KEEP,medium
+paper2,10,15,"to handle haptic devices that include some latency (e.g., shape- ”felt like it’s actually happening. Was impressed[!]” (P5), ”very",KEEP,medium
+paper2,10,16,"changing devices [34, 90]). Another way to handle latency is to surprising” (P2), ”surprise that it works, the location of the sensation",KEEP,medium
+paper2,10,17,"preemptively schedule an event just before it happens, which we and motion was correct despite the device being on the head (...)",KEEP,medium
+paper2,10,19,"in prior work, e.g., [89] or [17]). Finally, we also took advantage of your head which you wouldn’t expect to be able to move your",KEEP,medium
+paper2,10,20,"of events not initiated by the user’s voluntary actions (e.g., the hands and feet. It was a little counterintuitive[!]” (P7), ” it is cool",KEEP,medium
+paper2,10,21,"appearance of the box, the start of enemy firing, spawning new that it is coming directly from your brain. (...) [no need to] attach",KEEP,medium
+paper2,10,22,"enemies, and so forth). Thus, we only triggered interactive events stuff to other parts of your body” (P6), and ”It felt natural because",KEEP,medium
+paper2,10,24,the completion of the five-second safety interval—a strategy known a glove (...) bright future! (...) a natural feeling and doesn’t feel,KEEP,medium
+paper2,10,25,as queueing. like needles and there is no glue to remove at the end ” (P1).,KEEP,medium
+paper2,10,28,7.2 Study Design,KEEP,medium
+paper2,10,30,Participants. We recruited eight participants (five identified as You can’t anticipate the sensation in advance” (P4) or ”[the coil,KEEP,medium
+paper2,10,31,"male, three as female, average age = 25.3 years, SD = 3.0) from moving] feels like it’s massaging your head, which is good!” (P6)",KEEP,medium
+paper2,10,32,our institution; three had partaken in our first user study. All and ”the movement of the device could be distracting but the actual,KEEP,medium
+paper2,10,33,"participants were right-handed. Moreover, with the participants’ sensations were realistic” (P8). Finally, two participants (out of",KEEP,medium
+paper2,10,34,"consent, we videotaped the study. Participants received $30 USD eight) commented on feeling the coil’s stimulation ”everything else",KEEP,medium
+paper2,10,36,"Procedure. Prior to the VR trial, we calibrated the coil’s position area, sometimes it was covered by the sensation on the skull” (P3).",KEEP,medium
+paper2,10,37,and the stimulation intensity to induce the visible movements of Device’s ergonomics. Three participants (out of eight) com-,KEEP,medium
+paper2,10,38,"the hand, forearm, foot, and lower leg for both sides of the body. We mented on ergonomics: ”a little heavy, but everything else was",KEEP,medium
+paper2,10,39,adjusted the coil position with our motor structure while sending fine. It was comfortable aside from the weight. It didn’t feel un-,KEEP,medium
+paper2,10,40,"commands to motors via GUI sliders on our Unity application. After comfortable when was moving around” (P7), ”not really aware of",KEEP,medium
+paper2,10,41,"the calibration, the participant experienced the VR scene. Then we the moving part but was aware of the heaviness (...) but it is a lot",KEEP,medium
+paper2,10,43,"Interview structure. Our semi-structured interview included (P5), ”If there is more weight on the front, it would be better” (P6).",KEEP,medium
+paper2,10,44,four phases: (1) Overall experience: opener questions about the Full-body. All eight participants recalled how they felt all sen-,KEEP,medium
+paper2,10,48,"question per VR interaction; (4) Future: we invited participants button. For instance, ”felt sensations on the whole body, which",KEEP,medium
+paper2,10,49,to share use-case/features they would like to see. In total this is very convenient. Liked how you only need to calibrate once at,KEEP,medium
+paper2,11,1,"Haptic Source-effector: Full-body Haptics via Non-invasive Brain Stimulation CHI ’24, May 11–16, 2024, Honolulu, HI, USA",SKIP,high
+paper2,11,2,"Figure 9: Photos of participants’ experiences (reproduced with their consent): feeling the recoil of throwing a projectile (a, b);",SKIP,high
+paper2,11,3,"stomping on a virtual box (c, d); feeling the impact of a projectile on the hand (e); pressing a virtual button with haptics (f).",KEEP,medium
+paper2,11,5,"recalibration could be needed depending on the situation). In this section, we present our reflections and a potential roadmap",KEEP,medium
+paper2,11,6,Strong force feedback. Seven (out of eight) participants com- to further exploring this novel idea.,KEEP,low
+paper2,11,13,cause it suddenly moves your foot and you need to balance back. several of its current limitations. We believe these current limita-,KEEP,medium
+paper2,11,14,"surprised by the attack [of the robot].” (P4, stimulated on foot), ” tions point to significant areas for future research. It is important",KEEP,medium
+paper2,11,15,"really strong, like a kickback (…) kind of like a recoil”. (P7)— P1, to note that many in neuroscience/medicine do not push past these",KEEP,medium
+paper2,11,16,"P4, and P8 went as far as to call the effects felt ”very natural”. The limitations because, for most of their practical purposes, these are",KEEP,medium
+paper2,11,17,"participant who did not enjoy the haptics mentioned: ”All of the minor issues (e.g., TMS’ audible noises are a minor nuisance during",KEEP,medium
+paper2,11,18,haptic sensations made sense (...) [I] just didn’t like them (...) [and TMS-depression therapy). We argue that incentives to push TMS,KEEP,medium
+paper2,11,20,initially [when feeling foot force feedback]” (P6). medical space. This is perhaps akin to how researchers & industry,KEEP,medium
+paper2,11,21,Tactile feedback. All eight participants reported feeling tactile in HCI have engineered compact & easy-to-wear EMS stimulators,KEEP,medium
+paper2,11,22,sensations during the VR experience. Two participants (out of when compared with medical-grade EMS devices. We argue that,KEEP,medium
+paper2,11,25,”[feeling shot on hand was] less realistic than laser or stomp [both Acoustic noise. Rapidly oscillating magnetic fields create audi-,KEEP,medium
+paper2,11,29,"(...) may have contributed to the burning sensation, made me casing to shift sounds outside the user’s hearing range [67].",KEEP,medium
+paper2,11,30,"realize I got shot” (P2). Also, one participant was surprised by the Coil ergonomics. TMS coils are larger than most types of nerve",KEEP,medium
+paper2,11,31,"involuntary actuation, ”kind of scary. Interesting because I am not stimulation (e.g., EMS). While participants in our Study#2 wore our",KEEP,medium
+paper2,11,33,Future form-factors & applications. Regarding future appli- impact experiences of prolonged use and do not recommend these.,KEEP,medium
+paper2,11,34,"cations beyond the VR they experienced, three participants stated, Improving the coil’s form factor is paramount for better wearability.",KEEP,medium
+paper2,11,35,"”Learn to play instruments since hands are free (...) or handle One approach is altering coil geometries (e.g., single-loop coils",KEEP,medium
+paper2,11,36,"emergency situations [it] can get your attention very quickly” (P4), reduce the size by half [21]). Another approach is using smaller",KEEP,medium
+paper2,11,38,"forces, liquid, wind, etcetera” (P3). Regarding future form factors, for applications with weak haptics. With all these, there is a tradeoff",KEEP,medium
+paper2,11,39,two participants added other ways they would like to experience between size/weight and depth of the stimulation [21].,KEEP,medium
+paper2,11,40,"our device: ”many coil arrays so no [need for] motor movement Stimulator size. Current TMS stimulators are still large, e.g.,",KEEP,medium
+paper2,11,41,"(...) [and later added] this could be a structure that carries the coil ours measures 46×38×31 cm. This is because, to produce strong",KEEP,medium
+paper2,11,43,coil up a couple of centimeters when it is not stimulating” (P1). at peak—approximately the energy intake of two hairdryers). At,KEEP,medium
+paper2,12,1,"CHI ’24, May 11–16, 2024, Honolulu, HI, USA Yudai Tanaka et al.",SKIP,high
+paper2,12,3,"TMS (11×27×29 cm) at 9 kg, which operates on a small 24 V DC [69].",KEEP,low
+paper2,12,4,"power supply [16] and exhibits an output of 700 mT at 1 Hz (i.e., Stimuli design and understanding. While our system can",KEEP,medium
+paper2,12,6,Alternative mechanical designs. We do not think of our head- to our current actuation resolution (8.5 mm). We hope that our,KEEP,medium
+paper2,12,8,"using TMS. To minimize weight, researchers might explore mount- different points across the body TMS can deliver haptics. Possible",KEEP,medium
+paper2,12,9,"ing the coil and the actuation system to the user’s chair (e.g., desk- strategies for this include defining finer grids for coil positioning",KEEP,medium
+paper2,12,10,"top/sited applications) or suspending them via the ceiling (e.g., or implementing the aforementioned MRI-based approach to accu-",KEEP,medium
+paper2,12,11,"similar to early VR setups that were heavy, or large free-moving rately identify cortical regions. Moreover, broadening the range of",KEEP,medium
+paper2,12,12,"VR arenas). Alternatively, if the stimulation points are predefined haptic sensations—such as different textures or even pressure—is",KEEP,medium
+paper2,12,13,"for a given application, one could replace the robotic actuators with also a promising avenue for future research. One way to approach",KEEP,medium
+paper2,12,14,"a fixed mount. Particularly, for single-point stimulation, a coil on a this is to explore different TMS pulse parameters (e.g., pulse width,",KEEP,medium
+paper2,12,15,"helmet could reduce weight [4]. For multi-point stimulation, a hel- frequency, and waveform [58]) and evaluate elicited sensations",KEEP,medium
+paper2,12,16,"met with multiple fixed coils might also be beneficial [59]. All these through psychophysics studies, akin to methods employed in the",KEEP,medium
+paper2,12,18,"with our approach’s mechanical actuation of the coil. However, Beyond TMS. Finally, we hope our work inspires new implemen-",KEEP,medium
+paper2,12,19,"this comes at the cost of stimulation resolution, which is limited by tations of this concept of a source-effector. One promising avenue",KEEP,medium
+paper2,12,20,"the coil’s size (e.g., 5 cm steps in [59] vs. our <8.5 mm steps via our is via the aforementioned transcranial ultrasound stimulation—",KEEP,medium
+paper2,12,22,"Limited sensations. While we confirmed that our approach gate the size of the TMS coils. However, its accuracy & limitations",KEEP,medium
+paper2,12,23,"can create a total of 15 haptic sensations including both force & are still being understood [44, 98].",KEEP,medium
+paper2,12,28,While this can be smaller than ∼5 mm by optimizing the coil ge-,KEEP,low
+paper2,12,43,"For instance, if the user is meant to feel haptics in their hand, the",KEEP,low
+paper2,12,44,TMS’ spatial resolution is yet to be fully understood (see 8.2 Stimuli,KEEP,low
+paper2,12,58,ACKNOWLEDGMENTS,SKIP,medium
+paper2,12,59,8.2 Roadmap for the Future of Interactive TMS We would like to express our sincere gratitude to Prof. Howard,KEEP,medium
+paper2,12,61,Now that we have discussed the challenges brought by our specific,KEEP,low
+paper2,12,67,source-effector).,SKIP,medium
+paper2,12,81,attempting to close the loop on the stimulation. This might be done We would like to acknowledge that the ACM CHI 2024 conference,SKIP,high
+paper2,13,1,"Haptic Source-effector: Full-body Haptics via Non-invasive Brain Stimulation CHI ’24, May 11–16, 2024, Honolulu, HI, USA",SKIP,high
+paper2,13,2,options for remote participation. While some authors have chosen Proceedings of the 31st Annual ACM Symposium on User Interface Software and,SKIP,medium
+paper2,13,3,"to present their work in person or bring its physical prototype to Technology (New York, NY, USA, 11 2018), 927–935.",KEEP,medium
+paper2,13,7,"Native Hawaiians and with a heavy heart. We urge that the ACM’s for Migraine Treatment. Journal of Medical Devices. 4, 1 (Feb. 2010). DOI:https:",SKIP,medium
+paper2,13,8,process for conference selection should more carefully consider the //doi.org/10.1115/1.4000616.,SKIP,high
+paper2,13,10,impact our conferences have on local communities. We especially a motion platform based on people. Proceedings of the SIGCHI Conference on,SKIP,medium
+paper2,13,11,"want to acknowledge Prof. Josiah Hester, a Kānaka Maoli Professor Human Factors in Computing Systems (Toronto, Ontario, Canada, Apr. 2014),",KEEP,medium
+paper2,13,12,3463–3472.,SKIP,medium
+paper2,13,16,"degradation in Hawaii2. Finally, the decision of some authors to (TMS) devices. Brain Stimulation: Basic, Translational, and Clinical Research in",KEEP,medium
+paper2,13,17,"Neuromodulation. 15, 1 (Jan. 2022), 73–75. DOI:https://doi.org/10.1016/j.brs.2021.",SKIP,high
+paper2,13,19,11.010.,SKIP,medium
+paper2,13,20,"members of our lab, who have chosen not to engage with this edi- [19] Delazio, A., Nakagaki, K., Klatzky, R.L., Hudson, S.E., Lehman, J.F. and Sample,",KEEP,medium
+paper2,13,21,tion of the CHI conference due to its impact on Native Hawaiians. A.P. 2018. Force Jacket: Pneumatically-Actuated Jacket for Embodied Haptic Ex-,KEEP,medium
+paper2,13,22,periences. Proceedings of the 2018 CHI Conference on Human Factors in Computing,SKIP,medium
+paper2,13,24,"REFERENCES [20] Dempsey, M.F., Condon, B. and Hadley, D.M. 2002. MRI safety review. Seminars",KEEP,low
+paper2,13,25,"in Ultrasound, CT and MRI. 23, 5 (Oct. 2002), 392–401. DOI:https://doi.org/10.",SKIP,high
+paper2,13,27,1016/S0887-2171(02)90010-7.,SKIP,medium
+paper2,13,30,"tated digits. Journal of Neural Engineering. 15, 1 (Nov. 2017), 016003. DOI:https:",SKIP,medium
+paper2,13,32,//doi.org/10.1088/1741-2552/aa81e2.,SKIP,high
+paper2,13,33,"designs. Brain Stimulation. 6, 1 (Jan. 2013), 1–13. DOI:https://doi.org/10.1016/j.",SKIP,high
+paper2,13,34,"[2] Ara, J., Hwang, S.H., Song, T. and Khang, G. 2014. Effects of the stimulus parame-",KEEP,medium
+paper2,13,35,brs.2012.02.005.,SKIP,medium
+paper2,13,38,stimulation. International Journal of Precision Engineering and Manufacturing.,SKIP,medium
+paper2,13,39,"F., Sabatelli, M., Musumeci, G., Ranieri, F. and Tonali, P.A. 2010. Long-term",KEEP,low
+paper2,13,40,"15, 2 (Feb. 2014), 305–313. DOI:https://doi.org/10.1007/s12541-014-0339-4.",SKIP,high
+paper2,13,43,"1 (Jan. 2010), 22–27. DOI:https://doi.org/10.1016/j.brs.2009.04.004.",SKIP,high
+paper2,13,44,"Neurophysiology. W. Paulus, F. Tergau, M.A. Nitsche, J.G. Rothwell, U. Ziemann,",KEEP,low
+paper2,13,47,"Journal of Clinical Neurophysiology. 15, 4 (Jul. 1998), 325.",SKIP,medium
+paper2,13,50,"Vries, W.H., McTeague, L.M., George, M.S. and Roberts, D. 2020. Personal-",KEEP,low
+paper2,13,51,"E.C., Bensmaia, S.J., Schwartz, A.B., Boninger, M.L. and Gaunt, R.A. 2016. Intra-",KEEP,low
+paper2,13,54,"laboratory setting. Brain Stimulation. 13, 3 (May 2020), 551–553. DOI:https:",SKIP,medium
+paper2,13,55,"Medicine. 8, 361 (Oct. 2016), 361ra141-361ra141. DOI:https://doi.org/10.1126/",SKIP,high
+paper2,13,56,//doi.org/10.1016/j.brs.2020.01.009.,SKIP,high
+paper2,13,62,DOI:https://doi.org/10.1016/S0140-6736(85)92413-4.,SKIP,high
+paper2,13,65,DOI:https://doi.org/10.1016/j.brs.2018.12.972.,SKIP,high
+paper2,13,69,"Pascual-Leone, A. and Valente, K.D. 2006. A randomized clinical trial of repetitive",KEEP,low
+paper2,13,70,"European Journal of Neuroscience. 47, 7 (2018), 790–799. DOI:https://doi.org/10.",SKIP,high
+paper2,13,72,1111/ejn.13871.,SKIP,medium
+paper2,13,73,"of Neurology. 60, 4 (Oct. 2006), 447–455. DOI:https://doi.org/10.1002/ana.20950.",SKIP,high
+paper2,13,76,"Determination of a VR System. Sensors. 21, 5 (Jan. 2021), 1622. DOI:https://doi.",SKIP,medium
+paper2,13,77,"Journal of Clinical Neurophysiology. 8, 1 (Jan. 1991), 3.",SKIP,medium
+paper2,13,78,org/10.3390/s21051622.,SKIP,medium
+paper2,13,81,Stimulation in the Treatment of Depression. American Journal of Psychiatry.,SKIP,medium
+paper2,13,83,"160, 5 (May 2003), 835–845. DOI:https://doi.org/10.1176/appi.ajp.160.5.835.",SKIP,high
+paper2,13,84,"Clinique = Clinical Neurophysiology. 43, 4 (Oct. 2013), 251–260. DOI:https://doi.",SKIP,medium
+paper2,13,86,org/10.1016/j.neucli.2013.05.003.,SKIP,medium
+paper2,13,87,feedback using air vortex rings. Proceedings of the 2013 ACM international joint,SKIP,medium
+paper2,13,89,"conference on Pervasive and ubiquitous computing (New York, NY, USA, 8 2013),",SKIP,medium
+paper2,13,90,"V5 on visual motion perception. Brain: A Journal of Neurology. 118 ( Pt 1), (Feb.",SKIP,medium
+paper2,13,91,419–428.,SKIP,medium
+paper2,13,92,"1995), 49–60. DOI:https://doi.org/10.1093/brain/118.1.49.",SKIP,high
+paper2,13,95,"(Jul. 2007), 187–199. DOI:https://doi.org/10.1016/j.neuron.2007.06.026.",SKIP,high
+paper2,13,98,Controllers. Proceedings of the 29th Annual Symposium on User Interface Software,SKIP,medium
+paper2,13,99,cessed: 2022-03-01.,SKIP,medium
+paper2,13,103,An EMS-based Foot Strike Assistant for Running. Proceedings of the ACM on,SKIP,medium
+paper2,13,105,"Interactive, Mobile, Wearable and Ubiquitous Technologies. 1, 1 (Mar. 2017), 2:1-",KEEP,low
+paper2,13,106,DOI:https://doi.org/10.1038/s41551-020-00630-8.,SKIP,high
+paper2,13,107,2:18. DOI:https://doi.org/10.1145/3053332.,SKIP,high
+paper2,13,111,"magnetic stimulation. IEEE Transactions on Biomedical Engineering. 48, 10 (Oct.",SKIP,medium
+paper2,13,113,"2001), 1162–1168. DOI:https://doi.org/10.1109/10.951519.",SKIP,high
+paper2,13,115,"[34] Je, S., Lim, H., Moon, K., Teng, S.-Y., Brooks, J., Lopes, P. and Bianchi, A. 2021.",KEEP,medium
+paper2,13,118,"absent limbs. Proceedings of the National Academy of Sciences. 97, 11 (May 2000),",SKIP,medium
+paper2,13,119,of the 2021 CHI Conference on Human Factors in Computing Systems (Yokohama,SKIP,medium
+paper2,13,120,6167–6172. DOI:https://doi.org/10.1073/pnas.100510697.,SKIP,high
+paper2,13,121,"Japan, May 2021), 1–11.",KEEP,medium
+paper2,13,122,"[14] Chai, G.H., Li, S., Sui, X.H., Mei, Z., He, L.W., Zhong, C.L., Wang, J.W., Zhang,",KEEP,medium
+paper2,13,124,"D.G., Zhu, X.Y. and Lan, N. 2013. Phantom finger perception evoked with tran-",KEEP,low
+paper2,13,127,sional.,SKIP,medium
+paper2,13,128,"6th International IEEE/EMBS Conference on Neural Engineering (NER) (Nov. 2013),",SKIP,medium
+paper2,13,130,271–274.,SKIP,medium
+paper2,13,131,Finger towards Targets using EMS. Proceedings of the 2016 CHI Conference,SKIP,medium
+paper2,13,133,"Extended Abstracts on Human Factors in Computing Systems (New York, NY,",KEEP,low
+paper2,13,135,"USA, May 2016), 2526–2532.",SKIP,medium
+paper2,13,137,Towards Usable Virtual Touch Screen. Proceedings of the 2016 CHI Conference on,SKIP,medium
+paper2,13,138,"Human Factors in Computing Systems (New York, NY, USA, 2016), 3694–3705.",KEEP,low
+paper2,14,1,"CHI ’24, May 11–16, 2024, Honolulu, HI, USA Yudai Tanaka et al.",SKIP,high
+paper2,14,2,"[38] Kim, H.-S., Gim, S.-Y., Kim, W.-R., Choi, M.-H., Choi, S. and Chung, S.-C. 2016. [61] Nitsche, M.A., Boggio, P.S., Fregni, F. and Pascual-Leone, A. 2009. Treatment",KEEP,medium
+paper2,14,3,MagTacS: Delivering Tactile Sensation over an Object. Proceedings of the 29th of depression with transcranial direct current stimulation (tDCS): A Review.,SKIP,medium
+paper2,14,4,"Annual Symposium on User Interface Software and Technology (New York, NY, Experimental Neurology. 219, 1 (Sep. 2009), 14–19. DOI:https://doi.org/10.1016/j.",SKIP,high
+paper2,14,5,"USA, 16 2016), 41–42. expneurol.2009.03.038.",SKIP,medium
+paper2,14,6,"[39] Kim, H.-S., Jo, J.-H., Lee, J.-H., Jung, J.-J., An, J.-S., Choi, M.-H. and Chung, S.-C. [62] Nitsche, M.A., Cohen, L.G., Wassermann, E.M., Priori, A., Lang, N., Antal, A.,",KEEP,medium
+paper2,14,7,"2021. Development of a Tactile Actuator with Non-Contact and Trans-Object Paulus, W., Hummel, F., Boggio, P.S., Fregni, F. and Pascual-Leone, A. 2008.",KEEP,medium
+paper2,14,8,"Characteristics Using a Time-Varying Magnetic Field. Actuators. 10, 6 (Jun. 2021), Transcranial direct current stimulation: State of the art 2008. Brain Stimulation.",KEEP,medium
+paper2,14,9,"106. DOI:https://doi.org/10.3390/act10060106. 1, 3 (Jul. 2008), 206–223. DOI:https://doi.org/10.1016/j.brs.2008.06.004.",SKIP,high
+paper2,14,10,"[40] Konishi, Y., Hanamitsu, N., Outram, B., Minamizawa, K., Mizuguchi, T. and Sato, [63] Ogihara, S., Amemiya, T., Kuzuoka, H., Narumi, T. and Aoyama, K. 2023. Multi",KEEP,medium
+paper2,14,11,A. 2016. Synesthesia suit: the full body immersive experience. ACM SIGGRAPH Surface Electrodes Nerve Bundles Stimulation on the Wrist: Modified Location,SKIP,medium
+paper2,14,12,"2016 VR Village (New York, NY, USA, 24 2016), 1. of Tactile Sensation on the Palm. IEEE Access. 11, (2023), 13794–13809. DOI:https:",SKIP,medium
+paper2,14,13,"[41] Kono, M., Miyaki, T. and Rekimoto, J. 2018. In-pulse: inducing fear and pain in //doi.org/10.1109/ACCESS.2023.3243175.",SKIP,high
+paper2,14,14,"virtual experiences. Proceedings of the 24th ACM Symposium on Virtual Reality [64] Pan, L., Vargas, L., Fleming, A., Hu, X., Zhu, Y. and Huang, H. (Helen) 2020.",SKIP,medium
+paper2,14,15,"Software and Technology (New York, NY, USA, 28 2018), 1–5. Evoking haptic sensations in the foot through high-density transcutaneous",KEEP,medium
+paper2,14,16,"[42] Kuang, L., Ferro, M., Malvezzi, M., Prattichizzo, D., Robuffo Giordano, P., electrical nerve stimulations. Journal of Neural Engineering. 17, 3 (Jun. 2020),",SKIP,medium
+paper2,14,17,"Chinello, F. and Pacchierotti, C. 2023. A Wearable Haptic Device for the Hand 036020. DOI:https://doi.org/10.1088/1741-2552/ab8e8d.",SKIP,high
+paper2,14,18,"with Interchangeable End-Effectors. IEEE Transactions on Haptics (ToH). (Jun. [65] Peiris, R.L., Peng, W., Chen, Z., Chan, L. and Minamizawa, K. 2017. ThermoVR:",SKIP,medium
+paper2,14,19,"2023), 1–10. DOI:https://doi.org/10.1109/TOH.2023.3284980. Exploring Integrated Thermal Haptic Feedback with Head Mounted Displays.",SKIP,high
+paper2,14,20,"[43] Lefaucheur, J.-P., Drouot, X., Von Raison, F., Ménard-Lefaucheur, I., Cesaro, P. Proceedings of the 2017 CHI Conference on Human Factors in Computing Systems",SKIP,medium
+paper2,14,21,"and Nguyen, J.-P. 2004. Improvement of motor performance and modulation (New York, NY, USA, Summer 2017), 5452–5456.",KEEP,medium
+paper2,14,22,"of cortical excitability by repetitive transcranial magnetic stimulation of the [66] Pena, A.E., Abbas, J.J. and Jung, R. 2021. Channel-hopping during surface electri-",KEEP,medium
+paper2,14,23,"motor cortex in Parkinson’s disease. Clinical Neurophysiology. 115, 11 (Nov. cal neurostimulation elicits selective, comfortable, distally referred sensations.",KEEP,medium
+paper2,14,24,"2004), 2530–2541. DOI:https://doi.org/10.1016/j.clinph.2004.05.025. Journal of Neural Engineering. 18, 5 (Apr. 2021). DOI:https://doi.org/10.1088/1741-",SKIP,high
+paper2,14,25,"[44] Legon, W., Sato, T.F., Opitz, A., Mueller, J., Barbour, A., Williams, A. and Tyler, 2552/abf28c.",KEEP,medium
+paper2,14,26,"W.J. 2014. Transcranial focused ultrasound modulates the activity of primary [67] Peterchev, A.V., Murphy, D.L.K. and Goetz, S.M. 2015. Quiet transcranial mag-",KEEP,medium
+paper2,14,27,"somatosensory cortex in humans. Nature Neuroscience. 17, 2 (Feb. 2014), 322–329. netic stimulation: Status and future directions. 2015 37th Annual International",KEEP,medium
+paper2,14,28,DOI:https://doi.org/10.1038/nn.3620. Conference of the IEEE Engineering in Medicine and Biology Society (EMBC) (Aug.,SKIP,high
+paper2,14,30,"[46] Li, J., Krall, M., Trummer, F., Memon, A.R., Pepe, A., Gsaxner, C., Jin, Y., Chen, [68] Pfeiffer, M., Dünte, T., Schneegass, S., Alt, F. and Rohs, M. 2015. Cruise Control",KEEP,medium
+paper2,14,31,"X., Deutschmann, H., Zefferer, U., Schäfer, U., Campe, G. von and Egger, J. for Pedestrians: Controlling Walking Direction using Electrical Muscle Stim-",KEEP,medium
+paper2,14,32,2021. MUG500+: Database of 500 high-resolution healthy human skulls and 29 ulation. Proceedings of the 33rd Annual ACM Conference on Human Factors in,SKIP,medium
+paper2,14,33,"craniotomy skulls and implants. Data in Brief. 39, (Dec. 2021), 107524. DOI:https: Computing Systems (New York, NY, USA, Apr. 2015), 2505–2514.",SKIP,medium
+paper2,14,34,"//doi.org/10.1016/j.dib.2021.107524. [69] Pineda-Pardo, J.A., Martínez-Fernández, R., Rodríguez-Rojas, R., Del-Alamo,",SKIP,high
+paper2,14,35,"[47] Lindeman, R.W., Page, R., Yanagida, Y. and Sibert, J.L. 2004. Towards full-body M., Hernández, F., Foffani, G., Dileone, M., Máñez-Miró, J.U., De Luis-Pastor,",KEEP,medium
+paper2,14,36,"haptic feedback: the design and deployment of a spatialized vibrotactile feed- E., Vela, L. and Obeso, J.A. 2019. Microstructural changes of the dentato-rubro-",KEEP,medium
+paper2,14,37,back system. Proceedings of the ACM symposium on Virtual reality software and thalamic tract after transcranial MR guided focused ultrasound ablation of the,SKIP,medium
+paper2,14,38,"technology (New York, NY, USA, 10 2004), 146–149. posteroventral VIM in essential tremor. Human Brain Mapping. 40, 10 (2019),",KEEP,medium
+paper2,14,39,"[48] Liu, X.X., Chai, G.H., Qu, H.E. and Lan, N. 2015. A sensory feedback system for 2933–2942. DOI:https://doi.org/10.1002/hbm.24569.",SKIP,high
+paper2,14,41,"Conference of the IEEE Engineering in Medicine and Biology Society (EMBC) (Aug. jects and patient populations, with updates on training, ethical and regulatory",SKIP,medium
+paper2,14,43,"[49] Lopes, P., Ion, A., Mueller, W., Hoffmann, D., Jonell, P. and Baudisch, P. 2015. DOI:https://doi.org/10.1016/j.clinph.2020.10.003.",SKIP,high
+paper2,14,44,"Proprioceptive Interaction. Proceedings of the 33rd Annual ACM Conference on [71] Rossi, S., Hallett, M., Rossini, P.M., Pascual-Leone, A., and Safety of TMS Con-",SKIP,medium
+paper2,14,45,"Human Factors in Computing Systems (New York, NY, USA, 18 2015), 939–948. sensus Group 2009. Safety, ethical considerations, and application guidelines",KEEP,medium
+paper2,14,46,[50] Magstim Magstim Rapid2 Operating Manual. for the use of transcranial magnetic stimulation in clinical practice and re-,KEEP,medium
+paper2,14,47,"[51] Mamadjanov, A.M., Yusupov, S.M. and Sadirov, S. 2021. ADVANTAGES AND search. Clinical Neurophysiology: Official Journal of the International Feder-",SKIP,medium
+paper2,14,48,"THE FUTURE OF CNC MACHINES. Scientific progress. 2, 1 (2021), 1638–1647. ation of Clinical Neurophysiology. 120, 12 (Dec. 2009), 2008–2039. DOI:https:",SKIP,medium
+paper2,14,49,"[52] Matsuda, N., Zhao, Y., Chapiro, A., Smith, C. and Lanman, D. 2022. HDR VR. //doi.org/10.1016/j.clinph.2009.08.016.",SKIP,high
+paper2,14,50,"ACM SIGGRAPH 2022 Emerging Technologies (New York, NY, USA, 25 2022), 1–2. [72] Sasaki, T., Liu, K.-H., Hasegawa, T., Hiyama, A. and Inami, M. 2019. Virtual",SKIP,medium
+paper2,14,51,"[53] McCabe, C.S., Haigh, R.C., Halligan, P.W. and Blake, D.R. 2003. Referred sensa- Super-Leaping: Immersive Extreme Jumping in VR. Proceedings of the 10th",SKIP,medium
+paper2,14,52,"tions in patients with complex regional pain syndrome type 1. Rheumatology. Augmented Human International Conference 2019 (New York, NY, USA, 11 2019),",SKIP,medium
+paper2,14,53,"42, 9 (Sep. 2003), 1067–1073. DOI:https://doi.org/10.1093/rheumatology/keg298. 1–8.",SKIP,high
+paper2,14,54,"[54] McNair, N.A. 2017. MagPy: A Python toolbox for controlling Magstim tran- [73] Sathya, A., Li, J., Rahman, T., Gao, G. and Peng, H. 2022. Calico: Relocatable",KEEP,medium
+paper2,14,55,"scranial magnetic stimulators. Journal of Neuroscience Methods. 276, (Jan. 2017), On-cloth Wearables with Fast, Reliable, and Precise Locomotion. Proceedings",SKIP,medium
+paper2,14,56,"33–37. DOI:https://doi.org/10.1016/j.jneumeth.2016.11.006. of the ACM on Interactive, Mobile, Wearable and Ubiquitous Technologies. 6, 3 (7",SKIP,high
+paper2,14,57,"[55] Minamizawa, K., Fukamachi, S., Kajimoto, H., Kawakami, N. and Tachi, S. 2007. 2022), 136:1-136:32. DOI:https://doi.org/10.1145/3550323.",SKIP,high
+paper2,14,58,"Gravity grabber: wearable haptic display to present virtual mass sensation. [74] Scarpelli, A., Demofonti, A., Terracina, F., Ciancio, A.L. and Zollo, L. 2020.",KEEP,medium
+paper2,14,59,"ACM SIGGRAPH 2007 emerging technologies (New York, NY, USA, 5 2007), 8-es. Evoking Apparent Moving Sensation in the Hand via Transcutaneous Electrical",SKIP,medium
+paper2,14,60,"[56] Momosaki, R., Abo, M., Watanabe, S., Kakuda, W., Yamada, N. and Kinoshita, S. Nerve Stimulation. Frontiers in Neuroscience. 14, (2020). DOI:https://doi.org/10.",SKIP,high
+paper2,14,62,"Rehabilitation for Poststroke Dysphagia: An Open-Label Case Series. Neu- [75] Schorr, S.B. and Okamura, A.M. 2017. Fingertip Tactile Devices for Virtual Object",KEEP,medium
+paper2,14,63,"romodulation: Technology at the Neural Interface. 18, 7 (Oct. 2015), 630–635. Manipulation and Exploration. Proceedings of the 2017 CHI Conference on Human",SKIP,medium
+paper2,14,64,"DOI:https://doi.org/10.1111/ner.12308. Factors in Computing Systems (New York, NY, USA, Summer 2017), 3115–3119.",SKIP,high
+paper2,14,65,"[57] Mull, B.R. and Seyal, M. 2001. Transcranial magnetic stimulation of left prefrontal [76] Slopsema, J.P., Boss, J.M., Heyboer, L.A., Tobias, C.M., Draggoo, B.P., Finn, K.E.,",KEEP,medium
+paper2,14,66,"cortex impairs working memory. Clinical Neurophysiology: Official Journal of the Hoff, P.J. and Polasek, K.H. 2018. Natural Sensations Evoked in Distal Extremities",SKIP,medium
+paper2,14,67,"International Federation of Clinical Neurophysiology. 112, 9 (Sep. 2001), 1672–1675. Using Surface Electrical Stimulation. The Open Biomedical Engineering Journal.",KEEP,medium
+paper2,14,68,"DOI:https://doi.org/10.1016/s1388-2457(01)00606-x. 12, (2018), 72. DOI:https://doi.org/10.2174/1874120701812010072.",SKIP,high
+paper2,14,69,"[58] N, G., Nh, J., V, M. and B, G. 2017. Transcranial magnetic stimulation devices for [77] Sodhi, R., Poupyrev, I., Glisson, M. and Israr, A. 2013. AIREAL: interactive tactile",KEEP,medium
+paper2,14,70,"biphasic and polyphasic ultra-high frequency protocols. Biology, Engineering experiences in free air. ACM Transactions on Graphics. 32, 4 (Jul. 2013), 1–10.",SKIP,medium
+paper2,14,71,"and Medicine. 3, 1 (2017). DOI:https://doi.org/10.15761/BEM.1000136. DOI:https://doi.org/10.1145/2461912.2462007.",SKIP,high
+paper2,14,72,"[59] Navarro de Lara, L.I., Daneshzand, M., Mascarenas, A., Paulson, D., Pratt, K., [78] Starburst: Eyes-In With Meta’s 20K Nit HDR Display Tech: 2022. https://www.",KEEP,medium
+paper2,14,73,"Okada, Y., Raij, T., Makarov, S.N. and Nummenmaa, A. 2021. A 3-axis coil design uploadvr.com/starburst-hdr-demo/. Accessed: 2023-09-14.",KEEP,medium
+paper2,14,74,"for multichannel TMS arrays. NeuroImage. 224, (Jan. 2021), 117355. DOI:https: [79] Strohmeier, P., Güngör, S., Herres, L., Gudea, D., Fruchard, B. and Steimle, J. 2020.",SKIP,medium
+paper2,14,75,//doi.org/10.1016/j.neuroimage.2020.117355. bARefoot: Generating Virtual Materials using Motion Coupled Vibration in,SKIP,high
+paper2,14,76,[60] Next generation full body haptic suit -bHaptics TactSuit: https://www.bhaptics. Shoes. Proceedings of the 33rd Annual ACM Symposium on User Interface Software,SKIP,medium
+paper2,14,78,"[80] Sutherland, I. 1965. The Ultimate Display. Proceedings of the IFIPS Congress",SKIP,medium
+paper2,14,79,65(2):506-508. New York: IFIP (1965).,SKIP,medium
+paper2,15,1,"Haptic Source-effector: Full-body Haptics via Non-invasive Brain Stimulation CHI ’24, May 11–16, 2024, Honolulu, HI, USA",SKIP,high
+paper2,15,2,"[81] Suzuki, S., Aoyama, K., Kojima, R., Izumi, K., Fushimi, T. and Ochiai, Y. 2023. [91] Thielscher, A. and Kammer, T. 2004. Electric field properties of two commercial",KEEP,medium
+paper2,15,4,"ulation. ACM SIGGRAPH 2023 Posters (New York, NY, USA, 23 2023), 1–2. ology. 115, 7 (Jul. 2004), 1697–1708. DOI:https://doi.org/10.1016/j.clinph.2004.02.",SKIP,high
+paper2,15,5,"[82] Szecsi, J., Schiller, M., Straube, A. and Gerling, D. 2009. A comparison of func- 019.",KEEP,medium
+paper2,15,6,"tional electrical and magnetic stimulation for propelled cycling of paretic pa- [92] Triggs, W.J., Calvanio, R. and Levine, M. 1997. Transcranial magnetic stimulation",KEEP,medium
+paper2,15,7,"tients. Archives of Physical Medicine and Rehabilitation. 90, 4 (Apr. 2009), 564–570. reveals a hemispheric asymmetry correlate of intermanual differences in motor",KEEP,medium
+paper2,15,8,"DOI:https://doi.org/10.1016/j.apmr.2008.09.572. performance. Neuropsychologia. 35, 10 (Oct. 1997), 1355–1363. DOI:https://doi.",SKIP,high
+paper2,15,10,"cal Muscle Stimulation’s Dexterity by means of Back of the Hand Actuation. [93] Tsao, C.-A., Wu, T.-C., Tsai, H.-R., Wei, T.-Y., Liao, F.-Y., Chapman, S. and Chen,",KEEP,medium
+paper2,15,11,Proceedings of the 2021 CHI Conference on Human Factors in Computing Systems B.-Y. 2022. FrictShoes: Providing Multilevel Nonuniform Friction Feedback on,SKIP,medium
+paper2,15,12,"(New York, NY, USA, 6 2021), 1–12. Shoes in VR. IEEE Transactions on Visualization and Computer Graphics. 28, 5",SKIP,medium
+paper2,15,13,"[84] Tamaki, E., Miyaki, T. and Rekimoto, J. 2011. PossessedHand: techniques for (May 2022), 2026–2036. DOI:https://doi.org/10.1109/TVCG.2022.3150492.",SKIP,high
+paper2,15,14,"controlling human hands using electrical muscles stimuli. Proceedings of the [94] Vargas, L., Whitehouse, G., Huang, H., Zhu, Y. and Hu, X. 2019. Evoked Haptic",SKIP,medium
+paper2,15,15,"SIGCHI Conference on Human Factors in Computing Systems (New York, NY, Sensation in the Hand With Concurrent Non-Invasive Nerve Stimulation. IEEE",SKIP,medium
+paper2,15,16,"USA, May 2011), 543–552. Transactions on Biomedical Engineering. 66, 10 (Oct. 2019), 2761–2767. DOI:https:",SKIP,medium
+paper2,15,17,"[85] Tanaka, Y., Nishida, J. and Lopes, P. 2022. Electrical Head Actuation: Enabling //doi.org/10.1109/TBME.2019.2895575.",SKIP,high
+paper2,15,18,"Interactive Systems to Directly Manipulate Head Orientation. CHI Conference on [95] Wassermann, E.M., McShane, L.M., Hallett, M. and Cohen, L.G. 1992. Nonin-",SKIP,medium
+paper2,15,19,"Human Factors in Computing Systems (New Orleans LA USA, Apr. 2022), 1–15. vasive mapping of muscle representations in human motor cortex. Electroen-",KEEP,medium
+paper2,15,20,"[86] Tanaka, Y., Shen, A., Kong, A. and Lopes, P. 2023. Full-hand Electro-Tactile cephalography and Clinical Neurophysiology. 85, 1 (Feb. 1992), 1–8. DOI:https:",SKIP,medium
+paper2,15,21,Feedback without Obstructing Palmar Side of Hand. Proceedings of the 2023 CHI //doi.org/10.1016/0168-5597(92)90094-r.,SKIP,high
+paper2,15,22,"Conference on Human Factors in Computing Systems (New York, NY, USA, 19 [96] Whitmire, E., Benko, H., Holz, C., Ofek, E. and Sinclair, M. 2018. Haptic Re-",SKIP,medium
+paper2,15,24,"[87] Tanaka, Y., Takahashi, A. and Lopes, P. Interactive Benefits from Switching Reality Controller. Proceedings of the 2018 CHI Conference on Human Factors in",SKIP,medium
+paper2,15,25,"Electrical to Magnetic Muscle Stimulation. October 29, 2023 (New York, NY, Computing Systems (New York, NY, USA, 19 2018), 1–12.",KEEP,medium
+paper2,15,26,"USA), 1–12. [97] Yano, H., Ogi, T. and Hirose, M. 1998. Development of Haptic Suit for whole",KEEP,medium
+paper2,15,27,"[88] Tang, A.D., Lowe, A.S., Garrett, A.R., Woodward, R., Bennett, W., Canty, A.J., human body using vibrators. Transactions of the Virtual Reality Society of Japan.",KEEP,medium
+paper2,15,28,"Garry, M.I., Hinder, M.R., Summers, J.J., Gersner, R., Rotenberg, A., Thickbroom, 3, 3 (1998), 141–147. DOI:https://doi.org/10.18974/tvrsj.3.3_141.",SKIP,high
+paper2,15,29,"G., Walton, J. and Rodger, J. 2016. Construction and Evaluation of Rodent- [98] Yoo, S., Mittelstein, D.R., Hurt, R.C., Lacroix, J. and Shapiro, M.G. 2022. Focused",KEEP,medium
+paper2,15,30,"Specific rTMS Coils. Frontiers in Neural Circuits. 10, (2016). ultrasound excites cortical neurons via mechanosensitive calcium accumulation",KEEP,medium
+paper2,15,31,"[89] Teng, S.-Y., Li, P., Nith, R., Fonseca, J. and Lopes, P. 2021. Touch&Fold: A Foldable and ion channel amplification. Nature Communications. 13, 1 (Jan. 2022), 493.",KEEP,medium
+paper2,15,32,Haptic Actuator for Rendering Touch in Mixed Reality. Proceedings of the 2021 DOI:https://doi.org/10.1038/s41467-022-28040-1.,SKIP,high
+paper2,15,33,"CHI Conference on Human Factors in Computing Systems (New York, NY, USA, 6 [99] Yoshimoto, S., Kuroda, Y., Imura, M. and Oshiro, O. 2011. Development of a",SKIP,medium
+paper2,15,35,"[90] Teng, S.-Y., Lin, C.-L., Chiang, C., Kuo, T.-S., Chan, L., Huang, D.-Y. and Chen, control. 2011 Annual International Conference of the IEEE Engineering in Medicine",SKIP,medium
+paper2,15,36,"B.-Y. 2019. TilePoP: Tile-type Pop-up Prop for Virtual Reality. Proceedings of the and Biology Society (Aug. 2011), 3463–3466.",SKIP,medium
+paper2,15,37,"32nd Annual ACM Symposium on User Interface Software and Technology (New [100] Yoshimoto, S., Kuroda, Y., Uranishi, Y., Imura, M. and Oshiro, O. 2014. Rough-",SKIP,medium
+paper2,15,38,"York, NY, USA, 17 2019), 639–649. ness Modulation of Real Materials Using Electrotactile Augmentation. Haptics:",KEEP,low
+paper2,15,40,10–17.,SKIP,medium

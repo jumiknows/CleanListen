@@ -1,0 +1,301 @@
+paper,page,line_idx,text
+paper1,1,23,withcomputervisionandnaturallanguageprocessingtechniquesintowebprogramconditions.(Step2)Tocreatetheintendedweb
+paper1,1,29,"programstoperformrepetitiveyetessentialtasks,suchasdata utilizingvisualandtextualconditions."
+paper1,1,30,"scrapinganddataentry.However,existingwebautomationsys-"
+paper1,1,32,temslackmechanismsfordefiningconditionalbehaviorswhere
+paper1,1,44,"USA.ACM,NewYork,NY,USA,16pages.https://doi.org/10.1145/3526113."
+paper1,1,45,astheprogramcontinuouslyexecutesorreclaimmanualcontrol 3545691
+paper1,1,49,"forprofitorcommercialadvantageandthatcopiesbearthisnoticeandthefullcitation Enterprises, governments, and schools often use web-based ap-"
+paper1,1,59,"https://doi.org/10.1145/3526113.3545691 (e.g.,dataduplicates,missedentries),whichcancauseinefficiencies."
+paper1,2,3,"andrecurringtasksandhasproventobefasterandmoreaccurate inasentence(Fig.1.c),indicatetheirareaofinterestbybrushing"
+paper1,2,5,Pastresearchhasdevelopedtechniquestohelpusersofallex- SemanticOnusessimilarity-basedcomputervisionandnaturallan-
+paper1,2,9,"syntaxorstructurallevel(e.g.,scrapingthefirsttwoitemsineach usingWebRobot,includingimagedownloading(Fig.1.d)andtext"
+paper1,2,10,"rowofatable).Toolscapableofcreatinglogicbasedonthemean- scraping(Fig.1.e).(Step3)Oncetheprogramisexecuted,users"
+paper1,2,13,toperformrecord-and-replayinteractionsforwebautomationand Fig.1.h)orreclaimcontroltomanuallyaddorremovedataifthe
+paper1,2,16,experiencetocreatecomplexprogramsthatcanhandlehierarchical interactionsforwebautomationprograms.
+paper1,2,18,multiplewebsites. SemanticOn’soverallusabilityandefficiencyandtocomparethe
+paper1,2,39,basedsemanticconditionspecificationforwebautomationpro- end-userprogrammingwithafocusonwebautomationcreation.
+paper1,2,49,continuouslyadd/refinesemanticconditionsinaprogramming-by- andeffectivenessinhelpingusersspecifysemanticcondi-
+paper1,2,51,"bRobot[24],aprogramsynthesissystemthatenablesuserstocreate"
+paper1,2,55,requiresonlywebinteractionsinplaceofprogrammingknowledge SemanticOn builds on decades of web automation systems and
+paper1,3,1,"2.1 WebAutomation domain,mostnotablyCoScripter[42],Vegemite[48],Rousillon[15],"
+paper1,3,5,"UI testers, and clerks all use web automation to help complete and-replayfunctionality;usersrecordthemselvesinteractingwith"
+paper1,3,9,"automatedbrowsertestingprogramtohelpdevelopersfindfront- functioncomposition,thesesystemsrequireuserstohavelogic"
+paper1,3,16,structure)andprogrammingexperience.Commonlyusedtoolslike coordinatewithPBDsystemsbysmoothlyswitchingagencyand
+paper1,3,43,"helpful,outputsproducedwiththesetoolsarehardtogeneralize expressedthroughnaturallanguageorlimitedexamplesonly,lead-"
+paper1,3,44,tonewUIsorcontexts. ingtoinformationlossduringcommunicationandrenderingthe
+paper1,3,49,"asdatawrangling[29,30,34]anddatavisualization[52,72].Many"
+paper1,3,54,"includingtextmanipulation[13,39,54,60,75],imageorvideoedit- tomoreaccuratelyandquicklysearchcodepatternsinlargecode-"
+paper1,4,6,constraintsbasedonthecontent. willseethedataappendedtotheoutputpanel(Fig.2.d).Behind
+paper1,4,9,"MLapproachallowsuserstoofferfeedbackduringthemodeltrain- strations,WebRobotsynthesizesaprogramP fromthetraceAof"
+paper1,4,17,sented[10].SoftwaredevelopedbyFogartyetal.helpsusersto
+paper1,4,24,P0:=a1;··;am;
+paper1,4,31,6:
+paper1,4,33,"bRobot[24],thatonlyuseswebinteractionsandrequiresnopro- 7: W :=W ∪W′;"
+paper1,4,39,thedesigngoalsforoursystemSemanticOn.
+paper1,4,41,"a Inanutshell,WebRobot’ssynthesisalgorithm(Algorithm1)gen-"
+paper1,4,52,"checkstoseewhetherP generalizesA;ifso,P isaddedtoP(cid:101)(line"
+paper1,4,54,"5).Afterthis,inline6,thealgorithmtriestorewriteP intomore"
+paper1,4,58,Figure2:AscreenshotoftheWebRobotsystemUI.
+paper1,4,60,"correspondtoP,andfinallysynthesizesprogramswithonemore"
+paper1,5,1,canberewrittenanditfinallyreturnsthesmallestprograminP(cid:101) architectureandmainuserinteractionsatahighlevel.Insteadof
+paper1,5,5,"In WebRobot’s user study, participants reported that while We- toscrape(Step1Fig.3),thendemonstrateactionsonthetarget"
+paper1,5,8,"oftasks,theywishedthattheycouldexpressconditionstofilterthe process,userscancommunicatewithSemanticOn,whichiscapable"
+paper1,5,10,"scraping[canbeincluded],notbasedonwhethertheelementexists TheusersandSemanticOnworktogethertorefinethecondition"
+paper1,5,24,"Basedonthispriorwork,wedevisedthefollowingthreedesign"
+paper1,5,29,"lookateachpicture,andmanuallycopyandpastetherelevantin-"
+paper1,5,43,programthatcompletesthetaskforher.
+paper1,5,51,(Fig.6.c).Shebelievesthissentenceislikelysemanticallysimilar
+paper1,5,52,"1. Specify conditions 2. Demonstrate to the relevant content in this article. After clicking “Add”, the"
+paper1,5,57,"usesSystemSuggests,clicksonanidealimage,andhighlightsthe"
+paper1,5,59,Semantic filters Synthesized program severalobjectsandsummarizestheimagecontentintoasentence.
+paper1,5,60,Miaalsoaddstherelevantobjectsandcaptiontothecorresponding
+paper1,5,61,"tables(Fig.4.f,g)intheconditionpanel."
+paper1,5,70,4 SEMANTICON
+paper1,6,1,a i
+paper1,6,3,j
+paper1,6,10,m
+paper1,6,23,"tionwillnotbetriggered,asweassumeuserswillonlydemonstrate condition“alakebeneaththemountainrange”.Miaconfirmsthis"
+paper1,6,29,textualconditiontoinclude.Shealsodiscovers“pettravel” asakey
+paper1,6,30,"phrase.MiawouldlovetotakeherdogSushionthetrip,soshealso"
+paper1,6,31,"selectsthatkeyphrase.Aftersheclicks“Finish,”thosetwophrases"
+paper1,6,33,consideredaccepted.
+paper1,6,40,"programtofinish.However,shenoticesthatforonedestination,"
+paper1,7,0,Both image and text
+paper1,7,1,Detailed highlight on Only image
+paper1,7,8,User Enters for
+paper1,7,17,"Miapausestheautomationprocess(Fig.4.i,7.b).Shethenmanually analyzeandprovidesuggestedconditions(Fig.4.d).Uponselecting"
+paper1,7,28,clicks“Resume”tocontinuetheautomation.Theprogramiterates mouse(Fig.6.a)toillustrate.Theimageisfedthroughanoff-the-
+paper1,7,32,"JSONfile.MiausesSemanticOntocreateatailoredwebautomation andgeneratesacaptionfortheentireimage.Fortexts,theuser"
+paper1,7,49,"(Fig.4.c).Theusercanchooseoneofthetwomethodsofspecifica- setsinitialconditions,theycanstartthedemonstrationprocessby"
+paper1,8,1,a Incorrect Image
+paper1,8,6,a
+paper1,8,8,downloaded
+paper1,8,10,by deleting unwanted
+paper1,8,13,scraping missed content
+paper1,8,14,c
+paper1,8,19,"Figure7:SemanticOnErrorRepairWorkflow.Auserwantstodownloadcutepicturesofacatandadogcuddling,buttheynoticea"
+paper1,8,20,"photooftwocatsisbeingscrapedbymistake○a.Theuserpausesthesystem○b.Then,theusercanedittheconditiondescription,delete"
+paper1,8,31,"ofwebmacrosandgeneratesanautomationprogramtorepeatit. inwhichcasetheconditionsetremainsunchanged,andthenew"
+paper1,8,43,"and0.4,respectively,basedonourbenchmarktesting.Anewtextis SemanticOncontinuouslyexecutesthepredictedwebmacrosand"
+paper1,8,45,whencomparedwithspecifiedtextconditions.WeusedaSentence- accordingly.Thisisdonebyaddingaconditionevaluationstep
+paper1,8,52,andseeifanypairresultsinahighsimilarityscore. anddisplaytheMLprocessingresultsforthatcontent.Theusercan
+paper1,8,61,"Inthesemi-automationmode,ifnewtextorimagecontentmatches astheyalwayshavethepowertoreclaimmanualcontrol,repair"
+paper1,9,1,"systemmistakes,andclarifytheirintents.Notethatduringpause, onlineforums,twobasedonimage-heavywebsites(petwallpa-"
+paper1,9,4,bothimageandtextcontent(beautifulplacesintheworld7).Par-
+paper1,9,5,ticipantsneededtoextractonlyimagesoronlytextcontentfor
+paper1,9,13,"fromthewebsitebasedonasemanticcondition.Forthefinaltask,"
+paper1,9,33,"Similartothepostedtasksinonlineforums,thedescriptionswere"
+paper1,9,46,ashortsurveywithLikertscaleandshort-answerquestionswhen
+paper1,9,48,theyexited.Theparticipantswerecompensated$25fortheirtime.
+paper1,9,49,inaccuracyanddurationacrossimageandtexttasks.
+paper1,9,53,susSystemSuggests.Theaveragedurationwas06:22forUserEnters
+paper1,9,54,studyisapprovedbytheIRBatourinstitution.
+paper1,9,57,"forSystemSuggeststasks.Again,thedifferencesareunabletobe"
+paper1,9,67,1) the web content to be scraped should be realistic and easily ticipantsbelievedtheirspecifiedconditionsweredisplayedinan
+paper1,9,73,"5MovieStars,https://tinyurl.com/zsnkne5r"
+paper1,9,74,"demonstratethesystem’sfullcapabilities.Toachievethisgoal,we 6BestRomanceNovels,https://tinyurl.com/mryjs47h"
+paper1,10,13,"Question LikertScale(Mean,SD)"
+paper1,10,18,hadpolarizedopinionsonthestatement“itwaseasytocoordinate SystemSuggestsEaseofUse 5.7(0.8)
+paper1,10,19,"(claimcontrols,pause/resume,show/hideprompts)withSemanticOn CoordinationtoRefineSpecifications 4.7(1.6)"
+paper1,10,25,"Tasks1-4,andallparticipantsutilizedthesystempromptsinsemi-"
+paper1,10,28,"5.4.3 Error-handling Analysis. As per DG3, SemanticOn offers"
+paper1,10,33,"ditiondeletion,resultdeletion,andmanualresultaddition.Most"
+paper1,10,34,"usersoptedtousethepauseandrepairfunctionalities,as7par- Table2:SurveyResponses.Forsectionone(top),1isverynega-"
+paper1,10,39,"thetasktype.Forconditiondeletion,wefound16instancesacross"
+paper1,10,45,AIsysteminthesurvey.Participantsgenerallyreportedmedium
+paper1,10,53,"1(verydemanding,veryhard,notsuccessful)to7(notdemanding,"
+paper1,10,56,deletioninstancesforUserEntersand9forSystemSuggests.This
+paper1,10,57,"mentaldemand(mean=4.6,SD=1.8)andmediumeffort(mean="
+paper1,10,60,workflow.WeexpandonthesevarietiesinourDiscussion.
+paper1,10,71,"interaction,usersratedenteringtheirownnaturallanguagedescrip- hasmoregroup[ing]sandpotentialvariations” whentheyused11"
+paper1,11,18,"webautomationprogram.InSemanticOn,weutilizemachinelearn- TraditionalsymbolicautomationsystemslikeWebRobotarero-"
+paper1,11,19,ingmodels’classificationefficiencytorapidlyprocesstextsand bustatunderstandingspecificuseractionsandgeneralizingthem
+paper1,11,42,"wordsmightnotspecificallycometomindtothehuman.”Inthiscase, modelforthetaskswecoverinSemanticOn’suserevaluationwould"
+paper1,11,48,"periodtotrusttheprocessisgood,savesalotoffuss.” izedtoadiversesetofdataonmanydifferentwebsites.Introducing"
+paper1,12,0,"UIST’22,October29-November2,2022,Bend,OR,USA KevinPu,etal."
+paper1,12,1,"6.3 UserEntersandSystemSuggests However,therewasatrade-offbetweenthesenseofcontroland"
+paper1,12,2,Oneemphasisofthisprojectistocomparetheusabilityofthetwo therequiredeffort.Participantsratedalowerease-of-usescore
+paper1,12,8,"alsodiscoveredatrade-offbetweentheirsenseofcontrolandthe Forexample,P4pointedoutthattheypreferredSystemSuggests"
+paper1,12,12,6.3.1 Perceivedeffortbasedoncontenttypes. Perceivedeffortplays
+paper1,12,14,animportantroleinuserpreference.Whenitwaseasytosumma-
+paper1,12,29,"fromSystemSuggests,whichleadstomoreerrorsoverallforusers"
+paper1,12,52,"andP5commented,“whenitcomestotexttask,I’malittlelazyto ticOncouldbeappliedtorealistictasks.However,somefocused"
+paper1,12,53,"readthroughallthis...sosystemcanjustgetmerelevantkeywords.” ontheconditionalselectionaspect,andothersemphasizedonthe"
+paper1,12,54,"Ourobservationssupportthisasuserswerefarmorelikelytore- complexityofthetask.Forexample,P2commentedthatthesystem"
+paper1,12,60,fortheprocessingeffortfortextcontentandprovideusersmore andtextconditionscombinedandproposedthat“thistypeoftool
+paper1,13,0,"SemanticOn:SpecifyingContent-BasedSemanticConditionsforWebAutomationPrograms UIST’22,October29-November2,2022,Bend,OR,USA"
+paper1,13,9,"ageAI,whichusesaconvolutionalneuralnetwork[56],forimage"
+paper1,13,23,"gramsynthesissystem,WebRobot,whichhasitsownconstraints user-intentspecificationandrefinementinacontinuoushuman-AI"
+paper1,13,37,"cessed:April,2022."
+paper1,13,44,[7] 2022.StackOverflow. https://stackoverflow.com/search?q=%5Bselenium%5D+
+paper1,13,52,machinelearningforon-demandgroupcreationinsocialnetworks.InProceedings
+paper1,13,54,oftheSIGCHIconferenceonhumanfactorsincomputingsystems.21–30.
+paper1,13,55,"workscouldenablemulti-modalinteraction(e.g.,voice)toreduce [11] Jacob Austin, Augustus Odena, Maxwell Nye, Maarten Bosma, Henryk"
+paper1,13,73,SymposiumonUserInterfaceSoftwareandTechnology.963–975.
+paper1,14,7,HybridCrowd-MachineWorkflowforShellCommandSynthesis.In2020IEEE 1–17.
+paper1,14,15,the2017CHIConferenceonHumanFactorsinComputingSystems.6220–6231. multimodalsmartphoneautomationbydemonstration.InProceedingsofthe2017
+paper1,14,17,"Improvingcrowd-supportedguitestingwithstructuralguidance.InProceedings [45] TobyJia-JunLi,IgorLabutov,XiaohanNancyLi,XiaoyiZhang,WenzeShi,"
+paper1,14,23,"[23] BiplabDeka,ZifengHuang,ChadFranzen,JeffreyNichols,YangLi,andRanjitha [46] TobyJia-JunLi,MarissaRadensky,JustinJia,KirielleSingarajah,TomMMitchell,"
+paper1,14,37,"[27] MichaelHFischer,GiovanniCampagna,EuirimChoi,andMonicaSLam.2021. Text-to-ImageGenerativeModels.InProceedingsofthe2022CHIConferenceon"
+paper1,14,45,wrangling:Mixed-initiativeend-userprogrammingofdatatransformationscripts. 28thAnnualACMSymposiumonUserInterfaceSoftware&Technology.291–301.
+paper1,14,46,InProceedingsofthe24thannualACMsymposiumonUserinterfacesoftwareand [53] RichardMayerandJoanGallini.1990. WhenIsanIllustrationWorthTen
+paper1,14,65,ofProgrammersWritingWebAutomationScripts.In2021IEEESymposiumon [59] JulieLNewcombandRastislavBodik.2019.Usinghuman-in-the-loopsynthesis
+paper1,14,72,"[38] TessaLau,StevenAWolfman,PedroDomingos,andDanielSWeld.2003.Pro- tore-authorexistingwebsites.InProceedingsofthe13thinternationalconference"
+paper1,14,73,"grammingbydemonstrationusingversionspacealgebra.MachineLearning53, onIntelligentuserinterfaces.149–158."
+paper1,15,11,"[68] AlborzRezazadehSereshkeh,GaryLeung,KrishPerumal,CalebPhillips,Min- screenshotsforsearchandautomation.InProceedingsofthe22ndannualACM"
+paper1,15,20,throughHigh-LevelDesignConstraints.InProceedingsofthe2020CHIConference 33rdAnnualACMSymposiumonUserInterfaceSoftwareandTechnology.627–648.
+paper1,15,25,563–576. FactorsinComputingSystems.
+paper1,15,27,"thesisfrominput-outputexamples.InProceedingsofthe2017ACMInternational sonWHLau,JoseEchevarria,andZoyaBylinskii.2020. Iconate:Automatic"
+paper1,16,14,Twopeopleinteracting Nointeractions
+paper1,16,16,phies that writes about
+paper1,16,22,tivities and 2) Image con-
+paper1,16,24,Image has mountain and
+paper2,1,5,Figure 1: We propose & explore a novel concept in which a single on-body actuator renders haptics to multiple body parts—even
+paper2,1,12,on-body actuator renders haptic effects on multiple body parts by opportunities.
+paper2,1,20,"approach renders ∼15 touch/force-feedback sensations throughout Transcranial Magnetic Stimulation, Electrical Muscle Stimulation,"
+paper2,1,28,"experiences while using our haptic display in VR. Finally, as the"
+paper2,1,32,This work is licensed under a Creative Commons Attribution International 4.0 License. 1 INTRODUCTION
+paper2,2,3,"deliver skin sensations to the user’s body (e.g., contact [75], texture work provides technical insights that will inspire researchers to"
+paper2,2,18,palm). We discuss the differences between these approaches and
+paper2,2,22,few that makes use of transcranial magnetic stimulation (TMS)
+paper2,2,31,the Endpoint
+paper2,2,33,"system (via neurons from limbs to the spinal cord), and, finally, (3) N:N haptics (N actuators, N locations): The most popular way"
+paper2,2,34,signals are processed in the source location where all the neurons to realize full-body haptics has been to attach an actuator per lo-
+paper2,2,42,"sensations on many locations of the user’s body? fixation points that encumber the user (e.g., straps), researchers"
+paper2,2,48,"effector. ure the location of the devices depending on body size, individual"
+paper2,2,49,"To create the first instantiation of this concept, we turned to tran- preferences, goals of the application, and so forth)."
+paper2,2,55,"engineered a haptic device that sits atop the user’s head and is able to utilize the air around the user: as demonstrated by AIREAL, an"
+paper2,2,60,"magnetic-coil moved mechanically across the scalp; furthermore, ically to reach different limbs. For instance, Calico is an on-cloth"
+paper2,2,66,ing new methods to scale haptic feedback to multiple body areas wearables on the body is relatively slow and can require rails added
+paper2,3,29,"has also been adapted to enable users to feel tactile sensations in as eddy currents, inside the brain [30], without the need for im-"
+paper2,3,42,"fingers [83, 84] or the wrist to move [36, 49]. Similarly, stimulating Peripheral magnetic stimulation (e.g., muscles or touch)."
+paper2,4,10,"technical details (hardware & software), alongside a discussion of"
+paper2,4,15,including different curvatures and sizes; (3) actuate with sufficient
+paper2,4,26,opted to implement a versatile design that could move a powerful
+paper2,4,27,Figure 2.
+paper2,4,28,medical-grade TMS coil. This gave us maximum flexibility in our
+paper2,4,35,"most curvature as the coil moves towards the ear, we actuate it"
+paper2,4,39,"with a built-in encoder, this offers a reliable, fairly compact, strong"
+paper2,4,42,potential use of multiple smaller coils rather than moving a single
+paper2,4,48,ploy a linear actuator (Actuonix L16-P; gear ratio=63:1; maximum
+paper2,5,5,"with the standard design with fixed perpendicular axes, we would and five seconds have elapsed since the previous stimulation (see"
+paper2,5,20,"the faceplate of the VR headset (Meta Quest 2), which is depicted the proper selection of stimulation parameters [71]. Moreover, ac-"
+paper2,5,21,in Figure 2. The faceplate was drilled and secured to our custom cording to a set of safety & ethics guidelines for TMS released in
+paper2,5,23,"with the new mount point, we incorporated a passive mechanism no lasting adverse events (e.g., seizures) have been reported. This"
+paper2,5,24,"comprised of linear rails and bearings (Figure 2). This design allows claim is further supported by a comprehensive review of TMS, in-"
+paper2,5,25,"the Z-axis linear actuation to tilt the coil around the pitch axis, cluding long-term use of up to 26 months [22]. TMS is also an"
+paper2,5,35,"rendering our system fixed in size unlike our current design (i.e., the we did not recruit participants with implanted devices (e.g., pace-"
+paper2,5,56,"Stimulation flow. When a VR experience requests feedback, stimulation. This additional safety was also incorporated into our"
+paper2,5,57,"the following process triggers the stimulation: the Unity3D applica- VR experience used in Study#2, by adjusting aspects such as the"
+paper2,6,3,"gency stop function in our Unity application, which immediately each motor axis. We found that the rotation of the servo motor"
+paper2,6,5,"power (hardware switch). Y-axis linear actuator equates to 7.4 cm across the head, and the"
+paper2,6,8,Minimum step-size. We characterized the step-sizes that the
+paper2,6,13,"ation characterization (i.e., accuracy in moving the coil on the"
+paper2,6,25,"Operating noise. We measured the sound generated by our (50mm/s on X-axis, 8mm/s on Y-axis, and 18mm/s on Z-axis), After"
+paper2,6,33,150 ms. Actuation latency. We measured the time that our actuation
+paper2,6,45,"quently, we required an actuator that meets this level of precision, haptic interfaces to be able to render full-body sensations from a"
+paper2,6,48,conducted with a HTC VIVE 3.0 tracker (with a tracking accuracy body haptics: unlike haptic systems created by a constellation of
+paper2,6,51,to control the motors while recording the tracker’s position. Note strates a path forward to scaling haptics without the complexities
+paper2,7,10,since any sensory information takes the form of electrical currents
+paper2,7,14,force-based exoskeletons). compensated with $30 USD.
+paper2,7,22,"Third, while this haptic actuator is unique in its ability to reconfig- perceived sensation area on front/back views of a human model."
+paper2,7,24,"dictate the expressivity of this approach—like any other technique following six keywords: “tapping”, “vibrating”, “tingling”, “press-"
+paper2,7,27,"limits induced sensations (i.e., touch & forces, but not thermal), and post-annotated any involuntary joint movements via TMS that"
+paper2,7,41,"leading to a growth in force-feedback research. Likewise, our effort for the hand and foot. For this, the experimenter moved the coil"
+paper2,7,44,"haptic systems. the hand and foot locations, we defined the final nine locations on"
+paper2,7,54,"grade transcranial magnetic stimulation (TMS), by measuring: (1) strongest point and area of a perceived touch as well as a keyword"
+paper2,7,59,"motor cortex using TMS, while participants reported where they consecutive trials, or the intensity reached the maximum (i.e., 100%)."
+paper2,7,60,"felt sensations and the strongest point of tactile sensation, as well At that point, the procedure advanced to the next location."
+paper2,8,2,"Analysis. After each study session, we organized the partici- this note, neuroscience research suggests that it is more challeng-"
+paper2,8,10,"parts of the same limb moved, it was counted as the movement we analyze each modality (i.e., touch / force-feedback) in more"
+paper2,8,11,"of the part closer to the torso, which is typically the largest/coars- detail."
+paper2,8,24,"in these areas. As shown in Figure 5 (a, b), TMS could induce the"
+paper2,8,41,"(i.e., noticeable involuntary movements) in six unique locations:"
+paper2,8,42,"jaw (75%), forearm (100%), hand (92%), fingers (83%), lower-leg"
+paper2,8,51,movements. Jaw movements were observed to be isolated from
+paper2,8,52,"touch sensations (i.e., only movement was observed). Moreover,"
+paper2,8,60,felt touch sensations in the hand and foot. (c) Quality of the with a line emphasizing the principal axis of the sensorimotor
+paper2,8,61,"sensations. cortex, which was defined for each participant prior to trials. From"
+paper2,9,1,Figure 6: A heatmap of stimulation locations of the sensorimotor cortex corresponding to evoked touch sensations & movements.
+paper2,9,3,creating touch or movement at nine equally separated positions SOURCE-EFFECTOR
+paper2,9,10,"with 1, and the remainder were useful for haptics. Moreover, the"
+paper2,9,11,experienced a custom-design VR game that featured several sensa-
+paper2,9,18,"positional precision of at least ∼8.5 mm, which we used as our"
+paper2,9,24,haptic effects occurred. Figure 7 shows a breakdown of the intensity Apparatus. Participants wore our complete device and a VR head-
+paper2,9,33,in Figure 8 (b)— the VR experience commands our haptic device
+paper2,9,38,"(c)—when they open the palm of their hands in a firing gesture, the"
+paper2,9,48,"our findings, we designed an interactive experience that can render the energy. They locate a crate on the floor and stomp it with their"
+paper2,10,2,"left leg. The user keeps fighting until they eventually find a button comprised eight questions. Finally, interviews were recorded in"
+paper2,10,3,that opens the exit door—as depicted in Figure 8 (f)—as they are audio (with consent) for transcription.
+paper2,10,8,"latency and added safety pauses (see 3.3 Safety), we tailored our We analyzed video-recordings from the VR experiences, depicted in"
+paper2,10,10,"arrive at the hand (∼3.2 seconds if coming from the furthest away), unique topics: (1) surprise, (2) coil, (3) ergonomics, (4) full-body"
+paper2,10,17,"leverage when the user is hit by the robots (a popular design used hard to imagine that it can work but it does[!]” (P4), and ”is on top"
+paper2,10,19,"of events not initiated by the user’s voluntary actions (e.g., the hands and feet. It was a little counterintuitive[!]” (P7), ” it is cool"
+paper2,10,28,"of just ignore the movement, all of the feedback was unexpected."
+paper2,10,30,"male, three as female, average age = 25.3 years, SD = 3.0) from moving] feels like it’s massaging your head, which is good!” (P6)"
+paper2,10,44,"overall experience with the device; (2) Open-ended feedback: we sations successfully, including tactile and forces on their hands,"
+paper2,11,0,"Haptic Source-effector: Full-body Haptics via Non-invasive Brain Stimulation CHI ’24, May 11–16, 2024, Honolulu, HI, USA"
+paper2,11,7,"joint bounce [proceeds to make ”boom” sound], it felt strong (…)"
+paper2,11,9,"like stomping on a rubber ball” (P2, stimulated on leg as they"
+paper2,11,10,"stomped on the box), ”felt [a] pushback, cool!” (P1, stimulated As one of the very first haptic systems making use of TMS as a cen-"
+paper2,11,11,"on hand as they fired the laser), or ”Felt very strong, maybe be- tralized haptic actuator, our exploration let us engage & measure"
+paper2,11,14,"really strong, like a kickback (…) kind of like a recoil”. (P7)— P1, to note that many in neuroscience/medicine do not push past these"
+paper2,11,20,Tactile feedback. All eight participants reported feeling tactile in HCI have engineered compact & easy-to-wear EMS stimulators
+paper2,12,2,"TMS (11×27×29 cm) at 9 kg, which operates on a small 24 V DC [69]."
+paper2,12,9,"top/sited applications) or suspending them via the ceiling (e.g., or implementing the aforementioned MRI-based approach to accu-"
+paper2,12,15,"met with multiple fixed coils might also be beneficial [59]. All these through psychophysics studies, akin to methods employed in the"
+paper2,12,21,"Limited sensations. While we confirmed that our approach gate the size of the TMS coils. However, its accuracy & limitations"
+paper2,12,28,in which one centralized on-body haptic actuator renders haptic ef-
+paper2,12,38,actuators—which we validated in our first user study. In the source-
+paper2,12,39,"instead, necessitates turning to invasive intracortical stimulation"
+paper2,12,44,coil is moved and stimulates the area of their sensorimotor cortex
+paper2,12,63,thank our colleague Romain Nith for his support in mechanical
+paper2,12,69,reviewers. This work was supported by NSF grant 2047189 and
+paper2,13,0,"Haptic Source-effector: Full-body Haptics via Non-invasive Brain Stimulation CHI ’24, May 11–16, 2024, Honolulu, HI, USA"
+paper2,13,5,Construction of a Portable Transcranial Magnetic Stimulation (TMS) Apparatus
+paper2,13,7,process for conference selection should more carefully consider the //doi.org/10.1115/1.4000616.
+paper2,13,9,impact our conferences have on local communities. We especially a motion platform based on people. Proceedings of the SIGCHI Conference on
+paper2,13,14,cated us about the negative impacts of over-tourism and climate narrative timeline of US FDA milestones for Transcranial Magnetic Stimulation
+paper2,13,16,"Neuromodulation. 15, 1 (Jan. 2022), 73–75. DOI:https://doi.org/10.1016/j.brs.2021."
+paper2,13,47,"[4] Badran, B.W., Caulfield, K.A., Lopez, J.W., Cox, C., Stomberg-Firestein, S., De-"
+paper2,13,55,//doi.org/10.1016/j.brs.2020.01.009.
+paper2,13,64,DOI:https://doi.org/10.1016/j.brs.2018.12.972.
+paper2,13,69,"European Journal of Neuroscience. 47, 7 (2018), 790–799. DOI:https://doi.org/10."
+paper2,13,74,"[27] Geddes, L.A. 1991. History of Magnetic Stimulation of the Nervous System."
+paper2,13,77,org/10.3390/s21051622.
+paper2,13,83,"Clinique = Clinical Neurophysiology. 43, 4 (Oct. 2013), 251–260. DOI:https://doi."
+paper2,13,84,"[29] Gupta, S., Morris, D., Patel, S.N. and Tan, D. 2013. AirWave: non-contact haptic"
+paper2,13,95,Touch: High-fidelity 3D Haptic Shape Rendering on Handheld Virtual Reality
+paper2,13,109,(tFUS) and Transcranial Unfocused Ultrasound (tUS) Neuromodulation: From
+paper2,13,111,"Theoretical Principles to Stimulation Practices. Frontiers in Neurology. 10, (2019)."
+paper2,13,114,"[34] Je, S., Lim, H., Moon, K., Teng, S.-Y., Brooks, J., Lopes, P. and Bianchi, A. 2021."
+paper2,13,116,Elevate: A Walkable Pin-Array for Large Shape-Changing Terrains. Proceedings
+paper2,13,125,scutaneous electrical stimulation for sensory feedback of prosthetic hand. 2013
+paper2,13,133,FacePush: Introducing Normal Force on Face with Head-Mounted Displays.
+paper2,13,135,"2https://www.chiinhawaii.info/ [37] Kim, H., Kim, M. and Lee, W. 2016. HapThimble: A Wearable Haptic Device"
+paper2,14,16,"Chinello, F. and Pacchierotti, C. 2023. A Wearable Haptic Device for the Hand 036020. DOI:https://doi.org/10.1088/1741-2552/ab8e8d."
+paper2,14,33,"//doi.org/10.1016/j.dib.2021.107524. [69] Pineda-Pardo, J.A., Martínez-Fernández, R., Rodríguez-Rojas, R., Del-Alamo,"
+paper2,14,36,back system. Proceedings of the ACM symposium on Virtual reality software and thalamic tract after transcranial MR guided focused ultrasound ablation of the
+paper2,14,39,"prosthetic hand based on evoked tactile sensation. 2015 37th Annual International [70] Rossi, S. et al. 2021. Safety and recommendations for TMS use in healthy sub-"
+paper2,14,40,"Conference of the IEEE Engineering in Medicine and Biology Society (EMBC) (Aug. jects and patient populations, with updates on training, ethical and regulatory"
+paper2,14,44,"Human Factors in Computing Systems (New York, NY, USA, 18 2015), 939–948. sensus Group 2009. Safety, ethical considerations, and application guidelines"
+paper2,14,47,"THE FUTURE OF CNC MACHINES. Scientific progress. 2, 1 (2021), 1638–1647. ation of Clinical Neurophysiology. 120, 12 (Dec. 2009), 2008–2039. DOI:https:"
+paper2,14,50,"[53] McCabe, C.S., Haigh, R.C., Halligan, P.W. and Blake, D.R. 2003. Referred sensa- Super-Leaping: Immersive Extreme Jumping in VR. Proceedings of the 10th"
+paper2,14,52,"42, 9 (Sep. 2003), 1067–1073. DOI:https://doi.org/10.1093/rheumatology/keg298. 1–8."
+paper2,14,54,"scranial magnetic stimulators. Journal of Neuroscience Methods. 276, (Jan. 2017), On-cloth Wearables with Fast, Reliable, and Precise Locomotion. Proceedings"
+paper2,14,55,"33–37. DOI:https://doi.org/10.1016/j.jneumeth.2016.11.006. of the ACM on Interactive, Mobile, Wearable and Ubiquitous Technologies. 6, 3 (7"
+paper2,14,57,"Gravity grabber: wearable haptic display to present virtual mass sensation. [74] Scarpelli, A., Demofonti, A., Terracina, F., Ciancio, A.L. and Zollo, L. 2020."
+paper2,14,58,"ACM SIGGRAPH 2007 emerging technologies (New York, NY, USA, 5 2007), 8-es. Evoking Apparent Moving Sensation in the Hand via Transcutaneous Electrical"
+paper2,14,69,"biphasic and polyphasic ultra-high frequency protocols. Biology, Engineering experiences in free air. ACM Transactions on Graphics. 32, 4 (Jul. 2013), 1–10."
+paper2,15,1,"[81] Suzuki, S., Aoyama, K., Kojima, R., Izumi, K., Fushimi, T. and Ochiai, Y. 2023. [91] Thielscher, A. and Kammer, T. 2004. Electric field properties of two commercial"
+paper2,15,2,ExudedVestibule: Enhancing Mid-air Haptics through Galvanic Vestibular Stim- figure-8 coils in TMS: calculation of focality and efficiency. Clinical Neurophysi-
+paper2,15,5,"tional electrical and magnetic stimulation for propelled cycling of paretic pa- [92] Triggs, W.J., Calvanio, R. and Levine, M. 1997. Transcranial magnetic stimulation"
+paper2,15,6,"tients. Archives of Physical Medicine and Rehabilitation. 90, 4 (Apr. 2009), 564–570. reveals a hemispheric asymmetry correlate of intermanual differences in motor"
+paper2,15,15,"USA, May 2011), 543–552. Transactions on Biomedical Engineering. 66, 10 (Oct. 2019), 2761–2767. DOI:https:"
+paper2,15,17,"Interactive Systems to Directly Manipulate Head Orientation. CHI Conference on [95] Wassermann, E.M., McShane, L.M., Hallett, M. and Cohen, L.G. 1992. Nonin-"
+paper2,15,26,"[88] Tang, A.D., Lowe, A.S., Garrett, A.R., Woodward, R., Bennett, W., Canty, A.J., human body using vibrators. Transactions of the Virtual Reality Society of Japan."
+paper2,15,27,"Garry, M.I., Hinder, M.R., Summers, J.J., Gersner, R., Rotenberg, A., Thickbroom, 3, 3 (1998), 141–147. DOI:https://doi.org/10.18974/tvrsj.3.3_141."
+paper2,15,30,"[89] Teng, S.-Y., Li, P., Nith, R., Fonseca, J. and Lopes, P. 2021. Touch&Fold: A Foldable and ion channel amplification. Nature Communications. 13, 1 (Jan. 2022), 493."
+paper2,15,32,"CHI Conference on Human Factors in Computing Systems (New York, NY, USA, 6 [99] Yoshimoto, S., Kuroda, Y., Imura, M. and Oshiro, O. 2011. Development of a"
+paper2,15,38,"Neuroscience, Devices, Modeling, and Applications (Berlin, Heidelberg, 2014),"

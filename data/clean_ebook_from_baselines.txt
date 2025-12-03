@@ -1,0 +1,1878 @@
+=== Paper 1 ===
+SemanticOn: Specifying Content-Based Semantic Conditions for
+
+Figure 1: The workflow of SemanticOn. There are three steps to creating a web automation program with semantic conditions using
+SemanticOn. (Step 1) To specify semantic conditions, users can either describe their intent in text (User Enters, ○c ) or indicate the section of
+interest by brushing through an image ○a or highlighting parts of a text ○b (System Suggests). SemanticOn then encodes these specifications
+with computer vision and natural language processing techniques into web program conditions. (Step 2) To create the intended web
+automation program, users demonstrate the actions on the website using WebRobot, including image downloading ○d and text scraping ○e .
+(Step 3) Once the program is executed, users can also easily coordinate with SemanticOn to refine the semantic conditions (○f , ○h ) or take
+back control to add or remove data manually ○g .
+ABSTRACT
+Data scientists, researchers, and clerks often create web automation
+programs to perform repetitive yet essential tasks, such as data
+scraping and data entry. However, existing web automation systems lack mechanisms for defining conditional behaviors where
+the system can intelligently filter candidate content based on semantic filters (e.g., extract texts based on key ideas or images based
+on entity relationships). We introduce SemanticOn, a system that
+enables users to specify, refine, and incorporate visual and textual
+semantic conditions in web automation programs via two methods:
+natural language description via prompts or information highlighting. Users can coordinate with SemanticOn to refine the conditions
+as the program continuously executes or reclaim manual control
+to repair errors. In a user study, participants completed a series of
+Permission to make digital or hard copies of all or part of this work for personal or
+classroom use is granted without fee provided that copies are not made or distributed
+for profit or commercial advantage and that copies bear this notice and the full citation
+on the first page. Copyrights for components of this work owned by others than ACM
+must be honored. Abstracting with credit is permitted. To copy otherwise, or republish,
+to post on servers or to redistribute to lists, requires prior specific permission and/or a
+fee. 
+
+conditional web automation tasks. They reported that SemanticOn
+helped them effectively express and refine their semantic intent by
+utilizing visual and textual conditions.
+
+1 INTRODUCTION
+Enterprises, governments, and schools often use web-based applications to manage their businesses and services. Other than
+information consumption, users such as clerks, data scientists, and
+researchers often employ these web platforms to conduct tasks that
+are repetitive yet essential, such as data scraping and data entry.
+Performing these tasks manually can often lead to human errors
+(e.g., data duplicates, missed entries), which can cause inefficiencies.
+Web automation offers a solution that leverages bots to mimic human interactions on web applications. It assists users with tedious
+and recurring tasks and has proven to be faster and more accurate
+for various task types compared to manual effort.
+Past research has developed techniques to help users of all expertise levels to quickly and accurately create their intended web
+automation programs. However, these techniques
+are limited to creating programs with requirements at the website
+syntax or structural level (e.g., scraping the first two items in each
+row of a table). Tools capable of creating logic based on the meaning of the content (semantics) remain unexplored. For instance,
+commercial tools such as iMacros and UiPath enable users
+to perform record-and-replay interactions for web automation and
+testing. Research tools such as Helena further this technique by
+lowering the learning curve, allowing users with little programming
+experience to create complex programs that can handle hierarchical
+data (e.g., tree-structured data) and distributed data spread across
+multiple websites.
+We identified a need for web automation with semantic conditions through prior user studies and analysis of real user
+requests in online forms. This includes vision-related semantic conditions, such as scraping images that meet specific criteria
+(e.g., a photography student wants to study group interaction portraits on a gallery website with thousands of photos) or text-related
+semantic conditions, such as scraping text only when it expresses
+particular sentiments (e.g., a film critic wants to evaluate positive
+reviews of a movie star’s acting from dozens of news articles in
+a journal). With current techniques, users cannot specify these
+semantic intents in web automation programs. As noted above,
+semantic information often varies by content type, which makes
+it hard to design a universal interaction that is both easy to use
+and sufficiently expressive. Additionally, unlike other AI systems
+that provide results immediately after the provision of user inputs
+(e.g., chatbots), once executed, a web automation program will
+continuously output results as it iterates over web contents. This
+makes monitoring and error handling difficult, as the program may
+encounter unforeseen and problematic cases.
+This paper explores interactive techniques to enable contentbased semantic condition specification for web automation programs. We introduce SemanticOn,1
+a system that allows users to
+specify, refine, and incorporate visual and textual semantic information as conditions in web automation programs via two methods:
+natural language description via prompts or detailed information
+highlighting with system support. We define them as User Enters
+and System Suggests, respectively. SemanticOn combines the relative strengths of neural models (Transformer) for unstructured
+information and program synthesis techniques for web automation.
+By doing so, we introduce a new interaction paradigm for users to
+continuously add/refine semantic conditions in a programming-bydemonstration system. Specifically, SemanticOn builds upon WebRobot, a program synthesis system that enables users to create
+web automation programs by demonstrating actions on the target
+websites. WebRobot employs a no-code development approach that
+requires only web interactions in place of programming knowledge
+from users, which is consistent with our design goal.
+SemanticOn is an acronym for semantic condition
+Figure 1 depicts the three steps of using SemanticOn. (Step 1) To
+specify semantic conditions, users can either describe their intent
+in a sentence, indicate their area of interest by brushing
+through an image, or highlight parts of a text.
+SemanticOn uses similarity-based computer vision and natural language processing techniques to encode these specifications into
+web program conditions. (Step 2) To create the intended web automation program, users will demonstrate actions on the website
+using WebRobot, including image downloading (Fig. 1.d) and text
+scraping. (Step 3) Once the program is executed, users
+can also easily coordinate with SemanticOn to refine the semantic
+conditions based on the automatically detected information (Fig. 1.f,
+Fig. 1.h) or reclaim control to manually add or remove data if the
+program has misjudged (Fig. 1.g). To our knowledge, SemanticOn
+is the first system to explore content-based semantic specification
+interactions for web automation programs.
+We conducted a user study with 10 participants to evaluate
+SemanticOn’s overall usability and efficiency and to compare the
+semantic condition specification of each method (User Enters and
+System Suggests). We found that participants using SemanticOn
+successfully extracted 80.8% of the required data with an average
+time of 06:10 minute:second per task. The participants found that
+SemanticOn helped them effectively express their semantic intent
+by prompting them to consider their visual and textual perceptions
+of the tasks. We found a sense of control vs. effort trade-off, where
+participants enjoyed composing their conditions in User Enters but
+had to spend more time and mental effort devising a description
+to encapsulate the semantic condition. On the other hand, while
+participants could specify and refine conditions more easily via
+highlighting content details and selecting generated conditions in
+System Suggests, they had less freedom to express their intent when
+system suggestions were inaccurate.
+In the final section of this work, we analyze the human-AI collaboration workflow in SemanticOn, discuss the implications of adding
+similarity-based models in a symbolic PBD system, and explore
+future work that can adapt our approach to other types of interactive AI systems that require semantic conditions. This work is an
+essential step towards the vision of natural, intent-unambiguous
+end-user programming with a focus on web automation creation.
+This paper makes the following contributions:
+• The User Enters, System Suggests interaction designs, implementations, and evaluations that allow users to specify and
+demonstrate their intent during web automation creation,
+• The refinement and error-handling techniques to clarify and
+improve semantic filters in a continuous human-AI collaboration process,
+• SemanticOn, along with a user study showing its usability
+and effectiveness in helping users specify semantic conditions for web automation programs.
+2 RELATED WORK
+SemanticOn builds on decades of web automation systems and
+innovations. In this section, we draw our design goals and guidance from three areas of work: web automation, programming-bydemonstration, and user intent specification and refinement.
+2.1 Web Automation
+Web automation is a software technique that leverages bots to
+perform tedious and recurring web tasks by mimicking human
+interactions, such as data entry and data extraction. Data scientists,
+UI testers, and clerks all use web automation to help complete
+their domain-specific tasks. Social scientists, for
+example, might want to develop web data scraping programs to
+collect necessary web datasets. UI testers might want to create an
+automated browser testing program to help developers find frontend defects. Data workers might envision a data entry program
+for routine tasks like entering large amounts of data into a digital
+system (e.g., booking flights for all employees).
+Creating web automation programs is a non-trivial and complex
+task. Many web automation tools require users to have domain
+knowledge (e.g., understand the Document Object Model (DOM)
+structure) and programming experience. Commonly used tools like
+Puppeteer, Selenium, Scrapy, and Beautiful Soup
+require users to learn code syntax, understand the task content
+architecture (e.g., DOM tree hierarchy), and have software testing experience. Prior work has shown that even for professional
+developers, creating automation programs is time-consuming. Krosnick and Oney studied the challenges of writing web macros using
+common web automation frameworks for experienced programmers. They found that a primary challenge for participants
+was the labor of checking syntactical element selectors to create
+their programs, which was inefficient and prone to mistakes. In
+addition, the program might not generalize to cross-webpage selections where the elements don’t have syntactic similarity. Our
+work enables users to specify the semantic meaning of their target
+content, bypassing the issues caused by implementation.
+Researchers have developed many helpful tools to reduce the
+effort of program creation. For desktop application automation, systems like Sikuli allow users to identify a GUI element (e.g., an
+icon or a toolbar button) by taking its screenshot. Using computer vision techniques, it analyzes patterns in the screenshots to locate the
+appropriate elements when automating GUI interactions. Although
+this approach is promising, it requires programming knowledge
+and cannot disambiguate similar elements or text information. For
+UI testing, researchers have proposed and studied crowdsourcing
+and automated testing strategies to help increase the testing coverage and reduce the effort of creating programs. While
+helpful, outputs produced with these tools are hard to generalize
+to new UIs or contexts.
+2.2 Programming-by-Demonstration
+To further reduce the expertise required, many tools have used
+a programming-by-demonstration (PBD) approach where users
+only have to interact with the target applications rather than writing code. These span a variety of application domains
+including text manipulation, image or video editing, and GUI synthesis. In the context
+of web applications, PBD delivers on this first design requirement,
+offering web automation without requiring users to understand
+browser internals or manually reverse-engineer target pages. The
+PBD approach has produced great successes in the web automation
+domain, most notably CoScripter, Vegemite, Rousillon,
+and iMacros.
+Some of these systems require users to edit their traces to add
+parametrization. For instance, CoScripter and iMacros offer recordand-replay functionality; users record themselves interacting with
+the browser—clicking, entering text, and navigating between pages—
+and the tool writes a loop-free script that replays the recorded
+interaction. Because they lack support for control constructs and
+function composition, these systems require users to have logic
+skills. Other systems support iteration using program synthesis,
+automatically discovering loops given a demonstration of one or
+a few iterations. While less domain knowledge is needed, the synthesizer can make mistakes in which the user must provide more
+demonstrations or edit the DSL to correct it (e.g., Helena), which
+can be frustrating. SemanticOn instead allows users to effectively
+coordinate with PBD systems by smoothly switching agency and
+editing constraints at any time during program execution.
+2.3 User Intent Specification and Refinement
+User intent specification is an important and challenging component of human-AI collaboration. Ideally, users should be able to
+easily and naturally specify their intent to a system while understanding its states. However, given the limited capabilities of AI
+understanding techniques, high-level user intent can be difficult
+for systems to comprehend. Many systems have proposed bridging the gap between user intent and system understanding. For
+instance, PLOW and PUMICE allow users to express concepts (e.g., hot weather) in natural language and then learn the
+concepts to generalize the automation. Systems like Scout,
+Designscape [64], and Iconate allow users to iteratively refine
+their intent by directly manipulating the AI-generated artifacts.
+Other studies have shown that this refinement interaction can even
+be delegated to crowd workers. Another work, APPINITE,
+also encapsulates user’s intent in natural language instructions
+and clarifies the intention in a back-and-forth conversation with
+the AI. While these approaches are promising, user intents can
+involve visual and cognitive details such as identifying visual relationships in images or parsing texts to match a high-level idea.
+The user’s semantic level intents are often not fully or accurately
+expressed through natural language or limited examples only, leading to information loss during communication and rendering the
+communication ineffective.
+Similar to PBD systems, programming-by-example (PBE) is another approach to facilitate program creation for various tasks such
+as data wrangling and data visualization. Many
+PBE and PBD systems require users to provide additional examples
+to disambiguate user intent. Falx allows users to specify visualization examples using a small amount of data and then infers and
+transforms the data to match the design. Sporq allows users
+to more accurately and quickly search code patterns in large codebases by prompting them to refine their intent by annotating a
+batch of negative examples and adding specific constraints.
+Other works enable users to directly annotate their input examples
+(augmented examples) to disambiguate user intent. Or they
+employ data visualization techniques to showcase the generated
+programs, allowing users to tweak the path of program generation in a tree view. While promising, providing additional
+examples increases users’ cognitive demand. In this work, we focus
+on addressing the ambiguous semantic conditions and designing
+human-AI collaboration interaction solutions to help refine the
+constraints based on the content.
+Using machine learning (ML) models to refine intent has been a
+recent focus in the field of interactive ML. One common interactive
+ML approach allows users to offer feedback during the model training process for more effective ML model creation [16]. Work by Cai
+et al. allows users to adjust the search algorithm iteratively with
+different types of similarities at different moments [14]. Projects
+by Austin et al. and Jiang et al. allow users to interact with large
+language models to help refine their intent when writing code
+snippets. Work by Amershi et al. allows users to identify
+new friend groups on social media by analyzing the examples presented. Software developed by Fogarty et al. helps users to
+create their own rules to improve the search results. This research inspires our work, but instead, we focus on helping users
+refine their intent while interacting with continuous AI systems—
+web automation programs that require constant monitoring and
+that effectively coordinate the turn-taking.
+3 BACKGROUND AND DESIGN GOALS
+Our work is built upon an existing web automation system, WebRobot, that only uses web interactions and requires no programming knowledge from its users. This is consistent with our
+design goal. In addition to prior work, we derive our design goals
+from WebRobot’s user study. In this section, we provide necessary
+background information on the WebRobot system and then discuss
+the design goals for our system SemanticOn.
+Figure 2: A screenshot of the WebRobot system UI.
+3.1 The WebRobot System Workflow
+WebRobot is designed to facilitate web automation program creation. Figure 2 shows the WebRobot user interface. To create a
+web automation program for a data entry or scraping task, a user
+first starts recording their actions (Fig. 2.a). Then they can either
+upload a JSON file (Fig. 2.b) if the task involves data entry, or they
+can choose an appropriate action (e.g., Scrape Text) in the action
+panel (Fig. 2.c) and perform the required actions (e.g., clicking the
+desired text data on the website). After each scraping action, they
+will see the data appended to the output panel (Fig. 2.d). Behind
+the scenes, WebRobot records every user action on the website and
+its associated action type (e.g., Scrape Text). After a few demonstrations, WebRobot synthesizes a program P from the trace A of
+demonstrated actions. In particular, WebRobot guarantees that P
+not only reproduces the demonstrated actions from A but also generalizes beyond A. This typically implies P would contain loops that
+can be used to automate the user-intended task. Finally, WebRobot
+executes P to automate the rest of the actions in the task.
+procedure
+Algorithm 1: Rewrite-based program synthesis algorithm.
+3.2 WebRobot’s Synthesis Algorithm
+In a nutshell, WebRobot’s synthesis algorithm (Algorithm 1) generalizes an input action trace A into a program P (with loops) by
+iteratively rewriting A to loops in P from the inside out. Initially, it
+creates a program P0 with exactly those actions in A (line 1): while
+P0 reproduces A, it does not generalize A (i.e., it does not produce
+new actions after A). Therefore, the algorithm performs iterative
+rewriting to gradually “compress” P0 into more compact and general programs using a worklist algorithm (lines 2-8). The worklist
+W is initialized to have only P0, and we use Peto keep track of all
+programs that generalize A (line 2). WheneverW is not empty (line
+3), the algorithm would remove a program P fromW (line 4). It then
+checks to see whether P generalizes A; if so, P is added to Pe(line
+5). After this, in line 6, the algorithm tries to rewrite P into more
+general programs, which are stored inW ′
+. The key idea underlying
+our Rewrite procedure is to perform semantic rewriting using a
+methodology called speculate-and-rewrite. Intuitively, it inspects P,
+identifies repetitive patterns in P, hypothesizes potential loops that
+correspond to P, and finally synthesizes programs with one more
+level of loop. How WebRobot’s speculative writing process works
+is beyond the scope of this work; we refer interested readers to the
+original WebRobot paper [24] for details. Once P is rewritten to a
+new set of programs W ′
+(line 6), the algorithm simply merges W ′
+into W (line 7). The worklist loop terminates when no programs
+can be rewritten and it finally returns the smallest program in Pe
+using a ranking function (line 8).
+3.3 User Feedback
+In WebRobot’s user study, participants reported that while WebRobot can help lower barriers of entry for the creation of web
+automation programs and handling a more comprehensive range
+of tasks, they wished that they could express conditions to filter the
+content. For instance, one participant said, “maybe some conditional
+scraping [can be included], not based on whether the element exists
+in the webpage, but based on some other conditions.” Consistently,
+we found posts on forums such as iMacros [3] and Stack Overflow [7] that request the creation of web automation programs with
+content-based conditions. Participants also wished to refine their
+intent when interacting with the WebRobot system. For instance,
+participants reported that they wanted to “undo my wrong manipulations” or “edit my history.” However, as noted in the related work,
+WebRobot and other systems do not effectively support actions
+such as undo or history manipulation.
+3.4 Design Goals
+Based on this prior work, we devised the following three design
+goals to help users easily create web automation programs with
+semantic conditions.
+• DG1: Ability to express content-based semantic conditions: Users can specify semantic conditions when creating
+web automation programs.
+• DG2: Accessible user intent refinement: Users can iteratively refine their semantic conditions at any time of the
+program creation process.
+• DG3: Responsive error handling for mistakes made by
+users and the system: Users need to modify inaccurate
+conditions and edit scraped data easily.
+ML models WebRobot
+1. Specify conditions 2. Demonstrate
+3. Intent refinement
+Final web automation
+program
+Semantic filters Synthesized program
+Figure 3: SemanticOn’s system architecture.
+4 SEMANTICON
+With the three design goals above, we created SemanticOn to help
+users specify, refine, and incorporate semantic conditions in automated web data scraping. Figure 3 shows SemanticOn’s system
+architecture and main user interactions at a high level. Instead of
+writing web macros from scratch for each website and filtering the
+scraped content in post-processing, users can interact with SemanticOn to compose semantic conditions on the content they want
+to scrape (Step 1 Fig. 3), then demonstrate actions on the target
+website to synthesize automation programs for different websites
+without writing a single line of code (Step 2 Fig. 3). Throughout this
+process, users can communicate with SemanticOn, which is capable
+of parsing text and image content through machine learning models.
+The users and SemanticOn work together to refine the condition
+set and repair errors in result selection, continuously improving
+both the system’s and user’s understanding of the filter criteria
+(Step 3 in Fig. 3). In this section, we first illustrate SemanticOn’s
+user experience with a sample scenario that embodies common
+semantic conditions. We then detail the design and implementation
+of SemanticOn.
+4.1 The SemanticOn User Experience
+Mia, an outdoor enthusiast, wants to extract online information
+about travel destinations where outdoor activities are available. To
+help her make an informed decision, Mia wants to scrape the text
+description and the image for each location from an article to build
+potential itineraries. One option is to read through every paragraph,
+look at each picture, and manually copy and paste the relevant information, but that process would be tedious and repetitive. On the
+other hand, Mia could write a web scraping script using Python. She
+has some coding experience, but writing a script and filtering the
+results based on her preference would also be time-consuming and
+laborious. Instead, Mia uses SemanticOn to efficiently demonstrate
+her conditions and web actions and synthesize a web automation
+program that completes the task for her.
+To begin, Mia sets the semantic conditions for the intended
+content (Step 1 Fig.3). She first clicks “Text Condition”. She then
+selects User Enters (Fig. 4.d) to specify the semantic condition in her
+own words. Mia represents her high-level requirement in the system
+prompt by typing, “This is a great location for outdoor activities”
+(Fig. 6.c). She believes this sentence is likely semantically similar
+to the relevant content in this article. After clicking “Add”, the
+condition is appended to the text condition table (Fig. 4.h) in the
+condition panel. Furthermore, Mia decides to add a condition to
+the corresponding destination image. She wants to travel to a place
+where hiking and water activities are accessible. To that end, she
+uses System Suggests, clicks on an ideal image, and highlights the
+mountain and lake in the picture (Fig. 6.a). The system detects
+several objects and summarizes the image content into a sentence.
+Mia also adds the relevant objects and caption to the corresponding
+tables (Fig. 4.f,g) in the condition panel.
+After specifying two initial conditions, Mia decides to start the
+demonstration process (Step 2, Fig.3). She clicks the “Start Recording” button (Fig. 4.a) to start the web macro recording for program
+synthesis. Then, Mia specifies the task name as “Travel Destination
+Search” and sets the column number to 2, one for text descriptions
+and one for the associated images.
+Next, Mia selects “Download Image” and hovers the mouse to
+highlight the desired image element (Fig. 4.j). As she clicks on the
+element, the image is downloaded and put into the first column
+Figure 4: Overview of SemanticOn’s user interface. The user begins program synthesis by clicking Start Recording ○a . The user can
+disable or enable system suggested prompts in automation ○b . The user can specify conditions for images or text ○c and choose between
+manually input or select system-suggested conditions ○d . The user can also toggle between OR and AND logic for the condition set ○e .
+A unique table displays image object conditions ○f , image description conditions ○g , and text description conditions ○h . The user may
+pause ○i at any time to make changes that will not affect automation. To interact with the web page and demonstrate actions for program
+synthesis, the user will select their action type by choosing an option in the action panel ○j . The system will predict the next action, shown
+in the temporary row ○k . If the semantic conditions are met, the temporary row will be appended to the output panel ○l . To learn more
+about how the content match with the conditions, the user may click on the information icon ○m.
+of the Temporary Row (Fig. 4.k). SemanticOn evaluates conditions
+associated with each column before the row is added to the output
+panel or skipped. However, at the demonstration stage, the condition will not be triggered, as we assume users will only demonstrate
+macro actions on the content they want to include. Mia then selects
+the “Scrape Text” action and repeats the steps for the destination
+description. As both columns in the temporary row are filled, the
+entire row is added to the output panel (Fig. 4.l).
+Figure 5: Example of system prompt when new content does
+not match with current condition.
+Mia repeats her demonstration for a second destination that fits
+her requirement. After two rows of user demonstration, WebRobot
+can synthesize the web automation program and predict the user’s
+next step, so the system now enters a guided semi-automation
+mode. SemanticOn scrolls into the next row of the destination and
+highlights the next element to be extracted. For the image, a prompt
+states that the generated caption matched with the initial image
+condition “a lake beneath the mountain range”. Mia confirms this
+selection and lets SemanticOn continue. However, Mia finds that
+her initial text condition is too general, as the system informs her
+the text condition does not match the current text and presents
+key phrases from this element to be potentially used as refinement
+(Fig.5). She realizes that “scenic hiking trails” would be a good
+textual condition to include. She also discovers “pet travel” as a key
+phrase. Mia would love to take her dog Sushi on the trip, so she also
+selects that key phrase. After she clicks “Finish,” those two phrases
+are added to the text condition table, and the highlighted text is
+considered accepted.
+After inspecting several elements in semi-automation mode and
+refining the condition set with system prompts, Mia feels satisfied
+with the system’s interpretation of her requirements. She clicks on
+the “Hide Prompt” button (Fig. 4.b) to allow the system to automatically predict and filter the rest of the web page content without
+stopping for user confirmation. Mia sits back and waits for the
+program to finish. However, she notices that for one destination,
+“Grand Canyon, USA,” the system filters the image as it does not
+match “a lake beneath the mountain range”. However, she actually
+wants to include this destination in her list, as she can still engage in
+outdoor activities such as hiking and kayaking. To repair this error,
+Figure 6: Two condition specification methods in SemanticOn. After entering the system suggests mode, the user may draw on images.
+Then, a prompt ○a containing detected objects within that region, and a general description of the image will be shown. Similarly, the user
+may highlight sections of text, and the system will prompt ○b important key phrases within the highlighted portion. Users may manually
+enter conditions by clicking on an image or section of text and entering their conditions ○c .
+Mia pauses the automation process (Fig. 4.i, 7.b). She then manually
+scrapes the text description and downloads the image using the
+action panel (Fig. 4.j). It’s worth noting that during the pause, Mia’s
+web macros are not used for program synthesis and therefore do
+not affect the current automation program. Mia also adds another
+image condition using User Enters, specifying “a canyon valley with
+river” as another instance of her ideal destination. While the program is paused, Mia scrolls through, evaluates the output panel,
+and can delete output rows that were added by system mistake or
+modify/delete conditions during the pause (Fig. 7.d). After she is
+satisfied with the refined condition set and the current results, Mia
+clicks “Resume” to continue the automation. The program iterates
+through the rest of the web page and collects filtered data based on
+Mia’s semantic conditions. After the program ends, Mia stops the
+web macro recording, and the collected results are exported as a
+JSON file. Mia uses SemanticOn to create a tailored web automation
+program without writing any code. She also obtains a high-accuracy
+result set of her ideal travel destinations by continuously working
+with SemanticOn to clarify and refine conditions and repair errors.
+4.2 Design and Implementation
+We implemented SemanticOn as a Chrome browser extension, incorporating the core program synthesis engine from an existing system, WebRobot. Primarily, it uses plain JavaScript for the front-end
+interactions. For semantic condition comprehension, we adopted
+two off-the-shelf Transformer models.
+4.2.1 Step 1: Specify Semantic Conditions. To enable content-based
+semantic conditions specification (DG1), SemanticOn allows users
+to add condition criteria to specific content on the target website.
+Currently, the system supports conditions on text and image content
+(Fig. 4.c). The user can choose one of the two methods of specification: 1) User Enters, where the user composes the condition using
+natural language, or 2) System Suggests, a novel specification technique where the user highlights relevant content for SemanticOn to
+analyze and provide suggested conditions (Fig. 4.d). Upon selecting
+the type of condition and the specification method, the user chooses
+an element on the web page as the basis of the semantic condition.
+Inspired by recent prompt-based interactions, a prompt
+displays next to the selected text or image element for User Enters,
+encouraging the user to enter a semantic description of their search
+criteria (Fig. 6.c). This description, along with the context of the text
+or image element, is added to the conditional panel on SemanticOn
+(Fig. 4.f,g,h). In comparison, for System Suggests, the user needs to
+highlight the crucial part of the content to set the condition on.
+For images, the user brushes over an area of interest with their
+mouse (Fig. 6.a) to illustrate. The image is fed through an off-theshelf pre-trained multi-layer Transformer model that learns to
+align image-level tags with their corresponding image region features. The model detects objects for the illustrated section
+and generates a caption for the entire image. For texts, the user
+highlights relevant phrases or sentences with their mouse (Fig. 6.b).
+Similarly, the text is processed by an off-the-shelf unsupervised
+language model where the noun phrases in the input text are first
+detected and then ranked based on frequency and co-occurrence.
+The model generates key phrases in the passage highlighted by the
+user. The user can then pick any object, caption, or phrase tags
+to add to the condition table (Fig. 4.f,g,h). We used these models
+through the Microsoft Azure Cognitive Services and Cloud platform.2 Guided by the design of other systems, we also
+implemented edit, delete, and logical operations for multiple condition specifications, allowing the user to modify, remove, or set
+the AND/OR logic switch on the conditions (Fig. 4.e). They can also
+apply the condition to one or all of the output columns.
+4.2.2 Step 2: Demonstrate Actions and Automate. Once the user
+sets initial conditions, they can start the demonstration process by
+clicking “Start Recording” (Fig. 4.a). This initializes the WebRobot
+2Microsoft Azure
+Figure 7: SemanticOn Error Repair Workflow. A user wants to download cute pictures of a cat and a dog cuddling, but they notice a
+photo of two cats is being scraped by mistake ○a . The user pauses the system ○b . Then, the user can edit the condition description, delete
+conditions ○c , and delete the incorrectly scraped result ○d .
+system on the current web page. The user can then select one of
+the three actions under the action panel: Scrape Text, Download
+Image, and Normal (Fig. 4.j). The Scrape Text and Download Image
+actions allow users to click on the desired text or image element and
+extract the information into the table in output panel. In contrast,
+the Normal action allows the user to navigate and paginate the web
+page. For example, the user can use Normal to click into a web page,
+use Scrape Text to extract a passage, and switch back to Normal to
+return to the previous page. WebRobot registers this entire sequence
+of web macros and generates an automation program to repeat it.
+After the user demonstrates their intended pattern of actions
+twice, WebRobot generates an automation program and predicts
+the next action. SemanticOn also enters a guided semi-automation
+mode. That is, for every data extraction action predicted, the system
+parses the content through machine learning models. A new image
+is considered matching with the current conditions if 1) an object
+specified in the image condition is detected (e.g. user specified a
+dog, and the new image consists of a human petting a dog), or 2)
+the new caption yields a similarity score above a certain threshold
+when compared with captions specified in the image condition. The
+image caption and text content similarity thresholds were set to 0.5
+and 0.4, respectively, based on our benchmark testing. A new text is
+considered matching if it yields a similarity score above a threshold
+when compared with specified text conditions. We used a SentenceTransformer to calculate the semantic similarity between captions
+and texts. The model utilizes Sentence-BERT (SBERT), a pretrained network that derives semantically meaningful sentence
+embeddings that can be compared using cosine-similarity. To avoid
+the low-score comparison between an entire paragraph and a key
+phrase, we chunk the text content and conditions into sentences
+and see if any pair results in a high similarity score.
+4.2.3 Step 3: Refine, Repair, and Coordinate. To help users easily
+refine their intent (DG2) and repair mistakes (DG3), we adopted
+the human-in-the-loop approach and introduced a semiautomation mode to ease the transition between manual demonstration and full system automation. First, to repair unexpected
+results or conditions, SemanticOn offers users a program pause
+function, which is important and unique in continuous AI systems.
+In the semi-automation mode, if new text or image content matches
+with the condition set, the user is notified by a prompt informing
+them which part of the content was matched. In contrast, if the new
+content is ambiguous or does not match with the condition set, the
+user is prompted with a set of suggested conditions (objects and
+captions for images, key phrases for text) generated by ML model
+processing (Fig. 5). The user can clarify their intent by selecting
+suggested conditions to append to the condition set. The new content will be accepted and added to the output results. Alternatively,
+the user can reject the system’s prediction by clicking “Finish”,
+in which case the condition set remains unchanged, and the new
+content is discarded. The semi-automation mode guides the user
+through condition specification and refinement. The user might
+begin with a high-level idea of their search query but can refine
+and adjust it upon seeing SemanticOn’s interpretation of the result.
+The user can add new conditions to cover unforeseen cases or to
+modify/delete vague or over-specified conditions that filter results
+in an unintended way.
+After going through predicted content, administering decisions,
+and refining conditions, the user might feel satisfied with the set of
+conditions. In that case, the user can choose to hide system prompts
+for rejected content and enter full automation. In this mode,
+SemanticOn continuously executes the predicted web macros and
+assesses each new piece of content, outputting the information
+accordingly. This is done by adding a condition evaluation step
+after executing every macro before extracting the data. However,
+when the user detects a filtering error, they can use the “Pause
+Automation” button to reclaim manual control. When the
+system is paused, the user is free to modify the output result table.
+For each assessed piece of output, an information icon is displayed
+at the end of the table cell. Once clicked, it will expand
+and display the ML processing results for that content. The user can
+repair system-made errors by deleting rows of ambiguous results
+accepted by the system but misaligned with the user’s mental model. They can also manually use the action panel to add content
+rejected by the system but matches the user’s needs. In addition,
+the user can learn from the filtering results to add new conditions
+they omitted or under-specified. Likewise, condition editing and
+deletion are also available during the pause (Fig. 7.c). This way,
+the user can feel confident about the automatic selection of results,
+as they always have the power to reclaim manual control, repair
+system mistakes, and clarify their intents. Note that during pause,
+none of these steps are recorded for program synthesis and do not
+affect the automation program.
+5 SYSTEM EVALUATION
+We conducted an in-person user study to evaluate SemanticOn’s
+usability and compare the two methods for condition specifications.
+This evaluation was guided by the usage evaluation in the HCI
+toolkit evaluation strategy classification.
+5.1 Participants
+We recruited 10 people (5F5M, mean age 24.3, mean coding experience 4.6 years) at a large public university. Participants are denoted
+as P1-P10 in subsequent sections. Seven of the participants were
+graduate students, and three were undergraduates. Five participants have written web automation programs or used commercial
+tools to some extent. The participants were contacted by email to
+participate in a study where they would interact with computer
+software to create web automation programs.
+5.2 Study Design
+After signing our consent form, each participant first watched a
+tutorial video of SemanticOn’s interface and features. Then participants performed five tasks using SemanticOn. For each task,
+they were given a task sheet with a semantic conditional intent.
+Similar to the posted tasks in online forums, the descriptions were
+intentionally vague, so the user could not copy the instructions
+verbatim and would need to formalize their own idea of how to
+specify and refine the conditions. The participants could request the
+experimenter’s assistance at any time during the session. After the
+participants completed the tasks, we conducted a short interview
+with them regarding their experience. Additionally, they filled out
+a short survey with Likert scale and short-answer questions when
+they exited. The participants were compensated $25 for their time.
+Each session took 60-75 minutes and was conducted in person on
+our machine. All sessions were screen- and audio-recorded. Our
+study is approved by the IRB at our institution.
+5.3 Tasks
+Through an analysis of online web scraping request posts from
+iMacros Forum [3], and Stack Overflow [7], we designed five tasks
+that represent the challenge of creating web automation programs
+with semantic conditions. The Appendix shows the details
+of the user study tasks. To evaluate the usability and utility of the
+system and compare the effectiveness of two intent specification
+methods, we designed the tasks with the following goals in mind:
+1) the web content to be scraped should be realistic and easily
+understood by participants, 2) the tasks should extract information based on text and image content, 3) the condition criteria and
+the corresponding results should contain some ambiguity to allow
+room for refinement, and 4) the tasks should help SemanticOn to
+demonstrate the system’s full capabilities. To achieve this goal, we
+adopted and piloted five web scraping requests by real users on
+online forums, two based on image-heavy websites (pet wallpapers3
+, street photography4
+), two with text-heavy content (movie
+star biographies5
+, list of novels6
+), and one task with a variety of
+both image and text content (beautiful places in the world7
+). Participants needed to extract only images or only text content for
+the first four tasks. In addition, they were randomly assigned to
+use User Enters and System Suggests as their specification method
+for the first four tasks. We counterbalanced the ordering of image
+versus text tasks and the assigned specification method to eliminate
+sequence and learning effects. To standardize task difficulty, participants needed to extract the top 15 text passages and/or images
+from the website based on a semantic condition. For the final task,
+participants needed to scrape both images and text in two separate
+columns and were free to use both condition specification methods.
+Task 5 served as an exploration task for participants to evaluate and
+compare the two specification methods and was not constrained by
+a result set or time. Participants engaged in this task until the end
+of the study. Therefore, Task 5 was not included in the quantitative
+analysis for accuracy and duration in the later sections.
+We designed the conditions based on the content itself and established a ground truth result set that was compared with the
+participant’s result to measure accuracy. The conditions were designed so that in the ground truth set, the number of results passing
+and failing the condition across all tasks was approximately the
+same (31 passes, 29 fails).
+5.4 Results
+5.4.1 Time and accuracy. The user study recorded 40 scenarios (10
+participants x 4 tasks); one instance was discarded from analysis due
+to a recording issue, resulting in 39 total task completions. Table 1
+lists the average time (in minute:second) each participant spent and
+the accuracy (percentage of correctly included and excluded results)
+on each task. The overall average duration is 06:10 (image tasks
+mean=05:55, text tasks mean=06:25), and the overall average task
+accuracy is 80.7% (image tasks mean = 83.0%, text tasks mean =
+78.5%). We could not identify statistical significance in the difference
+in accuracy and duration across image and text tasks.
+We also analyzed the data comparing usages of User Enters versus System Suggests. The average duration was 06:22 for User Enters
+tasks and 05:57 for System Suggests tasks. In terms of mean accuracy, participants achieved 83.0% for User Enters tasks and 78.5%
+for System Suggests tasks. Again, the differences are unable to be
+identified as statistically significant.
+5.4.2 Overall effectiveness in intent specification. In the exit survey,
+participants rated the ease of use of SemanticOn overall, the ease
+of use of each specification method, their mental effort, and their
+trust in the system. Table 2 displays the average score for Likert
+scale questions on SemanticOn’s usability. On a scale of 1 (strongly
+disagree, very negative) to 7 (strongly agree, very positive), participants believed their specified conditions were displayed in an
+easily understandable way (mean = 6.0, SD = 1.1) and that the
+Task index Completion time
+(mean, SD in mm:ss) Accuracy
+1 05:06 (01:43) 85.3%
+2 06:58 (02:28) 68.9%
+3 06:44 (01:50) 81.3%
+4 05:56 (01:50) 86.0%
+Table 1: Average time spent on each task. Tasks 1 and 3 are
+image tasks; tasks 2 and 4 are text tasks.
+system-generated prompts in semi-automation mode helped them
+refine their intent (mean = 5.6, SD = 0.97). However, participants
+had polarized opinions on the statement “it was easy to coordinate
+(claim controls, pause/resume, show/hide prompts) with SemanticOn
+to repair under- or over-specifications,” with 5 participants agreeing
+and 3 participants disagreeing (mean = 4.7, SD = 1.7). Overall,
+the users widely accepted the semi-automation workflow towards
+automation and the opportunity to adjust conditions later on by
+pausing. 9 out of 10 participants added refinement conditions for
+Tasks 1-4, and all participants utilized the system prompts in semiautomation mode to refine their conditions in Task 5.
+5.4.3 Error-handling Analysis. As per DG3, SemanticOn offers
+error-handling techniques for users during full automation. We
+measured participants’ usage of three error repair methods: condition deletion, result deletion, and manual result addition. Most
+users opted to use the pause and repair functionalities, as 7 participants deleted their specified conditions due to inaccuracies, 6
+participants removed undesired output to repair system mistakes,
+and 2 participants manually added desired contents missed by the
+filter. The utilization of the error-handling features varied based on
+the task type. For condition deletion, we found 16 instances across
+image tasks and 0 instances for text tasks. Similarly, there were 11
+instances of result deletion for image tasks and 2 for text tasks. As
+for manual result addition, we found 3 instances for image tasks
+and none for text tasks. This difference can be related to the content
+processing speeds for visual versus textual materials. The condition
+specification method also plays a role in the usage of error-handling
+features. We observed 4 instances of condition deletions for User
+Enters and 12 for System Suggests. In addition, we found 4 result
+deletion instances for User Enters and 9 for System Suggests. This
+can be attributed to the difference in the required effort for each
+workflow. We expand on these varieties in our Discussion.
+5.4.4 Comparison between User Enters and System Suggests. Regarding the difference between the two specification methods, participants found both experiences comparable but thought System
+Suggest was easier to use. P10 said, “[My preference] really depends
+on the task, but I really liked the System Suggests mode, especially
+for words it was really easy to use and accurate.” When assessing
+the overall experience to specify conditions, participants rated User
+Enters slightly higher (mean = 5.3, SD = 1.1) than System Suggests
+(mean = 5.1, SD = 1.2). But when evaluating the ease of use for each
+interaction, users rated entering their own natural language descriptions lower (mean = 5.1, SD = 1.1) than brushing, highlighting, or
+choosing system-suggested conditions (mean = 5.7, SD = 0.82). We
+were unable to identify statistical significance in these differences.
+However, when measuring the average number of initial conditions
+set before the demonstration, participants specified an average of
+2.6 conditions for User Enters and 4.1 conditions for System Suggests
+(p < 0.05). This points to a difference in ease-of-use and conditiongeneration capability between the two methods, which is further
+explored in Discussion.
+Question Likert Scale (Mean, SD)
+User Enters Experience 5.3 (1.0)
+System Suggests Experience 5.1 (1.2)
+User Enters Ease of Use 5.1 (1.0)
+System Suggests Ease of Use 5.7 (0.8)
+Coordination to Refine Specifications 4.7 (1.6)
+Usefulness of Generated Prompts 5.6 (0.9)
+Conditions Displayed Clearly 6.0 (1.0)
+Trust in Full Automation 4.5 (1.5)
+Success in Completing Task 5.0 (0.9)
+Mental Demand 4.6 (1.7)
+Effort to Achieve Results 4.9 (1.3)
+Feelings of Insecurity and Stress 5.2 (1.7)
+Feelings of Being Hurried or Rushed 4.9 (1.6)
+Table 2: Survey Responses. For section one (top), 1 is very negative, and 7 is very positive. For section two (bottom), 1 is very high
+mental demand, effort, insecurity and stress, and feelings of being
+hurried and rushed.
+5.4.5 Mental effort and AI system trust. Participants also reported
+on their mental effort in completing the tasks and their trust in the
+AI system in the survey. Participants generally reported medium
+to high mental effort using SemanticOn, especially at the start
+of the study when they had to familiarize themselves with the
+interface and remember the workflow (P2, P5, P6, P7). On a scale of
+1 (very demanding, very hard, not successful) to 7 (not demanding,
+not hard at all, very successful), participants experienced medium
+mental demand (mean = 4.6, SD = 1.8) and medium effort (mean =
+4.9, SD = 1.4). They believed they were relatively successful in
+accomplishing the tasks (mean = 5.0, SD = 0.94).
+We also found that the participants exhibited a medium level of
+trust (mean = 4.5, SD = 1.6) towards the AI system’s prediction
+in full automation. Six users were comfortable entering full automation mode for at least one task. However, P3 and P7 expressed
+very low trust in the automated prediction (both rated 2 out of 7 in
+survey). During the interview, some participants (P5, P9) also commented that their trust in the system depended on the content type
+and the number of refinements required for each task. For example,
+P5 mentioned they “trust this picture task a bit more...[because] text
+has more group[ing]s and potential variations” when they used 11
+text refinements and only 1 image refinement. We analyze the effect
+of content type on users’ perception of the task and our system in
+the Discussion.
+6 DISCUSSION
+Based on the evaluation, we present analysis of the human-AI collaboration techniques and the role of each agent in SemanticOn. We
+also discuss the implications of adding similarity-based machine
+learning models in symbolic PBD systems. In addition, we report
+findings on users’ trade-offs in using User Enters and System Suggests, as well as the intent specification effectiveness and system
+limitations to provide insights on future designs.
+6.1 Human-AI Collaboration
+The user workflow of SemanticOn consists of both a human and an
+artificial intelligence agent; they exchange control in different parts
+of the interaction and collaborate to build a complete and accurate
+web automation program. In SemanticOn, we utilize machine learning models’ classification efficiency to rapidly process texts and
+images, summarize the content, and provide suggested semantic
+filters to the user. This saves the user’s mental effort significantly,
+as it is no longer the human’s role to parse content and identify an
+inclusion or exclusion decision. However, it also introduces a new
+source of error to web automation, as similarity-based models can
+mislabel inputs and result in false positive and false negative data.
+This is why human is always involved in the continuous human-AI
+collaboration in SemanticOn. After a couple of demonstrations,
+the user is prompted with potential semantic conditions for each
+processed content in the semi-automation mode. Additionally, even
+when the user feels satisfied with the set of conditions, the program
+can still be paused at any time if a mistake is spotted or the user
+wants to edit the conditions.
+From the evaluation of this interaction paradigm, most participants (7/10) reported that the workflow’s path from demonstration
+to guided semi-automation to full automation was intuitive and
+useful. The semi-automation phase allowed users to calibrate conditions with SemanticOn and better understand the AI system’s
+interpretation of the conditions. This is important as users might
+not have had a well-defined semantic condition at the program’s
+start. P4 believed that the “human brain still needs to think about
+[how to describe the condition]...and link to all the keywords. These
+words might not specifically come to mind to the human.” In this case,
+the initial conditions may not include all of the user’s needs, resulting in low filter accuracy. The semi-automation mode provides aid
+for this. For example, P3 mentioned that even if the results were
+not accurate at the start, “I can interactively try to make [automated
+prediction] better as it goes.” P4 also mentioned that “the transitional
+period to trust the process is good, saves a lot of fuss.”
+However, the steps to refine conditions and results through system prompts and automation pauses could require too much user
+effort and become time-consuming. P5 commented that the entire
+user experience was “a little slow...I think the fine-tuning part is
+slow. Once you start [full automation], then it’s fine.” P2 reported
+that “it took me multiple times to figure out the sequence of the buttons.” When they spotted system mistakes, P1 and P4 decided not
+to pause and amend the errors because it took too much effort.
+They believed the misclassified content was not detrimental to
+the automation task, as there was no requirement for accuracy.
+While supplying users with multiple refinement tools enhances
+robustness, the system must be cautious not to overload users with
+interaction techniques and interruptions.
+6.2 Similarity-based Model in PBD Systems
+A main contribution of SemanticOn is introducing a new interaction
+paradigm for users to continuously add/refine semantic conditions
+in programming-by-demonstration (PBD) systems. In particular, it
+enables users to express intent via similarity-based machine learning models. This specification is at a higher abstraction level than
+pure symbolic systems based on DOM structure. Here, we discuss the advantages and disadvantages of expressing intent using
+similarity-based statistical models versus pure symbolic systems,
+the implications of adding statistical models in PBD systems, and
+the generalizability and viability of SemanticOn against errors.
+Traditional symbolic automation systems like WebRobot are robust at understanding specific user actions and generalizing them
+into repeatable steps in a synthesized program. This is achieved
+by iterating over the elements in the DOM structure of the websites and generalizing the pattern. Meanwhile, statistical machine
+learning models are useful at parsing high-level user intent and
+matching unstructured, but semantically similar concepts, for example extracting key entities from a natural language input. However,
+both systems alone have their limitations. Similarity-based models
+lack reasoning capability. The machine learning models we employ
+classify the inclusion and exclusion of content based on semantic
+similarity, but they cannot derive further actions based on specific criteria. For example, the models alone could not construct a
+program that repeatedly takes in an image URL, searches it, and
+downloads the image based on semantic conditions. It is efficient in
+the last filtering step but ineffective when structural elements need
+to be generalized. In contrast, symbolic models that reason about a
+set of user instructions over a certain website structure might fail
+to generalize if the query is unstructured or outside the scope of
+the task domain, while similarity models can cover a wider range of
+input content that are not constrained by the structure. SemanticOn
+combines these two techniques in an effective way that seals the
+gap between users’ semantic intent and web automation.
+From a practical standpoint, training an intelligent statistical
+model for the tasks we cover in SemanticOn’s user evaluation would
+be effortful. Systems like Calendar.help [22] require many expert
+heuristics and even human workers to automate a very specific task
+in event scheduling across different parties. In SemanticOn, users
+compromise some effort by doing two rounds of demonstrations of
+their desired web actions. Still, the automation tasks can be generalized to a diverse set of data on many different websites. Introducing
+similarity-based models in symbolic systems does present a new
+source of error as the models can filter content incorrectly, in addition to program synthesis errors in pure-symbolic systems. To
+amend this, SemanticOn provides continuous condition refinement
+and output edit/delete options so that users can repair classification
+errors easily and yield more accurate results.
+Our work does not rely on a specific program synthesizer to
+generate a web automation program or a specific machine learning
+model to filter content semantically. The novelty of SemanticOn is
+the set of condition specification, refinement, and error-correction
+interactions, which can be generalized to other PBD systems.
+UIST ’22, October 29-November 2, 2022, Bend, OR, USA Kevin Pu, et al.
+6.3 User Enters and System Suggests
+One emphasis of this project is to compare the usability of the two
+semantic condition specification methods. To summarize the findings, participants shifted their preference between System Suggests
+and User Enters based on two factors: perceived effort and the type
+of content presented. When participants expressed their preferences and the rationale behind using each specification method, we
+also discovered a trade-off between their sense of control and the
+perceived effort.
+6.3.1 Perceived effort based on content types. Perceived effort plays
+an important role in user preference. When it was easy to summarize the target content on which users needed to set conditions,
+participants preferred to use User Enters to express their intent
+instead of selecting System Suggests, which could be too broad or
+too specific. P3 remarked that “[User Enters makes] you feel like [you
+have] more control because you are looking for a specific thing.”
+On the contrary, when the target content was information-heavy
+and hard to encapsulate in a short natural language description,
+participants preferred to use System Suggests to highlight the details
+and let SemanticOn present potential conditions. P6 commented
+that “I do like the possibility of being able to say this is what I see in
+the image [based on System Suggests]... and [highlight] a part of the
+image that I think is important.”
+When participants were free to use both User Enters and System
+Suggests (i.e. Task5 in Appendix Fig 8), we found that text content
+inherently took more effort to process, and 7 out of 10 participants
+opted to use System Suggests to avoid reading a large block of
+text. In contrast, despite containing a variety of objects and entity
+relationships, the corresponding image content could be encoded
+and summarized more quickly, and 9 out of 10 participants chose
+to specify their intents with User Enters.
+This preference based on content type persisted during condition
+refinement in semi-automation and full automation modes. Participants expressed difficulty in parsing textual information rapidly,
+as they could not distinguish whether the system made the correct
+selection. P3 said that “text task in general is much more difficult,”
+and P5 commented, “when it comes to text task, I’m a little lazy to
+read through all this... so system can just get me relevant keywords.”
+Our observations support this as users were far more likely to repair errors for image tasks than text tasks by deleting inaccurate
+conditions and incorrect results. Participants can quickly identify
+whether an image fits the condition set, but they can not parse
+through a block of text as the automation quickly processes each
+row of content. Based on this finding, future designs should account
+for the processing effort for text content and provide users more
+time and aid in understanding and summarizing the information.
+6.3.2 Sense of Control and mental effort trade-off. Another key
+factor for specification preference was the sense of control. Three
+participants (P3, P7, P10) listed a better sense of control as to why
+they preferred User Enters, where they could tailor the condition
+using their terms. In addition, in cases where System Suggests suggestions were inaccurate (e.g., failing to detect relevant text entities
+or generate image captions at the appropriate granularity), some
+participants (P2, P4, P6, P10) switched to User Enters.
+However, there was a trade-off between the sense of control and
+the required effort. Participants rated a lower ease-of-use score
+on average for User Enters (5.1 versus 5.7 for System Suggests), despite it having fewer interaction steps. Three participants (P4, P5,
+P10) pointed out that they preferred System Suggests due to the
+convenience and ease of mental effort. System Suggests is also advantageous in reporting details that escaped the user’s attention.
+For example, P4 pointed out that they preferred System Suggests
+mode because it sometimes captured things that the user failed to
+recognize or think of. Additionally, P7 mentioned that they “quite
+like System Suggests more, [because it is] more systematic and highlights specific things.” Participants could avoid cognitive overload
+by handing the processing labor to SemanticOn through System
+Suggests, but they were limited to the generated set of conditions
+for each item. This trade-off also affects participants’ usage of error
+handling features during automation. With the increased cognitive
+load in User Enters, participants are much less likely to pause and repair their mistakes than when using System Suggests. However, this
+could be explained by participants adopting less accurate prompts
+from System Suggests, which leads to more errors overall for users
+to fix. Future work could potentially create a combined approach
+where users can edit system-suggested conditions, yielding a sense
+of control and avoiding heavy user efforts.
+6.4 System Effectiveness
+Most participants (8/10) agreed that SemanticOn is an effective tool
+for web automation and that the condition specification aspect is
+useful. Compared with manual effort and traditional data scraping
+methods such as writing automation scripts, participants found SemanticOn’s no-code solution novel and easier to use. P5 mentioned
+that in manual scraping scenarios, “Control-F would only get you
+so far” and that the system is “much easier than writing your own
+script...[and] more functionalit[ies]” In addition, P7 thought this tool
+“would be super helpful for someone not comfortable with code. [It
+provides] low effort but maximum reward.”
+More than half of the participants (6/10) believed that SemanticOn could be applied to realistic tasks. However, some focused
+on the conditional selection aspect, and others emphasized on the
+complexity of the task. For example, P2 commented that the system
+is “very good for selective tasks [when you] only want a few images
+from a lot of them.” Similarly, P5 suggested that SemanticOn could
+be used for websites without robust filtering, search engine, or categories because “it could easily make any website sort-able.” On the
+other hand, P1 enjoyed using this tool on Task 5 with both image
+and text conditions combined and proposed that “this type of tool
+would benefit... power users [for tasks] like creating a dataset...[and]
+dealing with complex things.” These reports provide evidence for
+the need of no-code solutions in conditional web automation tasks.
+6.5 System Limitations
+There are several limitations to our system. First is the efficiency
+of coordination. As mentioned, some participants found the refinement process complicated and slow and were reluctant to utilize
+the functionality to increase system accuracy. In future designs,
+the researchers could simplify the user interface and the interaction steps and condense the system prompt information to reduce
+cognitive load.
+Another limitation is the relatively low accuracy of the machine
+learning models it relies on to classify text and image content. Partially, this relates to a design decision we made when building
+SemanticOn. We first used two state-of-the-art models—OFA,
+which uses a sequence-to-sequence learning framework, and ImageAI, which uses a convolutional neural network, for image
+captioning and object detection, and we were able to achieve high
+accuracy. However, the image processing was computation-heavy
+and took more than 30 seconds per image on an off-the-shelf laptop.
+To reduce the gulf of evaluation, we switched to the Microsoft
+Azure computer vision model for near-instant cloud processing
+but with lower accuracy and detail level for some content domains.
+Similarly, for key phrase extraction, we employed the Microsoft
+Azure language model, sending text contents via REST API calls
+for near-instant processing. But the extracted key phrases often
+have a low level of abstraction (i.e. extracting entities and nouns in
+a sentence without indication of interaction) and could not provide
+high-level descriptions like those used for image captions.
+Additionally, SemanticOn builds upon an existing symbolic program synthesis system, WebRobot, which has its own constraints
+and requirements. And the introduction of similarity-based machine learning models also presents ambiguity to the source of
+error between incorrect program synthesis steps and result misclassifications. The user might be confused when encountering
+unexpected behavior, as it could be a product of a user demonstration error or the system’s misunderstanding of user intents,
+which requires a different workflow to repair. However, in our user
+study, we emphasize repairing errors from machine learning model
+mislabelling as that is the novel part of SemanticOn.
+6.6 Future Work
+We summarized three points of feedback that are relevant for future works. First, we found that participants spent a longer time
+encoding and processing texts than images. This is coherent with
+previous studies on human capability in consuming different types
+of information. But, this finding is significant in full automation, when the system rapidly loops through web page content,
+giving users little time to identify potential selection errors. Future
+works could enable multi-modal interaction (e.g., voice) to reduce
+the effort of information processing. Additionally, one can
+provide more indicators for users to quickly recognize the information represented in text elements (e.g. highlighting matching key
+phrases) and decide whether the content should be included based
+on the semantic condition.
+Second, participants separately favored one of the two condition specification methods, User Enters and System Suggests, depending on the content type and the amount of information they
+needed to process. Similar to the neurosymbolic program synthesis
+approach, future works could create a unified technique
+where users could benefit from the instant and comprehensive results from machine learning models while preserving users’ power
+to specify conditions on their own terms.
+Lastly, future designs could further improve the system usability
+by reducing the mental effort. The dual process of collaborating
+with an AI on both demonstrating web macros to synthesize an
+automation program and specifying semantic conditions to filter
+web content requires a decent amount of mental effort, especially
+for users who are less familiar with programming or web scraping.
+Therefore, future designs should alleviate users’ cognitive load with
+a more minimalist UI and more user guidance.
+7 CONCLUSION
+In this work, we designed and developed SemanticOn, a collaborative system that allows users to specify and refine visual and textual
+conditions through user-entered descriptions and system-suggested
+prompts in a web automation program. In a system evaluation, we
+found that participants can effectively use SemanticOn to create
+conditional filters and refine them via continuous human-AI collaboration, collecting selective web content with high accuracy. Participants’ feedback also suggested that a guided semi-automation
+mode, where users authorize system predictions, helped clarify user
+intents. We also found a trade-off between User Enters and System
+Suggests regarding user effort and the sense of control. Our work
+can point directions to future system and interaction designs for
+user-intent specification and refinement in a continuous human-AI
+collaboration setting.
+
+=== Paper 2 ===
+ABSTRACT
+We propose a novel concept for haptics in which one centralized
+on-body actuator renders haptic effects on multiple body parts by
+stimulating the brain, i.e., the source of the nervous system—we call
+this a haptic source-effector, as opposed to the traditional wearables’
+approach of attaching one actuator per body part (end-effectors).
+We implement our concept via transcranial-magnetic-stimulation
+(TMS)—a non-invasive technique from neuroscience/medicine in
+which electromagnetic pulses safely stimulate brain areas. Our
+approach renders ∼15 touch/force-feedback sensations throughout
+the body (e.g., hands, arms, legs, feet, and jaw—which we found
+in our first user study), all by stimulating the user’s sensorimotor cortex with a single magnetic coil moved mechanically across
+the scalp. In our second user study, we probed into participants’
+experiences while using our haptic display in VR. Finally, as the
+
+INTRODUCTION
+Enabling users to leverage all their senses while immersed in interactive experiences has been one of the driving visions in HumanComputer Interaction—as Sutherland put it “[the interface] should
+CHI ’24, May 11–16, 2024, Honolulu, HI, USA Yudai Tanaka et al.
+serve as many senses as possible” [80]. To this date, an immense
+body of work in haptics has engineered specialized actuators to
+deliver skin sensations to the user’s body (e.g., contact , texture, pressure ).
+The overwhelming majority of haptic devices are engineered
+using the same principle, i.e., an actuator is mounted atop the
+part of the skin that is meant to be stimulated, e.g., finger-worn
+haptic devices deliver tactile cues to the fingerpad,
+foot-worn devices deliver tactile cues to the soles, headworn devices deliver tactile cues to the face, and so forth—
+this approach can also be referred to as haptic end-effector,
+a term borrowed from robotics literature, where it denotes how
+the actuator is attached at the very endpoint of a robotic extremity.
+Similarly, in this context, a haptic end-effector denotes how the
+actuator is attached at the very endpoint of the user’s nervous
+system, e.g., a vibration motor attached atop the tactile receptors
+at one’s fingertips. Users feel haptic sensations delivered by
+end-effectors via the following process: (1) mechanical stimuli
+are translated to electrical impulses (by mechanoreceptors at the
+endpoint), (2) electricalsignals propagate via the peripheral nervous
+system (via neurons from limbs to the spinal cord), and, finally, (3)
+signals are processed in the source location where all the neurons
+flow (i.e., the brain, in particular, the somatosensory cortex).
+This end-effector approach has been successful in that devices
+can deliver precise temporal and spatial cues. However, few examples of these devices lend themselves well to full-body haptic
+experiences, which reveals a research question to which our field
+has not found new answers: how might we scale up haptic devices
+given that the current approach requires many devices to render
+sensations on many locations of the user’s body?
+Thus, to propose a new approach, we take the inverse conceptual
+turn. Instead of placing haptic end-effectors on the endpoints of the
+user’s nervous system, we propose delivering full-body haptics via
+a single haptic device that directly stimulates the user’s brain areas
+responsible for creating haptic sensations—we call this a sourceeffector.
+To create the first instantiation of this concept, we turned to transcranial magnetic stimulation (TMS)—a technique from medicine
+that allows for safe & non-invasive brain stimulation. To translate the TMS technique into readily usable knowledge for humancomputerinteraction, we (1) characterized, by means of a userstudy,
+which areas of the body TMS can elicit haptic sensations; then, (2)
+engineered a haptic device that sits atop the user’s head and is able
+to position the TMS coil at strategic locations to generate haptic
+sensations (i.e., either touch or touch & force) in nine locations of
+the users’ body: hands, arms, legs, feet, and jaw, as shown in Figure
+1—all by stimulating the user’s sensorimotor cortex with a single
+magnetic-coil moved mechanically across the scalp; furthermore,
+(3) we characterized, by means of a second user study, the user
+experience created by our device in a virtual reality application;
+finally, (4) we mapped out the possible evolution of this concept,
+including its hardware challenges.
+Finally, we see this approach as the first step towards exploring new methods to scale haptic feedback to multiple body areas
+without encumbering users’ bodies. Naturally, as a first step in this
+direction, our current implementation using transcranial magnetic
+stimulation is not without shortcomings. We will discuss these in
+detail later as we believe they are crucial for identifying the next
+research challenges to be tackled. However, we believe that our
+work provides technical insights that will inspire researchers to
+explore new approaches for haptics.
+
+RELATED WORK
+Our work is built primarily on approaches towards full-body haptic
+feedback, which we organize by their conceptual takes on delivering
+haptic sensations: to the endpoint (e.g., attaching a haptic endeffector to the palm, or even sending an air) or to a midpoint (e.g.,
+electrically stimulating nerves in the arm to create touch on the
+palm). We discuss the differences between these approaches and
+our source-effector. Finally, since our approach is one of the very
+few that makes use of transcranial magnetic stimulation (TMS)
+in an interactive context, we briefly review the working principle
+behind this non-invasive brain stimulation technique.
+2.1 Full-body Haptic Feedback by Stimulating
+the Endpoint
+N:N haptics (N actuators, N locations): The most popular way
+to realize full-body haptics has been to attach an actuator per location where a sensation should be felt—hence N:N haptics. Some
+of the first explorations of this approach date back to the 1990s,
+when researchers used 10 vibrotactile actuators placed at the hands,
+feet, legs, and head. Later, Lindeman et al. took this further
+with 16 vibrators, even including solenoids and fans. Because
+attaching/removing individual actuators on many parts of one’s
+body is extremely time-consuming for the user and requires many
+fixation points that encumber the user (e.g., straps), researchers
+opt to integrate these vibrotactile actuators in haptic suits—both and are canonical examples of haptic suits, while many
+more exist in research and even in industry (e.g., bHaptics). This haptic-suit approach improves wearability & comfort
+by trading it off with design flexibility (e.g., it is harder to reconfigure the location of the devices depending on body size, individual
+preferences, goals of the application, and so forth).
+1:N haptics (1 actuator, N locations): Counter to the previous approach, an emergent and more experimental way to deliver
+haptics to the endpoint, is to use a single actuator. In these systems, there is only one actuator but the user feels sensations in
+multiple locations—hence 1:N haptics. One way to enable this is
+to utilize the air around the user: as demonstrated by AIREAL, an
+air vortex that stimulates the skin up to 1 m away. This approach has been then extended to present tactile sensations at the
+head, shoulders, and legs. Another approach is to attach
+a single haptic actuator to an endpoint but then move it mechanically to reach different limbs. For instance, Calico is an on-cloth
+robotic platform that moves a small end-effector across the user’s
+clothes, providing vibrations from arms to legs. As emergent
+techniques, these are not without limitations. In the case of air
+vortexes, these require line of sight, intensity decays over distance,
+and have a limited interactive volume, etc. Conversely, moving
+wearables on the body is relatively slow and can require rails added
+to one’s clothing, etc. Most importantly, all of these techniques
+cannot deliver force feedback—these provide only tactile cues (e.g.,
+soft puffs of air or vibrations). That said, these devices conceptually
+align with our goal, i.e., building a centralized haptic device capable
+of delivering haptics to multiple locations. In addition, these are
+flexible in adding new points of sensation easily (i.e., pointing the
+air cannon or moving the on-body robot). Thus, we are inspired by
+these centralized devices, yet seek to explore a novel approach that
+breaks away from having to stimulate the endpoint.
+2.2 Haptic Feedback by Stimulating the
+Midpoint (Peripheral Nerves)
+An approach, which we draw inspiration from, is to create sensations in a target area, but using actuators attached to another patch
+of skin that communicate via peripheral nerves. These techniques
+typically work by electrically stimulating nerves to induce sensations ”remotely” at the endpoint of this nerve. This can take the
+form of touch-feedback (electro-tactile) or force-feedback stimulation (electrical muscle stimulation).
+Tactile sensations from the midpoint. One way to create
+tactile sensations without attaching a haptic end-effector to the
+endpoint is to stimulate the nerve that leads to it—this is known
+as inducing a referred sensation, i.e., “somatosensory feelings that
+are perceived to emanate from a body part other than, but in association with, the body part being stimulated”. While this
+was initially only explored in prosthetics to provide tactile feedback to the prosthetic hands or feet of amputees, it
+has also been adapted to enable users to feel tactile sensations in
+their hands or fingerpads without attaching electrodes directly to
+these areas; instead, electrodes are placed on the wrist to create
+sensations in the hand, or other strategic locations more
+proximal to the peripheral nerves such as the back-side of the hand, palm, or base of the fingers to induce sensations
+in the fingerpads.
+Force feedback from the midpoint. Similar to this, with
+electrical muscle stimulation (EMS), it is possible to create force
+feedback without requiring mechanical actuators (e.g., motors or
+exoskeletons). Electrical impulses are sent to electrodes placed atop
+a muscle (midpoint), which in turn cause a movement on the limb
+(endpoint). For example, stimulating the forearm can cause the
+fingers or the wrist to move. Similarly, stimulating
+the neck can move the head , or even stimulating the calf 
+or thigh can move the foot.
+Pushing past the midpoint. While we take inspiration from
+these techniques, we ask the natural question: how would an interactive system look like if we moved past the midpoint? The logical
+consequence of this is to actuate the source of the nervous system,
+i.e., the user’s brain, to generate sensations even at larger distances
+and from a centralized haptic device. To find a suitable method to
+stimulate the brain, we turn to the field of neuroscience where a
+number of brain stimulation techniques are used in research & therapeutics. There are several established techniques to achieve this,
+however, they range in their applicability outside of the medical
+domain. First, invasive techniques involve implanting electrodes in
+the brain, via a surgical procedure. Given thisstringentrequirement
+of implantation, this technique (known as intracortical microstimulation) is typically used for extreme medical cases, such as
+researching prosthetics with tactile feedback for amputees.
+On the other side of the spectrum stand non-invasive techniques,
+which trade off accuracy for safety and wide applicability. One
+such non-invasive technique that has been extensively explored for
+the last decades is transcranial magnetic stimulation (TMS).
+Before we turn into the details of this technique, we note that TMS
+is not the only non-invasive brain stimulation approach; others
+include transcranial direct-current stimulation or transcranial
+focused ultrasound stimulation (tFUS). With regards to tDCS,
+it is a neuromodulation technique that uses small electrical currents
+delivered via electrodes on the scalp; as a modulation technique, it
+typically does not have the accuracy nor amplitude to induce haptic
+sensations and is used for neuropsychiatric conditions. On
+the other hand, tFUS is a nascent stimulation technique that uses
+focused ultrasound, delivered by a transducer placed atop the scalp. While tFUS might eventually resolve some limitations of TMS
+(which we will discuss later in detail, e.g., device weight), its safety
+protocols and guidelines are still under development, unlike those
+of TMS, which have been established for decades. Therefore,
+we decided to implement our concept using TMS.
+2.3 Transcranial Magnetic Stimulation
+Transcranial Magnetic Stimulation (TMS). TMS is a technique
+that originated in medicine/neuroscience, in which a magnetic
+coil placed atop the user’s head produces a magnetic field that oscillates rapidly. This, in turn, creates electrical currents, known
+as eddy currents, inside the brain, without the need for implanted cables or electrodes [24] (as with other brain stimulation
+techniques)—it is thus, non-invasive.
+TMS in neuroscience as a toolto understand brain function.
+TMS has been popularized as a tool for neuroscience since first
+demonstrated by Barker et al. in 1985. It is frequently used
+to map brain functions to cortical areas, e.g., motor control,
+vision, language processing, working memory, and
+more.
+TMS as a medical intervention/treatment. TMS has also
+been extensively used as therapy for improving motor function in
+Parkinson’s patients, reducing epileptic seizures, and as a
+depression treatment.
+Peripheral magnetic stimulation (e.g., muscles or touch).
+While magnetic stimulation finds its primary use in stimulating the
+brain, it can also be used for peripheral nerves, placing its coil atop
+muscles (similar to EMS) or skin (similar to electro-tactile). While
+the latter (tactile) is rather rare, it has been used for creating tactile
+sensations in mid-air without the need for direct contact.
+The former (magnetic muscle stimulation), has been used for muscle
+rehabilitation, gaiting, and even swallowing. Moreover,
+recently, it has also been used for interactive force-feedback.
+It is worth noting that, unlike TMS, these magnetic skin/muscle
+actuation systems create sensations by stimulating the periphery—
+these are still midpoint approaches.
+TMS in interactive systems. Although it is known that TMS
+applied to the motor cortex induces limb movement and/or
+touch sensations in the hand, its presence in human-computer
+interaction remainslimited. Recently, Bassolino et al. demonstrated
+that TMS to the motor cortex improves the sense of embodiment
+in a VR rubber hand illusion. While this implies the utility of
+haptic feedback via TMS, to our knowledge, there have been no
+3 IMPLEMENTING SOURCE-EFFECTOR VIA
+TMS
+To help readers replicate our design, we now provide the necessary
+technical details (hardware & software), alongside a discussion of
+important safety considerations for any future interactive system
+based on TMS. Furthermore, to accelerate replication, we provide
+all the source code & hardware of our implementation1
+Design rationale. As the first instantiation of the concept of a
+head-worn centralized haptic device, we focused on understanding
+the range of sensations & locations that can be created using TMS
+rather than optimizing for form-factor or ergonomics. As such, we
+opted to implement a versatile design that could move a powerful
+medical-grade TMS coil. This gave us maximum flexibility in our
+findings, as the coil has excellent stimulation depth; in other words,
+using smaller coils would result in a smaller device, but would not
+allow us to learn the full range of haptics that TMS can unleash.
+Now that we know the range of haptics that can be generated via
+TMS (Study#1) and the afforded user experiences (Study#2), we
+are poised to also explore new design trade-offs. These include the
+potential use of multiple smaller coils rather than moving a single
+powerful coil, which we will discuss later.
+3.1 Hardware Implementation
+We engineered the actuation system shown in Figure 2, capable of
+moving a TMS coil (Magstim D702 butterfly coil) around the user’s
+head, which is connected to a medical-grade magnetic stimulator
+(Magstim Super Rapid2).
+Robotic platform. The key component in our hardware implementation is a robotic gantry that mechanically moves the TMS
+coil across key areas of the user’s scalp. Our design is inspired by
+a traditional X-Y-Z gantry system commonly found in CNC machines, but with key modifications that allow it to: (1) most
+importantly, conform to the curvature of the scalp around the pitch
+axis (i.e., front/back), which is estimated to be ∼18 degrees for
+the sensorimotor cortex area, based on our measurement from a
+standard head shape dataset; (2) accommodate different heads,
+including different curvatures and sizes; (3) actuate with sufficient
+force to move a medical-grade TMS coil (∼1 kg); (4) actuate with
+steps smaller than 8.5 mm, as determined by our Study#1; and, finally, (5) provide a structure that can be either directly mounted to a
+VR headset or suspended from the ceiling (as in). To satisfy
+these requirements we engineered the actuation system shown in
+Figure 2.
+Actuators. We feature three actuators, respectively, to move the
+coil in the X- (ear-to-ear translation), Y- (nose-to-back translation),
+and Z- (height away from the scalp) axes. Since the X-axis exhibits
+most curvature as the coil moves towards the ear, we actuate it
+via a servo motor (Feetech FT5335M; maximum torque=392N·cm)
+with a built-in encoder, this offers a reliable, fairly compact, strong
+way to actuate the coil—as the coil moves closer to the ear it exerts
+more torque force to the servo lever. As we found in our technical evaluation, we can move the servo reliably & repeatably at
+4.2 mm steps. For the Z-axis (height away from the scalp) we employ a linear actuator (Actuonix L16-P; gear ratio=63:1; maximum
+load=100N) with a built-in encoder, mounted directly to the lever of
+the aforementioned servo. Finally, for the Y-axis (as the coil moves
+from nose to back) we also use a linear motor (Actuonix P8-P; gear
+ratio=165:1; maximum load=110N) with a built-in encoder. The
+Y-axis is mounted to the endpoint of the Z-axis actuator and, ultimately, holds the coil via a custom metallic adaptor. As we found
+in our technical evaluation, we can move the Y- and Z- actuators
+reliably & repeatably at 1.9 mm and 2.6 mm steps respectively. So
+far, what we described is a typical gantry (with carefully chosen
+actuators that are strong enough to move the TMS coil), however,
+with the standard design with fixed perpendicular axes, we would
+not be able to account for the head’s curvature. This would require
+at least adding more actuators to tilt the coil. Instead, to avoid more
+actuators, we opted to build a structure with passive mechanisms.
+In the following, we describe the structural elements that make this
+possible.
+Structural elements. To account for curvature, the Z-axis
+needs to be lifted as the coil traverses the head. One option, that
+we explored in the early phase of the engineering, was to let the
+coil hang entirely at the end of the Y-axis, with no further structure
+to support it. This is similar to some CNC machines that optimize
+for space and do not feature two rails per degree of freedom (e.g.,
+EasyThreed X1). However, we noted this increased the slack and
+backlash due to the coil’s weight. As such, we added a mount on
+the faceplate of the VR headset (Meta Quest 2), which is depicted
+in Figure 2. The faceplate was drilled and secured to our custom
+mount using M4 screws and a ball bearing. To enable movement
+with the new mount point, we incorporated a passive mechanism
+comprised of linear rails and bearings (Figure 2). This design allows
+the Z-axis linear actuation to tilt the coil around the pitch axis,
+adapting to the nose-to-back curvature of the scalp. Lastly, the
+secondary mount attaches to the back of the VR headset’s strap
+using a custom 3D-printed bracket.
+Alternative designs. Many other designs are certainly possible
+and ours depicts one possibility. For instance, one could add a
+hemispheric rail connecting the sides of the VR headset’s strap to a
+passive rail, thus guiding the coil with greater precision. However,
+after experimenting with this, we noted that this also has drawbacks:
+(1) it prevents the headset’s strap-size adjustment from working,
+rendering oursystem fixed in size unlike our current design (i.e., the
+rails properly slide asthe user adjuststhe headset for theirsize); and
+(2) It restricts the coil’s movement to a single line over the cortex,
+eliminating the possibility of diagonal movement. Additionally, it
+is important to note that our evaluation showed our system has
+already achieved sufficient accuracy to stimulate the sensations
+found in Study#1.
+3.2 Software Implementation
+To control our medical-grade TMS stimulator, we implemented a
+custom middleware via MagPy Python Toolbox, which routed
+serial communication to the stimulator and received Open Sound
+Control (OSC) commands. Our main applications for both studies
+ran on Unity3D, which dispatched OSC commands to our custom
+middleware for TMS, and serial commands to a SAMD21-XIAO
+microcontroller connected to the motors and encoders. For tracking
+the hands and feet, we used HTC VIVE 3.0 Trackers attached to the
+user’s extremities, and integrated their tracking information into
+Quest 2’s headset tracking using Open VR Space Calibrator.
+Stimulation flow. When a VR experience requests feedback,
+the following process triggers the stimulation: the Unity3D application communicates the required stimulation intensity to the Python
+middleware via OSC, which is then conveyed to the stimulator as a
+serial command using MagPy. As a result, the stimulator charges its
+capacitor arrays at the requested intensity. In parallel, the Unity3D
+application also sends serial commands to the motor controller to
+move the coil to a target area. Once the coil hasreached the position
+and five seconds have elapsed since the previous stimulation (see
+3.3 Safety), the Unity3D application sends another OSC command
+to our middleware to trigger the TMS stimulation using three consecutive 300-`s biphasic cosine cycle pulses, each separated
+by a 50-millisecond interval. Finally, the resulting current flow
+through the coil creates the oscillating magnetic field, delivering
+the stimulation to the target brain region.
+3.3 Safety
+Risks of TMS. Like any other electrical or brain stimulation technique, TMS is not without its associated risks. These are primarily
+local skin-tingling at the scalp or magnetic interference with implanted devices, which can be avoided through user screening and
+the proper selection of stimulation parameters. Moreover, according to a set of safety & ethics guidelines for TMS released in
+2021, as long as TMS is applied to subjects without epilepsy,
+no lasting adverse events (e.g., seizures) have been reported. This
+claim is further supported by a comprehensive review of TMS, including long-term use of up to 26 months. TMS is also an
+FDA (Food and Drug Administration) approved technique for therapeutic purposes. The minimal risk of TMS is ensured by
+properly screening the population and limiting stimulation within
+the known safety range.
+User screening. In adherence to the safety guidelines,
+we strictly applied the following user eligibility criteria. First, we
+did not recruit participants with medical conditions that could increase the risks associated with TMS (i.e., epilepsy, or history of
+seizures). Second, in line with the safety guidelines for fMRI,
+we did not recruit participants with implanted devices (e.g., pacemakers, metal implants) to prevent unintended interactions with
+the electromagnetic field generated by the coil. We also ensured
+ethical compliance by obtaining informed consent from participants prior to using our device—overall, these screening criteria
+are mostly analogous to those for EMS.
+Stimulation parameters. Rossi et al.’s guidelines provide a
+range of stimulation parameters that ensure minimal risks during
+TMS. These specify the maximum stimulation duration and
+the necessary break period between stimulations as a function of
+the stimulation frequency. For instance, for a 20 Hz stimulation,
+the guidelines prescribe a safe continuous stimulation up to 400
+ms (i.e., 8 consecutive pulses). Following this guideline, we use
+the stimulation parameter of three consecutive pulses with 50 ms
+intervals—a conservative & safe approach using less than half of
+the maximum pulse count that is deemed safe. Moreover, for these
+stimulation parameters, Rossi et al. further recommend adding a
+five-second break between stimulation sequences. As such, our
+software apparatus does not allow the TMS stimulation to be reactivated unless five seconds have elapsed prior to the preceding
+stimulation. This additional safety was also incorporated into our
+VR experience used in Study#2, by adjusting aspects such as the
+timing of the enemy’s attacks or charge-up duration for the user’s
+projectile launcher.
+4 TECHNICAL EVALUATION
+We conducted two technical characterizations: (1) device characterization (i.e., end-to-end latency, noise, weight), and (2) actuation characterization (i.e., accuracy in moving the coil on the
+user’s scalp).
+4.1 Device Characterization
+End-to-end latency. We measured an end-to-end latency of 16 ms
+using a 240fps camera that also recorded sound—this is a complete
+round-trip, from an event in Unity3D to the audible sound of a TMS
+pulse. For simplification, the coil was already at the target, we will
+later characterize the actuation speed delay while moving the coil.
+Operating noise. We measured the sound generated by our
+TMS using a decibel meter (AS824) placed at the height of a user’s
+ear (ten repetitions). We measured an average peak of 79.8 dB at the
+average TMS intensity used in Study#2 (actuating the leg, which
+requires the most amplitude). In comparison, haptic devices such as
+propeller-based tend to be louder (e.g., produces up to 95.3dB).
+Also, propeller-based devices actuate for several seconds or even
+stay on for minutes, instead, our TMS produces sounds for only
+150 ms.
+Device weight. The total weight of the device is 3.1 kg (measured with a Camry Digital Scale, 50g resolution), which consists
+of 1.1 kg from the effective weight of the TMS coil when worn
+and connected to the stimulator and 2.0 kg from our mechanical
+actuators, rails, and attachments.
+4.2 Coil Actuation Characterization
+As we willsee in our Study#1, we observed that the shortest distance
+between adjacent locations on participants’ scalps that correspond
+to haptics on different limbs, was approximately 17 mm. Consequently, we required an actuator that meets this level of precision,
+ideally with a resolution of at least half that distance, i.e., 8.5 mm.
+Measurement setup. All the evaluation in this section was
+conducted with a HTC VIVE 3.0 tracker (with a tracking accuracy
+of 0.3 mm [7]) attached to the coil of our complete system worn by
+a mannequin head. We used our Unity3D application
+to control the motors while recording the tracker’s position. Note
+that the positional difference between the tracker and the center
+of the coil was compensated via an offset applied in the Unity3D
+spatial coordinates.
+Range of motion. We characterized the range of motion for
+each motor axis. We found that the rotation of the servo motor
+(X-axis) spans 24 cm across the head. The actuation range of the
+Y-axis linear actuator equates to 7.4 cm across the head, and the
+Z-axis linear actuator’s range corresponds to a 24-degree tilt of the
+coil in the pitch axis.
+Minimum step-size. We characterized the step-sizes that the
+coil can robustly move on the scalp using its servos and linear
+actuators, which we found to be: 4.2 mm, 1.9 mm, and 2.6 mm for
+the X-, Y-, and Z-axes respectively.
+Actuation consistency. The most important factor is the ability
+to consistently replicate target coil positions multiple times after
+calibration, i.e., measuring the motors’ drift. For this test, we instructed the system to actuate to eight known targets in the four
+cardinal directions at two distances that were pre-defined. In these
+measurements, the coil was first set to the initial position where the
+center of the coil coincided with the center of the mannequin’sscalp.
+Then, the coil was actuated at the speed employed in our Study#2
+(50mm/s on X-axis, 8mm/s on Y-axis, and 18mm/s on Z-axis), After
+stopping, we calculated the error. We repeated this 10 times for
+each target to obtain a variability, as a metric of robustness. Figure
+3 (b) shows our results. We found that the average error across the
+targets was 1.4 mm (SD=0.7) on the X-axis (left/right) and 1.5 mm
+(SD=0.4) on the Y-axis (front/back). Consequently, this actuation
+consistency, along with the minimum step sizes, confirmed that
+our system surpasses the required precision of 8.5 mm.
+Actuation latency. We measured the time that our actuation
+system would require in a worst-case scenario, where the coil needs
+to travel from the jaw location on the left side to its counterpart on
+the right. Drawing from the average unit distance between different
+stimulation targets on the scalp as determined in our Study#1, we
+set the distance for this case to be 13.6 cm. We found it takes 3.2
+seconds for our system to cover this furthest distance.
+5 CONTRIBUTION, BENEFITS & LIMITATIONS
+Our key contribution is a novel interface concept, haptic sourceeffector, which we explore as an alternative direction to scaling
+haptic interfaces to be able to render full-body sensations from a
+centralized on-body device.
+Our approach has four key benefits: (1) One actuator for fullbody haptics: unlike haptic systems created by a constellation of
+many devices, our implementation has only one centralized point
+of contact with the user’s brain; this is beneficial in that it demonstrates a path forward to scaling haptics without the complexities
+associated with wearing many actuators. (2) Easily reconfigurable: as our TMS coil moves over the user’s scalp, it gains access
+to eliciting tactile/force sensations across many parts of the user’s
+Haptic Source-effector: Full-body Haptics via Non-invasive Brain Stimulation CHI ’24, May 11–16, 2024, Honolulu, HI, USA
+body, thus the device can reconfigure by moving to a new stimulation location of the user’s brain—contrast the distance that an
+actuator would have to be moved if swapped from hands to feet
+(source-effector’s movement on the scalp is 50-times smaller than
+that). (3) Freeing up the body: because source-effector only sits
+on the head, it frees up the rest of the body from hardware—no
+need to wear end-effectors which would otherwise limit the user’s
+ability to feel sensations in their hands or feet; (4) Force & touch:
+since any sensory information takes the form of electrical currents
+passing through neurons in the brain, our approach renders both
+touch & forces—two different modalities that conventionally require two different types of actuators (e.g., vibrotactile motors and
+force-based exoskeletons).
+Limitations. We acknowledge that our current implementation
+of source-effector based on TMS has its limitations and every benefit has associated caveats. First, while our concept is novel in that a
+single point of instrumentation can realize haptics in many body
+locations, this instrumentation is currently heavy. Second, this
+point of instrumentation leaves plenty to be optimized for in terms
+of comfort (not only total weight but distribution of weight too).
+Third, while this haptic actuator is unique in its ability to reconfigure to stimulate new body locations, the fundamental limits of TMS
+dictate the expressivity of this approach—like any other technique
+based on stimulating neurons, TMS is also non-selective, i.e., electrical eddy currents traverse through many neurons at once, which
+limits induced sensations (i.e., touch & forces, but not thermal),
+limits spatial fidelity (i.e., we cannot stimulate small brain areas
+and those corresponding to high thresholds such as the torso), and
+modality isolation (e.g., force-feedback occurs with touch). Moreover, we discuss more detailed limitations in our roadmap as we
+believe that these point to a set of challenges worth pursuing to
+further unlock TMS’ interactive potential.
+Finally, we reflect on the nature of our proposal: the TMS technique we employed is not new—it originates from neuroscience and
+medicine as a method to understand our brain function. However,
+the value of our proposal also lies in the translation of this medical
+tool as a new way for full-body haptics. In fact, similar translational
+efforts have previously advanced our field, e.g., the PossessedHand
+[69] translated a 50-year-old medical tool (i.e., EMS) into our field,
+leading to a growth in force-feedback research. Likewise, our effort
+is the first to translate transcranial magnetic stimulation from the
+realm of neuroscience into new knowledge for designing brainhaptic systems.
+6 STUDY#1: GENERATING HAPTIC
+SENSATIONS ACROSS THE BODY WITH
+BRAIN STIMULATION
+In our first study, we focused on characterizing the range of our
+source-effector concept when implemented by means of medicalgrade transcranial magnetic stimulation (TMS), by measuring: (1)
+in what locations can haptic sensations be created using TMS? and,
+(2) what types of haptic sensations can TMS create?
+As such, a TMS-trained experimenter stimulated the nine predefined locations on the right hemisphere of participants’ sensorimotor cortex using TMS, while participants reported where they
+felt sensations and the strongest point of tactile sensation, as well
+as observing any resulting limb movements—this study design was
+based on traditional neuroscientific methods used by prior work to
+investigate motor responses to TMS , as well as perceived
+locations or qualities of electro-tactile stimulation.
+The study was approved by our Institutional Review Board (IRB21-
+0055).
+6.1 Study Design
+Participants. We recruited 12 participants from our institution
+(7 identified as male, 5 as female, average age = 23.2 years, SD =
+2.2). All participants were right-handed. The participants were
+compensated with $30 USD.
+Apparatus. We used a medically compliant magnetic stimulator
+(Magstim Super Rapid2) with a butterfly coil (Magstim D702). The
+participant sat in a reclined chair, wearing earplugs and a white
+fabric cap on their scalp, which allowed the experimenter to mark
+the stimulation locations prior to actual trials. For reporting elicited
+touch sensations, we provided participants with an iPad and Apple
+pencil running our GUI application. This enabled them to draw the
+perceived sensation area on front/back views of a human model.
+They reported the quality of the sensation by selecting from the
+following six keywords: “tapping”, “vibrating”, “tingling”, “pressing”, “skin-stretching”, and “thermal”. For evaluating force feedback
+from TMS, we video-recorded participants throughout the study
+and post-annotated any involuntary joint movements via TMS that
+occurred during each trial.
+Stimulation. We stimulated the right hemisphere of the sensorimotor cortex (corresponding to the left side of the body) with
+three consecutive 320 `s TMS pulses separated by 50 ms, resulting
+in a stimulation of ∼150 ms. While we opted to only stimulate the
+right side of the brain to avoid fatigue, the results will be generalizable to the left side. In fact, we purposefully picked this side
+because it allowed us to measure the worst-case scenario since the
+other side (dominant side) of the brain is known more sensitive to
+TMS.
+Defining the stimulation locations. We identified two locations on the participant’s scalp that yielded minimum stimulation
+intensitiesto elicit observable limb movement (i.e., motor threshold)
+for the hand and foot. For this, the experimenter moved the coil
+following the grid-search method used by Franza et al., while
+adjusting the intensity based on Awiszus’ method. After setting
+the hand and foot locations, we defined the final nine locations on
+a line between them. These were equidistant at one-sixth of the
+distance between the hand and foot locations.
+Procedure. We started trials at the foot location. For each location, the intensity was set to 10% below the hand’s motor threshold.
+The amplitude of TMS stimulation wasreported in percentage (100%
+is the stimulator’s maximum). During a trial, the experimenter stimulated the target location. Afterward, the participant reported the
+strongest point and area of a perceived touch as well as a keyword
+(or if nothing was felt). Then, the experimenter increased the intensity by 5% while ensuring the participant’s comfort & consent, and
+moved to the next trial. This process continued until the participant
+reported the same location and same quality of sensations for two
+consecutive trials, or the intensity reached the maximum (i.e., 100%).
+At that point, the procedure advanced to the next location.
+6.2 Results
+Overview. Figure 4 depicts an overview summarizing the body
+locations where we were able to induce touch and/or movement
+in participants. Overall, these results suggest that we were able
+to induce touch sensations without body movement in two
+locations (hand & foot), and involuntary body movement accompanied with or without touch in six locations (fingers,
+hand, forearm, lower leg, foot, and jaw). Moreover, it is worth
+noting that we only actuated the right hemisphere of their cortex
+corresponding to the non-dominant hand side of the body for the
+sake of participants’ time (study durations of up to 1.5 hours). On
+Figure 5: (a, b) Extracted raw data of where the participants
+felt touch sensations in the hand and foot. (c) Quality of the
+sensations.
+this note, neuroscience research suggests that it is more challenging to induce somatosensory responses in the side we actuated
+(non-dominant) via TMS [92]—thus, these results are expected to
+generalize even better to the other side. When accounting for both
+sides of the user’s body, this brings the haptic sensations that can be
+induced by TMS to a total of 15 sensations with a single actuator:
+four touch sensations and eleven force-feedback sensations. Note
+that we regarded jaw movement as one sensation. In the following,
+we analyze each modality (i.e., touch / force-feedback) in more
+detail.
+Touch. Results suggest that we were able to induce, by means of
+TMS, touch sensations(i.e., only tactile in isolation of any noticeable
+movements) in two unique locations: hand and foot, which were
+both experienced by 75% of the participants (i.e., nine participants).
+The next most promising area was found to be touch on any of the
+four fingers, experienced by 67% of participants, which we did not
+find to meet our criteria. Now, we turn to where in the hand or foot
+these touch sensations occurred. For this purpose, for each of the
+nine participants who reported sensations in these areas, we plotted
+raw data from one trial where they felt the strongest touch sensation
+in these areas. As shown in Figure 5 (a, b), TMS could induce the
+sensations on the front side of the hand or the either side of the foot,
+meaning no simultaneous sensations were observed in other areas.
+Moreover, we found that these tactile sensations had spectrum of
+quality with the majority being described as “tapping” (33%) or
+“vibrating” (33%), and less often as “tingling” (11%), “pressing” (11%,
+22%) or stretching (11%, 0%)—as depicted in Figure 5 (c).
+Force-feedback. As shown in Figure 4, our results suggest that
+we were able to induce, by means of TMS, force-feedback sensations
+(i.e., noticeable involuntary movements) in six unique locations:
+jaw (75%), forearm (100%), hand (92%), fingers (83%), lower-leg
+(92%), and foot (92%), which were all experienced by >75% of the
+participants. In fact, most of the actuated limbs were observed in
+almost all participants (>90%) except for the jaw (75%) and fingers
+(83%). The next most promising candidate would be the upper leg
+(58%), which we did not find to meet our criteria. Furthermore,
+all these force-feedback sensations were associated with touch
+at the same location (e.g., if the hand was actuated involuntarily,
+there was touch felt & reported on the hand), except for the jaw
+movements. Jaw movements were observed to be isolated from
+touch sensations (i.e., only movement was observed). Moreover,
+while the jaw movement was likely also unilateral (i.e., it moved
+the left side of the jaw more than the right) its effect was perceived
+by participants as one single movement, i.e., jaw clenching on both
+sides; hence, we only consider this as a single haptic sensation.
+Correspondence to the brain areas. Next, we analyze which
+locations of the sensorimotor cortex were more effective in creating
+haptic sensations. Figure 6 depictsthe brain region that we targeted,
+with a line emphasizing the principal axis of the sensorimotor
+cortex, which was defined for each participant prior to trials. From
+Haptic Source-effector: Full-body Haptics via Non-invasive Brain Stimulation CHI ’24, May 11–16, 2024, Honolulu, HI, USA
+Figure 6: A heatmap of stimulation locations ofthe sensorimotor cortex corresponding to evoked touch sensations & movements.
+here, we depict the effectiveness of each stimulation location in
+creating touch or movement at nine equally separated positions
+on the main axis. In defining these positions, we found that the
+average unit distance between each location was 8.3 mm (SD=0.9;
+min=7; max=10). This suggest that only position 2 was redundant
+with 1, and the remainder were useful for haptics. Moreover, the
+two nearest adjacent locations that successfully stimulated limbs
+were separated by ∼17 mm (x2 average unit distance). Thisindicates
+that interactive systems operating a TMS coil should maintain a
+positional precision of at least ∼8.5 mm, which we used as our
+design specification.
+Stimulation thresholds. Finally, with respect to inducing haptic sensations by means of TMS, we investigated at what intensity
+haptic effects occurred. Figure 7 shows a breakdown of the intensity
+at which touch sensations and/or movement were first observed
+on average. Overall, haptic effects occurred within the range of
+60∼85%. Results also suggest that body parts closer to the torso consistently required higher stimulation intensities (e.g., the forearm
+required more than the hand), indicating that the extremities are
+easier to stimulate. Additionally, touch sensations always occurred
+at lower intensities than movements, which aligns with Franza et
+al’s findings on TMS studies of the hand [25].
+Figure 7: A summary ofthe minimum stimulation intensities
+observed to induce touch sensations & movements.
+Study conclusions. Overall, our results imply that, when considering both sides of a user’s body, TMS can produce a total of
+15 haptic sensations using just one actuator: touch sensations at
+each of the four extremities and force feedback at eleven locations
+spanning across the jaw and the four limbs. Finally, building on
+our findings, we designed an interactive experience that can render
+force feedback to the user’s hand, forearm, foot, and lower leg on
+both sides of the body and used it to probe into experiential aspects
+of our approach.
+7 STUDY#2: USER’S EXPERIENCE WITH
+SOURCE-EFFECTOR
+This study was designed so that participants could provide qualitative feedback regarding their experience with this on-of-a-kind
+device during an actual interactive use. To this end, participants
+experienced a custom-design VR game that featured several sensations that our device is capable of (from Study#1). VR experience
+wasfollowed by a semi-structured interview to let participants voice
+their experiences. This study was approved by our Institutional
+Review Board (IRB21-0055).
+7.1 Apparatus, VR & Haptic Design
+Apparatus. Participants wore our complete device and a VR headset (Meta Quest 2), as described in Implementation. Their hands and
+feet were tracked via four HTC VIVE 3.0 Trackers attached with
+Velcro-straps. Participants wore headphones (Apple Airpods Pro)
+to hear the VR experience.
+VR experience. Participants embodied the avatar of a cyborg
+trying to escape a robotics factory that has malfunctioned, as depicted in Figure 8 (a). However, when they find the escape route
+blocked by malfunctioning robots that fire at them, —as depicted
+in Figure 8 (b)— the VR experience commands our haptic device
+to render tactile sensation on the affected area (e.g., the left hand in
+this case, but both hands and feet are possible). To advance, participants can counteract by charging up their plasma-hand and firing
+plasma-projectiles to deactivate the robots—as depicted in Figure 8
+(c)—when they open the palm of their hands in a firing gesture, the
+VR experience detects this gesture and prompts our haptic device
+to render force-feedback and tactile sensations on the firing hand
+(e.g., the right hand in the case, but both hands can fire plasma
+shots). After this, the user continues to counteract any robots that
+appear, which can fire shots against any of the user’s VR limbs (i.e.,
+the hands or feet). Figure 8 (d) shows the user being shot in their
+right foot—just before this happens, the VR prompts our haptic
+device to render tactile sensation on the right foot. After a while,
+the user’s plasma-hand stops working, and they need to recharge
+the energy. They locate a crate on the floor and stomp it with their
+feet to release its charging energy—as depicted in Figure 8 (e)—just
+before the stomping releases the energy, the VR commands our
+haptic device to render force-feedback and tactile sensation on the
+Figure 8: Full-body interactions in our Study#2, including: force-feedback and tactile sensations on both hands and both feet.
+left leg. The user keeps fighting until they eventually find a button
+that opens the exit door—as depicted in Figure 8 (f)—as they are
+about to press it, the VR requests that our haptic device render
+tactile sensation on the right hand. The user has escaped the factory.
+Haptic design. Although our system has some mechanical
+latency and added safety pauses (see 3.3 Safety), we tailored our
+game design to overcome it. For instance, to give the coil time to
+arrive at the hand (∼3.2 seconds if coming from the furthest away),
+the participant hears a charging sound and sees the hand charging
+before the plasma shot is fired. This is an example of how haptic
+designers create VR situations to set up the user’s mental model
+to handle haptic devices that include some latency (e.g., shapechanging devices [34, 90]). Another way to handle latency is to
+preemptively schedule an event just before it happens, which we
+leverage when the user is hit by the robots (a popular design used
+in prior work, e.g., [89] or [17]). Finally, we also took advantage
+of events not initiated by the user’s voluntary actions (e.g., the
+appearance of the box, the start of enemy firing, spawning new
+enemies, and so forth). Thus, we only triggered interactive events
+with haptics after the coil was set atop the target position and/or
+the completion of the five-second safety interval—a strategy known
+as queueing.
+7.2 Study Design
+Participants. We recruited eight participants (five identified as
+male, three as female, average age = 25.3 years, SD = 3.0) from
+our institution; three had partaken in our first user study. All
+participants were right-handed. Moreover, with the participants’
+consent, we videotaped the study. Participants received $30 USD
+as compensation.
+Procedure. Prior to the VR trial, we calibrated the coil’s position
+and the stimulation intensity to induce the visible movements of
+the hand, forearm, foot, and lower leg for both sides of the body. We
+adjusted the coil position with our motor structure while sending
+commands to motors via GUI sliders on our Unity application. After
+the calibration, the participant experienced the VR scene. Then we
+conducted a semi-structured exit interview.
+Interview structure. Our semi-structured interview included
+four phases: (1) Overall experience: opener questions about the
+overall experience with the device; (2) Open-ended feedback: we
+invited participants to provide any comments regarding any aspect
+of their experience in the entire study; (3) VR experience: one
+question per VR interaction; (4) Future: we invited participants
+to share use-case/features they would like to see. In total this
+comprised eight questions. Finally, interviews were recorded in
+audio (with consent) for transcription.
+7.3 Results
+We analyzed video-recordings from the VR experiences, depicted in
+Figure 9, as well as responses to our interviews. We identified eight
+unique topics: (1) surprise, (2) coil, (3) ergonomics, (4) full-body
+sensations, (5) force feedback, (6) tactile feedback, (7) unexpected
+sensations, and (8) future form-factors & applications.
+Surprise. Six participants (out of eight) expressed surprise:
+”felt like it’s actually happening. Was impressed[!]” (P5), ”very
+surprising”(P2), ”surprise that it works, the location of the sensation
+and motion was correct despite the device being on the head (. . .)
+hard to imagine that it can work but it does[!]” (P4), and ”is on top
+of your head which you wouldn’t expect to be able to move your
+hands and feet. It was a little counterintuitive[!]” (P7), ” it is cool
+that it is coming directly from your brain. (. . .) [no need to] attach
+stuff to other parts of your body” (P6), and ”It felt natural because
+there was nothing there, like using my natural hand [versus] using
+a glove (. . .) bright future! (. . .) a natural feeling and doesn’t feel
+like needles and there is no glue to remove at the end ” (P1).
+Feeling the coil movement or coil action. Three participants
+(out of eight) recalled feeling the coil’s movement: ”you can kind
+of just ignore the movement, all of the feedback was unexpected.
+You can’t anticipate the sensation in advance” (P4) or ”[the coil
+moving] feels like it’s massaging your head, which is good!” (P6)
+and ”the movement of the device could be distracting but the actual
+sensations were realistic” (P8). Finally, two participants (out of
+eight) commented on feeling the coil’s stimulation ”everything else
+[in VR] distracted from it” (P6) and ”felt [haptics] in a specific body
+area, sometimes it was covered by the sensation on the skull” (P3).
+Device’s ergonomics. Three participants (out of eight) commented on ergonomics: ”a little heavy, but everything else was
+fine. It was comfortable aside from the weight. It didn’t feel uncomfortable when was moving around” (P7), ”not really aware of
+the moving part but was aware of the heaviness (. . .) but it is a lot
+more adaptable, better than putting 10 different things on body”
+(P5), ”If there is more weight on the front, it would be better” (P6).
+Full-body. All eight participants recalled how they felt all sensations successfully, including tactile and forces on their hands,
+feet, and arms during interactions with firing a projectile, stomping
+on a box, getting shots on the hands/feet, and pressing the escape
+button. For instance, ”felt sensations on the whole body, which
+is very convenient. Liked how you only need to calibrate once at
+Haptic Source-effector: Full-body Haptics via Non-invasive Brain Stimulation CHI ’24, May 11–16, 2024, Honolulu, HI, USA
+Figure 9: Photos of participants’ experiences (reproduced with their consent): feeling the recoil of throwing a projectile (a, b);
+stomping on a virtual box (c, d); feeling the impact of a projectile on the hand (e); pressing a virtual button with haptics (f).
+the beginning and do not need to calibrate again” (P2; note that
+recalibration could be needed depending on the situation).
+Strong force feedback. Seven (out of eight) participants commented on the strength of the force feedback, for instance, ”knee
+joint bounce [proceeds to make ”boom” sound], it felt strong (…)
+like stomping on a rubber ball” (P2, stimulated on leg as they
+stomped on the box), ”felt [a] pushback, cool!” (P1, stimulated
+on hand as they fired the laser), or ”Felt very strong, maybe because it suddenly moves your foot and you need to balance back.
+surprised by the attack [of the robot].” (P4, stimulated on foot), ”
+really strong, like a kickback (…) kind of like a recoil”. (P7)— P1,
+P4, and P8 went as far as to call the effects felt ”very natural”. The
+participant who did not enjoy the haptics mentioned: ”All of the
+haptic sensations made sense  [I] just didn’t like them [and
+then proceeded to explain that they felt] scared of losing balance
+initially [when feeling foot force feedback]” (P6).
+Tactile feedback. All eight participants reported feeling tactile
+sensations during the VR experience. Two participants (out of
+eight) commented that these felt less expressive than the forcebased sensations, ”movement is stronger than tactile” (P2), and
+”[feeling shot on hand was] less realistic than laser or stomp [both
+force]” (P3).
+Unexpected sensations. One participant reported a sensation
+that was not force or touch, ”the [foot] sensation was very sudden
+(. . .) may have contributed to the burning sensation, made me
+realize I got shot” (P2). Also, one participant was surprised by the
+involuntary actuation, ”kind of scary. Interesting because I am not
+in control” (P1).
+Future form-factors & applications. Regarding future applications beyond the VR they experienced, three participants stated,
+”Learn to play instruments since hands are free (. . .) or handle
+emergency situations [it] can get your attention very quickly” (P4),
+”stationary mouse + keyboard games” (P2), and ”use with constant
+forces, liquid, wind, etcetera” (P3). Regarding future form factors,
+two participants added other ways they would like to experience
+our device: ”many coil arrays so no [need for] motor movement [and later added] this could be a structure that carries the coil
+without placing the weight on the user” (P2) and ”maybe move the
+coil up a couple of centimeters when it is not stimulating” (P1).
+In this section, we present our reflections and a potential roadmap
+to further exploring this novel idea.
+8.1 Roadmap for Technical Limitations
+As one of the very first haptic systems making use of TMS as a centralized haptic actuator, our exploration let us engage & measure
+several of its current limitations. We believe these current limitations point to significant areas for future research. It is important
+to note that many in neuroscience/medicine do not push past these
+limitations because, for most of their practical purposes, these are
+minor issues (e.g., TMS’ audible noises are a minor nuisance during
+TMS-depression therapy). We argue that incentives to push TMS
+past its current form factor might have to come from outside of the
+medical space. This is perhaps akin to how researchers & industry
+in HCI have engineered compact & easy-to-wear EMS stimulators
+when compared with medical-grade EMS devices. We argue that
+the translation & exploration of TMS in interactive systems might
+accelerate & motivate technical advances.
+Acoustic noise. Rapidly oscillating magnetic fields create audible coil vibrations. Some advances in noise reduction are possible.
+For instance, Peterchev et al. demonstrated a TMS coil that effectively reduces its noise by 19 dB—achieved by altering the coil’s
+casing to shift sounds outside the user’s hearing range [67].
+Coil ergonomics. TMS coils are larger than most types of nerve
+stimulation (e.g., EMS). While participants in our Study#2 wore our
+complete system, we believe that this heavyweight may negatively
+impact experiences of prolonged use and do not recommend these.
+Improving the coil’s form factor is paramount for better wearability.
+One approach is altering coil geometries (e.g., single-loop coils
+reduce the size by half). Another approach is using smaller
+coils designed for small mammals [88], which might still be enough
+for applications with weak haptics. With all these, there is a tradeoff
+between size/weight and depth of the stimulation.
+Stimulator size. Current TMS stimulators are still large, e.g.,
+ours measures 46×38×31 cm. This is because, to produce strong
+magnetic fields, the capacitor arrays require large power (4600 W
+at peak—approximately the energy intake of two hairdryers). At
+the current stage, we recommend TMS tethered to the stimulator,
+where the user might be free to move around, but limited to the
+range of the cable. Despite this, advances in engineering are likely
+to improve this. For instance, Sauvage et al. designed a compact
+TMS (11×27×29 cm) at 9 kg, which operates on a small 24 V DC
+power supply and exhibits an output of 700 mT at 1 Hz (i.e.,
+70% of our stimulator’s maximum output).
+Alternative mechanical designs. We do not think of our headworn implementation as the only way to realize source-haptics
+using TMS. To minimize weight, researchers might explore mounting the coil and the actuation system to the user’s chair (e.g., desktop/sited applications) or suspending them via the ceiling (e.g.,
+similar to early VR setups that were heavy, or large free-moving
+VR arenas). Alternatively, if the stimulation points are predefined
+for a given application, one could replace the robotic actuators with
+a fixed mount. Particularly, for single-point stimulation, a coil on a
+helmet could reduce weight. For multi-point stimulation, a helmet with multiple fixed coils might also be beneficial. All these
+non-motorized approaches also eliminate the latency associated
+with our approach’s mechanical actuation of the coil. However,
+this comes at the cost of stimulation resolution, which is limited by
+the coil’s size (e.g., 5 cm steps in vs. our <8.5 mm steps via our
+actuators).
+Limited sensations. While we confirmed that our approach
+can create a total of 15 haptic sensations including both force &
+touch, it still has limitations. For instance, the spatial resolution
+of haptic feedback via TMS is influenced by the size of the coil’s
+focal point (e.g., ∼1 cm radius with the butterfly coil we used).
+While this can be smaller than ∼5 mm by optimizing the coil geometry, one has to note that a smaller focal point is a tradeoff
+to the stimulation depth. This poses challenges in rendering focused tactile cues in small skin areas, e.g., multiple tactile
+points on the fingerpad. At this stage, this is not possible with
+existing non-invasive stimulation techniques such as TMS (and,
+instead, necessitates turning to invasive intracortical stimulation). However, it is important to note that the upper bound of
+TMS’ spatial resolution is yet to be fully understood (see 8.2 Stimuli
+design and understanding). Additionally, by limiting the stimulation
+duration (see 3.3 Safety), our force sensations are impact-like (i.e.,
+applied for a short duration) and not sustained forces. Also, as
+previously discussed, our touch sensations are less prominent than
+forces due to the difficulties in stimulating somatosensory neurons,
+compared to motor neurons.
+Now that we have discussed the challenges brought by our specific
+implementation using TMS, we turn our attention back to the wider
+concept of a centralized haptic actuator worn by the user (i.e., a
+source-effector).
+Closing the loop. One possible reason why we observed some
+of our limitations (e.g., fewer points for touch sensations, or even
+less strength for touch than forces) might be related to the lack
+of a closed-loop system. In other words, during calibration, it is
+easy to accurately determine if a force occurred (i.e., it causes a
+visible contraction of a muscle) but the same cannot be said for
+touch. One way that future researchers might tackle this is by
+attempting to close the loop on the stimulation. This might be done
+by first scanning participants via MRI to obtain a more precise map
+of regions that should be stimulated for this particular participant.
+Stimuli design and understanding. While our system can
+create 15 distinct haptic sensations, this observation is specific
+to our current actuation resolution (8.5 mm). We hope that our
+findings facilitate exploration of the upper bound of how many
+different points across the body TMS can deliver haptics. Possible
+strategies for this include defining finer grids for coil positioning
+or implementing the aforementioned MRI-based approach to accurately identify cortical regions. Moreover, broadening the range of
+haptic sensations—such as different textures or even pressure—is
+also a promising avenue for future research. One way to approach
+this is to explore different TMS pulse parameters (e.g., pulse width,
+frequency, and waveform) and evaluate elicited sensations
+through psychophysics studies, akin to methods employed in the
+domain of surface electrical stimulation.
+Beyond TMS. Finally, we hope our work inspires new implementations of this concept of a source-effector. One promising avenue
+is via the aforementioned transcranial ultrasound stimulation—
+despite its still nascent status, it might offer some avenue to mitigate the size of the TMS coils. However, its accuracy & limitations
+are still being understood.
+CONCLUSION
+We proposed, implemented & evaluated a novel concept for haptics
+in which one centralized on-body haptic actuator renders haptic effects on multiple body parts—we called this a haptic source-effector.
+We implement it by leveraging transcranial magnetic stimulation
+(TMS). We can render touch/force-feedback in hands, arms, legs,
+feet, and jaw—without needing to instrument these with individual
+actuators—which we validated in our first user study. In the sourceeffector, a single magnetic coil moves mechanically across the scalp.
+For instance, if the user is meant to feel haptics in their hand, the
+coil is moved and stimulates the area of their sensorimotor cortex
+where hand sensations are processed. In our second user study,
+we probed into participants’ experiences while using our haptic
+display in an interactive VR experience.
+Finally, as a first implementation of TMS-based haptics, we thoroughly discussed its limitations and proposed a roadmap to further
+its use in interactive contexts.
