@@ -10,10 +10,26 @@ def test_benchmark_uses_document_groups_when_available(tmp_path: Path):
     for paper in range(8):
         rows.extend(
             [
-                {"text": f"Methods for experiment {paper}", "label": "KEEP", "document_id": f"p{paper}"},
-                {"text": f"Results for experiment {paper}", "label": "KEEP", "document_id": f"p{paper}"},
-                {"text": f"Page {paper + 1}", "label": "SKIP", "document_id": f"p{paper}"},
-                {"text": f"Copyright publisher {paper}", "label": "SKIP", "document_id": f"p{paper}"},
+                {
+                    "text": f"Methods for experiment {paper}",
+                    "label": "KEEP",
+                    "document_id": f"p{paper}",
+                },
+                {
+                    "text": f"Results for experiment {paper}",
+                    "label": "KEEP",
+                    "document_id": f"p{paper}",
+                },
+                {
+                    "text": f"Page {paper + 1}",
+                    "label": "SKIP",
+                    "document_id": f"p{paper}",
+                },
+                {
+                    "text": f"Copyright publisher {paper}",
+                    "label": "SKIP",
+                    "document_id": f"p{paper}",
+                },
             ]
         )
     path = tmp_path / "benchmark.csv"

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
+from collections.abc import Iterable
 from dataclasses import dataclass
-from typing import Iterable
 
 import pandas as pd
 
@@ -17,7 +17,12 @@ class DatasetSchema:
     group_col: str | None = None
 
 
-def _find_column(columns: Iterable[str], preferred: str | None, aliases: tuple[str, ...], kind: str) -> str:
+def _find_column(
+    columns: Iterable[str],
+    preferred: str | None,
+    aliases: tuple[str, ...],
+    kind: str,
+) -> str:
     available = list(columns)
     if preferred:
         if preferred not in available:
@@ -47,7 +52,10 @@ def detect_schema(
     group: str | None = None
     if group_col:
         if group_col not in frame.columns:
-            raise ValueError(f"group column {group_col!r} not found. Available: {list(frame.columns)}")
+            available = list(frame.columns)
+            raise ValueError(
+                f"group column {group_col!r} not found. Available: {available}"
+            )
         group = group_col
     else:
         lower_to_original = {name.lower(): name for name in frame.columns}

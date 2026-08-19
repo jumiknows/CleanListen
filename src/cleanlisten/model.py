@@ -1,9 +1,10 @@
 from __future__ import annotations
 
+from collections.abc import Sequence
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Sequence
+from typing import Any
 
 import joblib
 import pandas as pd
@@ -66,7 +67,11 @@ def _payload(model: Pipeline, metadata: dict[str, Any] | None = None) -> dict[st
     }
 
 
-def save_model(model: Pipeline, model_path: str | Path, metadata: dict[str, Any] | None = None) -> None:
+def save_model(
+    model: Pipeline,
+    model_path: str | Path,
+    metadata: dict[str, Any] | None = None,
+) -> None:
     path = Path(model_path)
     path.parent.mkdir(parents=True, exist_ok=True)
     joblib.dump(_payload(model, metadata), path)
@@ -110,7 +115,11 @@ def train_csv(
     return summary
 
 
-def predict_lines(lines: Sequence[str], model: Pipeline, threshold: float = 0.5) -> list[Prediction]:
+def predict_lines(
+    lines: Sequence[str],
+    model: Pipeline,
+    threshold: float = 0.5,
+) -> list[Prediction]:
     if not 0.0 <= threshold <= 1.0:
         raise ValueError("threshold must be between 0 and 1")
     if not lines:
@@ -119,9 +128,14 @@ def predict_lines(lines: Sequence[str], model: Pipeline, threshold: float = 0.5)
     probabilities = model.predict_proba(list(lines))[:, 1]
     return [
         Prediction(text=line, keep_probability=float(score), keep=bool(score >= threshold))
-        for line, score in zip(lines, probabilities)
+        for line, score in zip(lines, probabilities, strict=True)
     ]
 
 
-def keep_lines(lines: Sequence[str], model: Pipeline, threshold: float = 0.5) -> list[str]:
-    return [prediction.text for prediction in predict_lines(lines, model, threshold) if prediction.keep]
+def keep_lines(
+    lines: Sequence[str],
+    model: Pipeline,
+    threshold: float = 0.5,
+) -> list[str]:
+    predictions = predict_lines(lines, model, threshold)
+    return [prediction.text for prediction in predictions if prediction.keep]

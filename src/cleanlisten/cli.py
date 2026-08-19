@@ -12,7 +12,10 @@ from .pdf import extract_lines
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="cleanlisten",
-        description="Clean research PDFs for screen readers and text-to-speech without summarizing the paper.",
+        description=(
+            "Clean research PDFs for screen readers and text-to-speech "
+            "without summarizing the paper."
+        ),
     )
     sub = parser.add_subparsers(dest="command", required=True)
 

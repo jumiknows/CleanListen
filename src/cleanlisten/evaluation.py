@@ -34,7 +34,10 @@ class BenchmarkResult:
         return asdict(self)
 
 
-def _metrics(y_true: list[int], y_pred: list[int]) -> tuple[float, float, float, float, int, int, int, int]:
+def _metrics(
+    y_true: list[int],
+    y_pred: list[int],
+) -> tuple[float, float, float, float, float, int, int, int, int]:
     accuracy = float(accuracy_score(y_true, y_pred))
     precision, recall, f1, _ = precision_recall_fscore_support(
         y_true,
