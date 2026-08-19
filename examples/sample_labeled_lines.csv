@@ -1,0 +1,17 @@
+text,label,document_id
+Abstract,KEEP,paper-1
+We investigate a method for making research PDFs easier to listen to.,KEEP,paper-1
+Page 1,SKIP,paper-1
+https://doi.org/10.0000/example1,SKIP,paper-1
+Methods,KEEP,paper-2
+Participants completed three listening tasks.,KEEP,paper-2
+Page 2,SKIP,paper-2
+Copyright 2026 Example Publisher,SKIP,paper-2
+Results,KEEP,paper-3
+The cleaned version reduced non-content lines.,KEEP,paper-3
+Page 3,SKIP,paper-3
+www.example.org/article,SKIP,paper-3
+Discussion,KEEP,paper-4
+The classifier preserved the main argument.,KEEP,paper-4
+Page 4,SKIP,paper-4
+Publisher terms and conditions,SKIP,paper-4

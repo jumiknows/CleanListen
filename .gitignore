@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# CleanListen generated artifacts
+artifacts/*.joblib
+outputs/*
+reports/*.json
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+
+# Keep empty output directories in local checkouts
+!artifacts/.gitkeep
+!outputs/.gitkeep
+!reports/.gitkeep
