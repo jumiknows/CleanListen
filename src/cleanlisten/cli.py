@@ -94,6 +94,14 @@ def _run_benchmark(args: argparse.Namespace) -> None:
     )
     payload = result.to_dict()
     print(f"split: {result.split}")
+    if result.train_groups is not None and result.test_groups is not None:
+        total_groups = result.train_groups + result.test_groups
+        print(f"documents: {result.train_groups} train / {result.test_groups} test")
+        if total_groups < 5:
+            print(
+                f"note: only {total_groups} document groups; treat this as a pipeline check, "
+                "not a generalization claim"
+            )
     print(f"accuracy: {result.accuracy:.3f}")
     print(f"KEEP precision: {result.precision_keep:.3f}")
     print(f"KEEP recall: {result.recall_keep:.3f}")
