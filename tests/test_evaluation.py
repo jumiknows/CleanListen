@@ -38,4 +38,6 @@ def test_benchmark_uses_document_groups_when_available(tmp_path: Path):
     result = benchmark_csv(path, test_size=0.25)
     assert result.split == "document-grouped"
     assert result.train_rows + result.test_rows == len(rows)
+    assert result.train_groups == 6
+    assert result.test_groups == 2
     assert 0.0 <= result.f1_keep <= 1.0
