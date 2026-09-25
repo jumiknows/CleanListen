@@ -1,0 +1,9 @@
+# Default owner
+* @jumiknows
+
+# Evaluation and release-sensitive areas
+/.github/ @jumiknows
+/data/ @jumiknows
+/docs/benchmarking.md @jumiknows
+/src/cleanlisten/ @jumiknows
+/tests/ @jumiknows
