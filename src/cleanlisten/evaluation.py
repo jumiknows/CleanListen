@@ -17,6 +17,8 @@ class BenchmarkResult:
     split: str
     train_rows: int
     test_rows: int
+    train_groups: int | None
+    test_groups: int | None
     accuracy: float
     precision_keep: float
     recall_keep: float
@@ -86,6 +88,8 @@ def benchmark_csv(
 
     indices = frame.index.to_numpy()
     split_name: str
+    train_groups: int | None = None
+    test_groups: int | None = None
 
     if schema.group_col:
         groups = frame[schema.group_col].fillna("__missing_group__").astype(str)
@@ -94,6 +98,8 @@ def benchmark_csv(
         splitter = GroupShuffleSplit(n_splits=1, test_size=test_size, random_state=random_state)
         train_positions, test_positions = next(splitter.split(indices, frame["__label"], groups))
         train_idx, test_idx = indices[train_positions], indices[test_positions]
+        train_groups = int(groups.loc[train_idx].nunique())
+        test_groups = int(groups.loc[test_idx].nunique())
         split_name = "document-grouped"
     else:
         train_idx, test_idx = train_test_split(
@@ -116,6 +122,8 @@ def benchmark_csv(
         split=split_name,
         train_rows=len(train),
         test_rows=len(test),
+        train_groups=train_groups,
+        test_groups=test_groups,
         accuracy=values[0],
         precision_keep=values[1],
         recall_keep=values[2],
