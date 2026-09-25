@@ -1,0 +1,25 @@
+name: Evaluation improvement
+description: Propose a benchmark, dataset, or model-evaluation change.
+title: "test: "
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Evaluation question
+      description: What are we trying to learn?
+    validations:
+      required: true
+  - type: textarea
+    id: data
+    attributes:
+      label: Data
+      description: What documents or labeled examples are involved, and can they be redistributed?
+    validations:
+      required: true
+  - type: textarea
+    id: method
+    attributes:
+      label: Method
+      description: Describe the split, metric, baseline, and comparison.
+    validations:
+      required: true
