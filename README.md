@@ -1,130 +1,122 @@
 # CleanListen
 
-> **Turn noisy research PDFs into cleaner text for screen readers and text-to-speech — without summarizing away the paper.**
+CleanListen removes layout noise from research PDFs so they are easier to hear through text-to-speech and screen readers.
 
-[![CI](https://github.com/jumiknows/CleanListen/actions/workflows/ci.yml/badge.svg)](https://github.com/jumiknows/CleanListen/actions/workflows/ci.yml)
+It does not summarize or rewrite the paper. It decides which extracted lines should be kept.
 
-CleanListen is a small Python tool that classifies extracted PDF lines as **KEEP** or **SKIP**. It preserves research content while removing layout noise such as page numbers, publisher boilerplate, URLs, and other material that makes long papers painful to listen to.
+## What it removes
 
-**Original prototype results:** **91.2% accuracy · 89.7% KEEP F1 · 94.0% noise specificity**. The notebook also estimated roughly **48–52% less listening text** on its evaluated examples. These are prototype results from the original experiment, not universal performance claims.
+Typical noise includes:
 
-## What changes
-
-A PDF-to-speech pipeline can sound like this:
-
-```text
-Journal of Example Research
-Page 12
-Methods
-Participants completed three listening tasks.
-https://doi.org/10.0000/example
-Copyright Example Publisher
-Results
-The cleaned version reduced non-content lines.
-```
-
-CleanListen aims to produce:
-
-```text
-Methods
-Participants completed three listening tasks.
-Results
-The cleaned version reduced non-content lines.
-```
-
-It **filters** the document. It does not summarize or rewrite the research.
+- page numbers
+- publisher headers and footers
+- URLs
+- repeated conference text
+- isolated figure labels
+- other layout fragments that interrupt listening
 
 ## Quick start
 
-```bash
-# from the repository
-python -m pip install -e ".[dev]"
+Install the project:
 
-# train from the existing labeled dataset
+```bash
+python -m pip install -e ".[dev]"
+```
+
+Train a model:
+
+```bash
 cleanlisten train data/labeled_lines.csv \
   --model artifacts/cleanlisten.joblib
+```
 
-# clean a paper
+Clean a PDF:
+
+```bash
 cleanlisten clean data/paper1.pdf \
   --model artifacts/cleanlisten.joblib \
-  --output outputs/paper1.txt \
-  --stats-json reports/paper1.json
+  --output outputs/paper1.txt
+```
 
-# reproduce a held-out benchmark
+Run the benchmark:
+
+```bash
 cleanlisten benchmark data/labeled_lines.csv \
   --json reports/benchmark.json
 ```
 
-Common dataset schemas are detected automatically (`text`/`line`, `label`/`decision`). You can also pass explicit `--text-col`, `--label-col`, and `--group-col` names.
-
 ## How it works
 
-```mermaid
-flowchart LR
-    A[PDF] --> B[Extract lines]
-    B --> C[TF-IDF]
-    C --> D[Logistic regression]
-    D -->|KEEP| E[Clean text for TTS]
-    D -->|SKIP| F[Layout noise]
-```
+The current model is intentionally small:
 
-The classifier is intentionally simple and inspectable. The current product path uses **TF-IDF + logistic regression**, while the original notebook remains the research record for model comparisons and exploratory analysis.
+1. `pdfplumber` extracts text lines from the PDF.
+2. TF-IDF converts each line into text features.
+3. Logistic regression estimates whether the line should be kept.
+4. Lines above the selected threshold are written to the cleaned text file.
 
-## Prototype evidence
+The original notebook is kept as the research record. The reusable code lives in `src/cleanlisten`.
 
-The original notebook reports the following held-out results for its TF-IDF + logistic-regression experiment:
+## Current data
 
-| Metric | Reported result |
+The checked-in labelled dataset currently contains 631 lines from two papers.
+
+That is enough for a prototype, but not enough to claim broad performance across research PDFs.
+
+The original notebook reported:
+
+| Metric | Prototype result |
 | --- | ---: |
-| Accuracy | **91.2%** |
-| KEEP precision | **91.9%** |
-| KEEP recall | **87.6%** |
-| KEEP F1 | **89.7%** |
-| Noise specificity | **94.0%** |
-| Lines processed | **1,929** |
+| Accuracy | 91.2% |
+| KEEP precision | 91.9% |
+| KEEP recall | 87.6% |
+| KEEP F1 | 89.7% |
+| Noise specificity | 94.0% |
 
-It also reports an **87.5% KEEP F1** random-forest experiment and a **61.9% F1** rule-based baseline. Treat these as results from the original prototype dataset. The stronger next milestone is evaluation on unseen documents, not simply repeating a random line split.
+These numbers describe the original experiment. They are not a claim about unseen papers.
 
-## Reproducible evaluation
+The next useful evaluation is a document-level benchmark across a much larger public corpus.
 
-`cleanlisten benchmark` makes the split strategy visible instead of hiding it.
-
-- If the dataset contains a document/group column, complete papers are held together using a **document-grouped split**.
-- Without one, CleanListen falls back to a **line-stratified split** and prints a warning that the evidence is weaker.
-- Results can be written to JSON for releases, portfolio case studies, or CI artifacts.
-
-See [`docs/benchmarking.md`](docs/benchmarking.md) for the evaluation contract.
-
-## Repository map
+## Repository
 
 ```text
-src/cleanlisten/          reusable package and CLI
-notebook/                 original research exploration
-data/                     prototype datasets and example papers
-tests/                    automated tests
-examples/                 tiny schema example
-docs/architecture.md      component design
-docs/benchmarking.md      evaluation methodology
-.github/workflows/ci.yml  Python 3.10 / 3.12 CI
+src/cleanlisten/       package and CLI
+tests/                 automated tests
+data/                  prototype data
+examples/              small schema example
+notebook/              original exploration
+docs/                  architecture and benchmarking notes
 ```
 
-## Current scope
+## Tests
 
-CleanListen currently targets **text-based research PDFs**. Scanned documents that require OCR are intentionally out of scope for the classifier package so extraction quality and classification quality remain separately measurable.
+```bash
+ruff check src tests
+pytest -q
+```
 
-## Roadmap
+GitHub Actions runs the same checks on Python 3.10 and 3.12.
 
-- [x] Move reusable behavior out of the notebook
-- [x] Add a CLI for training, cleaning, and benchmarking
-- [x] Add model metadata and backwards-compatible artifact loading
-- [x] Add automated tests, linting, and GitHub Actions
-- [x] Add document-grouped evaluation support
-- [ ] Attach a document identifier to every labeled line in the full dataset
-- [ ] Benchmark on 25+ public research PDFs
-- [ ] Publish a versioned model artifact and `v0.1.0` release
-- [ ] Add a small before/after web demo
-- [ ] Test with real screen-reader and TTS users
+## Current limits
 
-## Why CleanListen
+- Only text-based PDFs are supported.
+- OCR is not part of the current pipeline.
+- The labelled dataset is small.
+- The current evidence is not yet strong enough to claim reliable performance across publishers or disciplines.
+- Removing real research content is more harmful than leaving a little noise, so future threshold tuning should favour high KEEP recall.
 
-Summaries are useful when someone wants a summary. They are not a substitute for the original paper when a reader needs the methods, results, limitations, or exact argument. CleanListen explores a narrower accessibility problem: **remove the listening friction while preserving the document itself.**
+## Next work
+
+The next milestones are:
+
+1. build a 25+ document public benchmark
+2. keep complete papers separate between training and testing
+3. record source and redistribution information for benchmark documents
+4. tune the decision threshold for high content recall
+5. test the listening workflow with real screen-reader and TTS users
+6. add a small before and after demo
+
+## Why this project exists
+
+A summary is useful when someone wants a summary.
+
+CleanListen solves a different problem: make the original paper less frustrating to listen to while keeping its methods, results, limitations and argument intact.

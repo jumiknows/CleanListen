@@ -1,41 +1,37 @@
 # Architecture
 
-CleanListen is deliberately small. The notebook remains useful for research, while the package provides a reproducible product path.
+CleanListen keeps extraction, classification and evaluation separate so each part can be measured.
 
-```mermaid
-flowchart LR
-    A[Research PDF] --> B[pdfplumber line extraction]
-    B --> C[TF-IDF features]
-    C --> D[Logistic regression]
-    D -->|KEEP| E[Accessible text]
-    D -->|SKIP| F[Removed layout noise]
-    D --> G[Per-line probability]
-```
+## Cleaning a paper
 
-## Components
+1. `pdf.py` extracts non-empty lines from a text-based PDF.
+2. `model.py` loads the trained TF-IDF and logistic regression pipeline.
+3. Each line receives a KEEP probability.
+4. Lines above the selected threshold are written to the output file.
+5. Optional JSON stats record how much text was kept and removed.
 
-### `pdf.py`
-Extracts non-empty text lines from text-based PDFs. OCR is intentionally outside the current scope so extraction and classification remain separate concerns.
+## Training
 
-### `schema.py`
-Normalizes the small training-data contract. Common column names such as `text`/`line` and `label`/`decision` are auto-detected, while callers can override them explicitly.
+`schema.py` finds the text, label and optional document columns in a labelled CSV.
 
-### `model.py`
-Owns the classifier, model artifact format, training, and line-level predictions. Model artifacts store metadata alongside the scikit-learn pipeline while remaining backward-compatible with older plain-pipeline artifacts.
+`model.py` trains the classifier and stores the model with basic training metadata.
 
-### `evaluation.py`
-Runs a held-out benchmark. If a document/group column exists, the split keeps entire papers on one side of the train/test boundary. This is a stronger test than randomly splitting individual lines from the same document.
+## Benchmarking
 
-### `cli.py`
-Provides three user workflows:
+`evaluation.py` supports two split types.
 
-- `train` — create a model artifact from labeled lines
-- `clean` — turn a PDF into cleaner text and optional JSON stats
-- `benchmark` — generate reproducible held-out metrics
+`document-grouped`
+Keeps complete documents on one side of the train and test boundary. This is the preferred evaluation.
 
-## Design choices
+`line-stratified`
+Randomly splits individual lines. This is useful for the early prototype, but it is weaker evidence because lines from the same paper can appear in both sets.
 
-- **Preserve content instead of summarizing it.** The model decides whether a line should be read, not how to rewrite it.
-- **Keep the model interpretable.** TF-IDF + logistic regression is fast, inspectable, and appropriate for a small labeled dataset.
-- **Make evaluation harder over time.** Document-grouped evaluation is the target once each line can be traced back to its source PDF.
-- **Keep OCR separate.** Scanned PDFs are a different extraction problem and should not be silently mixed into classifier quality.
+## Why the model is simple
+
+The current dataset is small. TF-IDF with logistic regression is fast, easy to inspect and easy to reproduce.
+
+A larger model is only useful if it improves results on unseen documents.
+
+## OCR
+
+OCR is intentionally separate from the current package. Scanned PDFs introduce an extraction problem that should not be mixed into classifier quality without measuring it separately.
