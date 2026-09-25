@@ -1,28 +1,38 @@
 # Contributing
 
-CleanListen is an accessibility-oriented research prototype becoming a reproducible tool. Small, testable improvements are preferred over large rewrites.
+CleanListen is a small accessibility and ML project. Prefer focused changes that can be measured.
 
-## Development setup
+## Setup
 
 ```bash
 python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\\Scripts\\activate
+source .venv/bin/activate
 python -m pip install -e ".[dev]"
-pytest -q
-ruff check src tests
 ```
 
-## Good contributions
+On Windows, activate with:
 
-- more representative labeled lines from public research PDFs
-- document identifiers that enable grouped evaluation
+```text
+.venv\Scripts\activate
+```
+
+## Before a pull request
+
+Run:
+
+```bash
+ruff check src tests
+pytest -q
+```
+
+Good contributions include:
+
+- labelled examples from redistributable public papers
+- document IDs for grouped evaluation
 - extraction fixes with regression tests
-- accessibility feedback from screen-reader or TTS workflows
-- benchmark and documentation improvements
+- benchmark improvements
+- accessibility feedback from real listening workflows
 
-## Before opening a pull request
+Do not commit private papers or copyrighted source files unless redistribution is allowed.
 
-1. Keep private or copyrighted source material out of the repository unless redistribution is allowed.
-2. Add or update tests for behavior changes.
-3. Run `ruff check src tests` and `pytest -q`.
-4. Explain how the change affects content preservation, noise removal, or reproducibility.
+When changing the classifier, explain how the change affects both content preservation and noise removal.

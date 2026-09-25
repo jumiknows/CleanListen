@@ -5,11 +5,11 @@ from cleanlisten.schema import detect_schema, normalize_label
 
 
 def test_schema_detects_common_aliases():
-    frame = pd.DataFrame({"line": ["hello"], "decision": ["KEEP"], "paper_id": ["p1"]})
+    frame = pd.DataFrame({"line": ["hello"], "decision": ["KEEP"], "paper": ["p1"]})
     schema = detect_schema(frame)
     assert schema.text_col == "line"
     assert schema.label_col == "decision"
-    assert schema.group_col == "paper_id"
+    assert schema.group_col == "paper"
 
 
 @pytest.mark.parametrize("value", ["KEEP", "keep", 1, True, "content"])

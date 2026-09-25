@@ -7,7 +7,7 @@ import pandas as pd
 
 TEXT_ALIASES = ("text", "line", "content", "sentence", "raw_text")
 LABEL_ALIASES = ("label", "decision", "class", "target", "keep")
-GROUP_ALIASES = ("document_id", "doc_id", "document", "paper_id", "source")
+GROUP_ALIASES = ("document_id", "doc_id", "document", "paper", "paper_id", "source")
 
 
 @dataclass(frozen=True)
