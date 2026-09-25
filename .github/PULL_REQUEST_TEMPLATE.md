@@ -1,22 +1,44 @@
-## Summary
+## Problem
 
-What changed and why?
+What extraction, classification, evaluation, reproducibility, or maintenance problem does this address?
 
-## Validation
+## Approach
 
-List the checks and benchmark commands you ran.
+What changed, and why was this method chosen?
 
-## Data and evaluation
+Explain model, feature, preprocessing, split, or metric decisions when they materially affect the result.
 
-Does this change affect extraction, labels, train/test splitting, metrics, model artifacts, or benchmark claims?
+## Verification
 
-If yes, explain how the comparison remains reproducible.
+### Automated
+
+List the tests, lint checks, and commands you ran.
+
+### Evaluation
+
+If behavior or model quality changed, record:
+
+- dataset or fixture
+- train, validation, and test split
+- baseline
+- new result
+- metric definition
+- observed difference
+
+Do not report a metric without the context needed to reproduce it.
+
+## Risks and limitations
+
+Describe data leakage risk, class imbalance, dataset limitations, untested document types, or any claim that should not be generalized.
+
+## References
+
+Link papers, dataset documentation, metric definitions, library documentation, or prior experiments that support a decision or claim.
 
 ## Checklist
 
-- [ ] Tests pass.
-- [ ] Ruff passes.
+- [ ] Tests and Ruff pass.
 - [ ] Behavior changes have tests.
-- [ ] Benchmark claims include the split and dataset context.
+- [ ] Evaluation claims include dataset and split context.
+- [ ] Evidence supports the stated conclusion.
 - [ ] No private or unlicensed document content was committed.
-- [ ] Documentation changed when behavior or evaluation changed.
